@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.friquerette.primems.entity.Customer;
 
-@Repository("employeeDao")
+@Repository("customerDao")
 public class CustomerDaoImpl extends AbstractDao<Customer> implements CustomerDao {
 
 	@Override

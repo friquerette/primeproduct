@@ -10,13 +10,13 @@ import com.friquerette.primems.dao.CustomerDao;
 import com.friquerette.primems.entity.Customer;
 
 @Service("customerService")
-@Transactional
 public class CustomerServiceImpl implements CustomerService {
 
 	@Autowired
 	private CustomerDao dao;
 
 	@Override
+	@Transactional
 	public List<Customer> findAllCustomers() {
 		return dao.findAll();
 	}
