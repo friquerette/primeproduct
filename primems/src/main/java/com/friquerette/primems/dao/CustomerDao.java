@@ -8,8 +8,6 @@ public interface CustomerDao {
 
 	public void create(Customer customer);
 
-	public void save(Customer customer);
-
 	public void update(Customer customer);
 
 	public Customer findById(Long id);

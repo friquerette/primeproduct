@@ -1,5 +1,7 @@
 package com.friquerette.primems.controller;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,14 +26,17 @@ public class HelloWorldRestController {
 
 	@RequestMapping(value = "/user", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Customer> getUser() {
+		Customer customer = null;
 		try {
-			customerService.findAllCustomers();
+			List<Customer> customers = customerService.findAllCustomers();
+			System.out.println("Fetching Customer with id ");
+			if (customers != null && !customers.isEmpty()) {
+				customer = customers.get(0);
+			}
 		} catch (Exception e) {
 			logger.error("Failed to read all the customers", e);
 		}
 
-		System.out.println("Fetching Customer with id ");
-		Customer customer = new Customer("Franck", "Martin");
 		return new ResponseEntity<Customer>(customer, HttpStatus.OK);
 	}
 

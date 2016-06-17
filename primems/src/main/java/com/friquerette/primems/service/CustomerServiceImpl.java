@@ -34,7 +34,7 @@ public class CustomerServiceImpl implements CustomerService {
 
 	@Override
 	public void updateCustomer(Customer customer) {
-		dao.save(customer);
+		dao.update(customer);
 	}
 
 }

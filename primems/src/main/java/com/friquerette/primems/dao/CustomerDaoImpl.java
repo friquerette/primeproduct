@@ -9,23 +9,16 @@ import org.springframework.stereotype.Repository;
 import com.friquerette.primems.entity.Customer;
 
 @Repository("customerDao")
-public class CustomerDaoImpl extends AbstractDao<Customer> implements CustomerDao {
+public class CustomerDaoImpl extends AbstractDao<Customer>implements CustomerDao {
 
 	@Override
 	public void create(Customer customer) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void save(Customer customer) {
-		getSession().update(customer);
+		persist(customer);
 	}
 
 	@Override
 	public void update(Customer customer) {
-		// TODO Auto-generated method stub
-
+		getSession().update(customer);
 	}
 
 	@Override
@@ -38,8 +31,8 @@ public class CustomerDaoImpl extends AbstractDao<Customer> implements CustomerDa
 
 	@Override
 	public List<Customer> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		Criteria criteria = getSession().createCriteria(Customer.class);
+		return (List<Customer>) criteria.list();
 	}
 
 	@Override

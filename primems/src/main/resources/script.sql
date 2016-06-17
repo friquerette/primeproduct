@@ -20,3 +20,5 @@ ENGINE InnoDB;
 
 INSERT INTO customer (firstName, lastName, email, login, password, salt, admin, active)
 VALUES ('Jean', 'Martin', 'jean@martin.fr', 'jmartin', '17Juin15:17', '', 1, 1);
+
+SELECT * FROM customer;
