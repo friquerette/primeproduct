@@ -31,4 +31,5 @@ public abstract class AbstractDao<T extends AbstractEntity> {
 		entity.setUpdateDate(new Date());
 		getSession().update(entity);
 	}
+
 }

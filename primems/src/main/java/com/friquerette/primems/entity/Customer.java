@@ -33,9 +33,6 @@ public class Customer extends AbstractEntity {
 	@Column(name = "admin", nullable = false)
 	private boolean admin;
 
-	@Column(name = "active", nullable = false)
-	private boolean active;
-
 	public Customer() {
 	}
 
@@ -87,14 +84,6 @@ public class Customer extends AbstractEntity {
 
 	public String getEmail() {
 		return email;
-	}
-
-	public boolean isActive() {
-		return active;
-	}
-
-	public void setActive(boolean active) {
-		this.active = active;
 	}
 
 	public void setEmail(String email) {

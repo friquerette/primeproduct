@@ -29,6 +29,9 @@ public abstract class AbstractEntity {
 	@JoinColumn(name = "last_modified_by")
 	private Customer lastModifiedBy;
 
+	@Column(name = "active", nullable = false)
+	private boolean active;
+
 	public Customer getCreatedBy() {
 		return createdBy;
 	}
@@ -59,6 +62,14 @@ public abstract class AbstractEntity {
 
 	public void setCreateDate(Date createDate) {
 		this.createDate = createDate;
+	}
+
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
 	}
 
 	public abstract Long getId();
