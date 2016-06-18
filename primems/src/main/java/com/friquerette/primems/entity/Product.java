@@ -1,6 +1,6 @@
 package com.friquerette.primems.entity;
 
-import static javax.persistence.FetchType.LAZY;
+import static javax.persistence.FetchType.EAGER;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -31,14 +31,14 @@ public class Product extends AbstractEntity {
 	private String title;
 
 	@Lob
-	@Basic(fetch = LAZY)
+	@Basic(fetch = EAGER)
 	@Column(name = "desciption")
 	private String desciption;
 
 	@Column(name = "price")
 	private Double price;
 
-	@ManyToOne(fetch = FetchType.LAZY, optional = true)
+	@ManyToOne(fetch = FetchType.EAGER, optional = true)
 	@JoinColumn(name = "owner")
 	private Customer owner;
 

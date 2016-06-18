@@ -27,11 +27,11 @@ public abstract class AbstractEntity implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date updateDate;
 
-	@ManyToOne(fetch = FetchType.LAZY, optional = true)
+	@ManyToOne(fetch = FetchType.EAGER, optional = true)
 	@JoinColumn(name = "created_by")
 	private Customer createdBy;
 
-	@ManyToOne(fetch = FetchType.LAZY, optional = true)
+	@ManyToOne(fetch = FetchType.EAGER, optional = true)
 	@JoinColumn(name = "last_modified_by")
 	private Customer lastModifiedBy;
 
