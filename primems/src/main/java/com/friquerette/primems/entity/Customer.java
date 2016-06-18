@@ -9,12 +9,12 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "customer")
-public class Customer {
+public class Customer extends AbstractEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "customer_id", nullable = false)
-	private String id;
+	private Long id;
 
 	@Column(name = "firstName", nullable = true)
 	private String firstName;
@@ -44,11 +44,12 @@ public class Customer {
 		this.lastName = lastName;
 	}
 
-	public String getId() {
+	@Override
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

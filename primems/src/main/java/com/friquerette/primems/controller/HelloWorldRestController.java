@@ -29,9 +29,9 @@ public class HelloWorldRestController {
 		Customer customer = null;
 		try {
 			List<Customer> customers = customerService.findAllCustomers();
-			System.out.println("Fetching Customer with id ");
 			if (customers != null && !customers.isEmpty()) {
 				customer = customers.get(0);
+				logger.info("Customer with id " + customer.getId());
 			}
 		} catch (Exception e) {
 			logger.error("Failed to read all the customers", e);
