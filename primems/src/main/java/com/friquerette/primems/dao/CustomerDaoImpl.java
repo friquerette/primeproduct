@@ -13,12 +13,12 @@ public class CustomerDaoImpl extends AbstractDao<Customer>implements CustomerDao
 
 	@Override
 	public void create(Customer customer) {
-		persist(customer);
+		persistEntity(customer);
 	}
 
 	@Override
 	public void update(Customer customer) {
-		getSession().update(customer);
+		updateEntity(customer);
 	}
 
 	@Override
@@ -37,7 +37,7 @@ public class CustomerDaoImpl extends AbstractDao<Customer>implements CustomerDao
 
 	@Override
 	public void delete(Customer customer) {
-		super.delete(customer);
+		super.deleteEntity(customer);
 	}
 
 }

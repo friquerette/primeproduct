@@ -17,14 +17,14 @@ import com.friquerette.primems.entity.Customer;
 import com.friquerette.primems.service.CustomerService;
 
 @RestController
-public class HelloWorldRestController {
+public class CustomerRestController {
 
-	private static final Logger logger = LoggerFactory.getLogger(HelloWorldRestController.class);
+	private static final Logger logger = LoggerFactory.getLogger(CustomerRestController.class);
 
 	@Autowired
 	private CustomerService customerService;
 
-	@RequestMapping(value = "/user", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/customer", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Customer> getUser() {
 		Customer customer = null;
 		try {
@@ -40,11 +40,11 @@ public class HelloWorldRestController {
 		return new ResponseEntity<Customer>(customer, HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/user/{firstname}/{lastname}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/customer/{firstname}/{lastname}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Customer> createUser(//
 			@PathVariable("firstname") String firstname, //
 			@PathVariable("lastname") String lastname) {
-		System.out.println("Fetching Customer with id ");
+		logger.info("Fetching Customer with id ");
 		Customer customer = new Customer(firstname, lastname);
 		return new ResponseEntity<Customer>(customer, HttpStatus.OK);
 	}

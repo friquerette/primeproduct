@@ -9,11 +9,22 @@ import javax.persistence.TemporalType;
 
 @MappedSuperclass
 public abstract class AbstractEntity {
+
 	@Column(name = "create_date", columnDefinition = "DATETIME")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date createDate;
 
-	public abstract Long getId();
+	@Column(name = "update_date", columnDefinition = "DATETIME")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date updateDate;
+
+	public Date getUpdateDate() {
+		return updateDate;
+	}
+
+	public void setUpdateDate(Date updateDate) {
+		this.updateDate = updateDate;
+	}
 
 	public Date getCreateDate() {
 		return createDate;
@@ -23,4 +34,5 @@ public abstract class AbstractEntity {
 		this.createDate = createDate;
 	}
 
+	public abstract Long getId();
 }

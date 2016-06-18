@@ -1,10 +1,14 @@
 package com.friquerette.primems.dao;
 
+import java.util.Date;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
-public abstract class AbstractDao<T> {
+import com.friquerette.primems.entity.AbstractEntity;
+
+public abstract class AbstractDao<T extends AbstractEntity> {
 
 	@Autowired
 	private SessionFactory sessionFactory;
@@ -13,11 +17,18 @@ public abstract class AbstractDao<T> {
 		return sessionFactory.getCurrentSession();
 	}
 
-	public void persist(T entity) {
+	protected void persistEntity(T entity) {
+		entity.setCreateDate(new Date());
+		entity.setUpdateDate(new Date());
 		getSession().persist(entity);
 	}
 
-	public void delete(T entity) {
+	protected void deleteEntity(T entity) {
 		getSession().delete(entity);
+	}
+
+	protected void updateEntity(T entity) {
+		entity.setUpdateDate(new Date());
+		getSession().update(entity);
 	}
 }

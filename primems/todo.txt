@@ -1,0 +1,3 @@
+
+add a test cover for DAO
+Finish entity layer and his script of creation
