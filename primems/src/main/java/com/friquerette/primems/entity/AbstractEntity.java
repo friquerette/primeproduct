@@ -3,6 +3,9 @@ package com.friquerette.primems.entity;
 import java.util.Date;
 
 import javax.persistence.Column;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -17,6 +20,30 @@ public abstract class AbstractEntity {
 	@Column(name = "update_date", columnDefinition = "DATETIME")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date updateDate;
+
+	@ManyToOne(fetch = FetchType.LAZY, optional = true)
+	@JoinColumn(name = "created_by")
+	private Customer createdBy;
+
+	@ManyToOne(fetch = FetchType.LAZY, optional = true)
+	@JoinColumn(name = "last_modified_by")
+	private Customer lastModifiedBy;
+
+	public Customer getCreatedBy() {
+		return createdBy;
+	}
+
+	public void setCreatedBy(Customer createdBy) {
+		this.createdBy = createdBy;
+	}
+
+	public Customer getLastModifiedBy() {
+		return lastModifiedBy;
+	}
+
+	public void setLastModifiedBy(Customer lastModifiedBy) {
+		this.lastModifiedBy = lastModifiedBy;
+	}
 
 	public Date getUpdateDate() {
 		return updateDate;
