@@ -5,6 +5,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.friquerette.primems.AbstractTest;
 import com.friquerette.primems.entity.Customer;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -15,6 +16,7 @@ public class CustomerDaoTest extends AbstractTest {
 
 	@Test
 	public void testReadCustomerById() {
+		// TODO : don't read a specific ID...
 		Customer customer = customerDao.findById(1L);
 		assertNotNull(customer);
 	}

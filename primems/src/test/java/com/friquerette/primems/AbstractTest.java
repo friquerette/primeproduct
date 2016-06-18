@@ -1,4 +1,4 @@
-package com.friquerette.primems.dao;
+package com.friquerette.primems;
 
 import java.util.Date;
 
@@ -9,6 +9,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
 import org.springframework.test.context.transaction.TransactionConfiguration;
+
+import com.friquerette.primems.config.HibernateConfigurationTest;
 
 import junit.framework.TestCase;
 

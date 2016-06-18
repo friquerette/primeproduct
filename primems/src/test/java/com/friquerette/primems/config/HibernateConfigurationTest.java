@@ -1,4 +1,4 @@
-package com.friquerette.primems.dao;
+package com.friquerette.primems.config;
 
 import java.util.Properties;
 
