@@ -5,9 +5,11 @@ import java.util.Date;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.friquerette.primems.entity.AbstractEntity;
 
+@Transactional
 public abstract class AbstractDao<T extends AbstractEntity> {
 
 	@Autowired

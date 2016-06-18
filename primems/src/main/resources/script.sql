@@ -21,14 +21,14 @@ CREATE TABLE customer (
 	email VARCHAR(255) NOT NULL,
 	login VARCHAR(255) NOT NULL,
 	password VARCHAR(255) NOT NULL,
-	salt VARCHAR(255) NOT NULL,
+	-- salt VARCHAR(255) NOT NULL,
 	admin TINYINT NOT NULL,
 	PRIMARY KEY ( customer_id )
 )
 ENGINE InnoDB;
 
-INSERT INTO customer (create_date, update_date, active, firstName, lastName, email, login, password, salt, admin)
-VALUES (now(), now(), 1, 'Jean', 'Martin', 'jean@martin.fr', 'jmartin', '17Juin15:17', '', 1);
+INSERT INTO customer (create_date, update_date, active, firstName, lastName, email, login, password, /*salt,*/ admin)
+VALUES (now(), now(), 1, 'Jean', 'Martin', 'jean@martin.fr', 'jmartin', '17Juin15:17', /*'',*/ 1);
 
 SELECT * FROM customer;
 
