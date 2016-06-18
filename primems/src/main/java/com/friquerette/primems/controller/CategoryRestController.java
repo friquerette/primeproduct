@@ -28,9 +28,9 @@ public class CategoryRestController {
 	public ResponseEntity<Category> getUser() {
 		Category category = null;
 		try {
-			List<Category> categorys = categoryService.findAllCategorys();
-			if (categorys != null && !categorys.isEmpty()) {
-				category = categorys.get(0);
+			List<Category> categories = categoryService.findAllCategories();
+			if (categories != null && !categories.isEmpty()) {
+				category = categories.get(0);
 				logger.info("Category with id " + category.getId());
 			}
 		} catch (Exception e) {

@@ -1,5 +1,6 @@
 package com.friquerette.primems.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -11,7 +12,12 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @MappedSuperclass
-public abstract class AbstractEntity {
+public abstract class AbstractEntity implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5594566079507897195L;
 
 	@Column(name = "create_date", columnDefinition = "DATETIME")
 	@Temporal(TemporalType.TIMESTAMP)

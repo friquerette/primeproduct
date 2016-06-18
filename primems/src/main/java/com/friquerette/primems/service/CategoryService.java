@@ -6,7 +6,7 @@ import com.friquerette.primems.entity.Category;
 
 public interface CategoryService {
 
-	public List<Category> findAllCategorys();
+	public List<Category> findAllCategories();
 
 	public void deleteCategoryById(Long id);
 

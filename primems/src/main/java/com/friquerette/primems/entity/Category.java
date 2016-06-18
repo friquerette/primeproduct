@@ -10,6 +10,11 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "category")
 public class Category extends AbstractEntity {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 929497857276353278L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "category_id", nullable = false)

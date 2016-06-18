@@ -11,6 +11,11 @@ import javax.persistence.Table;
 @Table(name = "customer")
 public class Customer extends AbstractEntity {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5631199377790422456L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "customer_id", nullable = false)

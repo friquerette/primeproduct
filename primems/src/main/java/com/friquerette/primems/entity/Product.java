@@ -17,6 +17,11 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "product")
 public class Product extends AbstractEntity {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4955015091636349902L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "product_id", nullable = false)
