@@ -35,8 +35,8 @@ public abstract class AbstractEntity implements Serializable {
 	@JoinColumn(name = "last_modified_by")
 	private Customer lastModifiedBy;
 
-	@Column(name = "active", nullable = false)
-	private boolean active;
+	@Column(name = "enabled", nullable = false)
+	private boolean enabled;
 
 	public Customer getCreatedBy() {
 		return createdBy;
@@ -70,12 +70,12 @@ public abstract class AbstractEntity implements Serializable {
 		this.createDate = createDate;
 	}
 
-	public boolean isActive() {
-		return active;
+	public boolean isEnabled() {
+		return enabled;
 	}
 
-	public void setActive(boolean active) {
-		this.active = active;
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
 	}
 
 	public abstract Long getId();

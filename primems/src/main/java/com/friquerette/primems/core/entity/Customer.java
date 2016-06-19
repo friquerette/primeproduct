@@ -4,6 +4,8 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -25,22 +27,27 @@ public class Customer extends AbstractEntity {
 	@Column(name = "customer_id", nullable = false)
 	private Long id;
 
-	@Column(name = "firstName", nullable = true)
+	@Column(name = "gender", nullable = true)
+	@Enumerated(EnumType.STRING)
+	private GenderEnum gender;
+
+	@Column(name = "first_name", nullable = true)
 	private String firstName;
 
-	@Column(name = "lastName", nullable = true)
+	@Column(name = "last_name", nullable = true)
 	private String lastName;
 
 	@Column(name = "email", nullable = false)
 	private String email;
 
-	@Column(name = "login", nullable = false)
-	private String login;
+	@Column(name = "username", nullable = false)
+	private String userName;
 	@Column(name = "password", nullable = false)
 	private String password;
 
-	@Column(name = "admin", nullable = false)
-	private boolean admin;
+	@Column(name = "role", nullable = false)
+	@Enumerated(EnumType.STRING)
+	private RoleEnum role;
 
 	@Column(name = "birthDate", columnDefinition = "DATETIME")
 	@Temporal(TemporalType.DATE)
@@ -79,12 +86,12 @@ public class Customer extends AbstractEntity {
 		this.lastName = lastName;
 	}
 
-	public String getLogin() {
-		return login;
+	public String getUserName() {
+		return userName;
 	}
 
-	public void setLogin(String login) {
-		this.login = login;
+	public void setUserName(String username) {
+		this.userName = username;
 	}
 
 	public String getPassword() {
@@ -103,18 +110,19 @@ public class Customer extends AbstractEntity {
 		this.email = email;
 	}
 
-	public boolean isAdmin() {
-		return admin;
+	public RoleEnum isRole() {
+		return role;
 	}
 
-	public void setAdmin(boolean admin) {
-		this.admin = admin;
+	public void setRole(RoleEnum role) {
+		this.role = role;
 	}
 
 	@Override
 	public String toString() {
-		return "Customer [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
-				+ ", login=" + login + ", password=" + password + ", admin=" + admin + ", birthdate=" + birthdate + "]";
+		return "Customer [id=" + id + ", gender=" + gender + ", firstName=" + firstName + ", lastName=" + lastName
+				+ ", email=" + email + ", username=" + userName + ", password=" + password + ", role=" + role
+				+ ", birthdate=" + birthdate + "]";
 	}
 
 	public Date getBirthdate() {
@@ -123,6 +131,14 @@ public class Customer extends AbstractEntity {
 
 	public void setBirthdate(Date birthdate) {
 		this.birthdate = birthdate;
+	}
+
+	public GenderEnum getGender() {
+		return gender;
+	}
+
+	public void setGender(GenderEnum gender) {
+		this.gender = gender;
 	}
 
 }

@@ -6,8 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.friquerette.primems.AbstractTest;
-import com.friquerette.primems.core.dao.CustomerDao;
 import com.friquerette.primems.core.entity.Customer;
+import com.friquerette.primems.core.entity.GenderEnum;
+import com.friquerette.primems.core.entity.RoleEnum;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 public class CustomerDaoTest extends AbstractTest {
@@ -66,12 +67,14 @@ public class CustomerDaoTest extends AbstractTest {
 	 */
 	private Customer getNewCustomer() {
 		Customer customer = new Customer();
-		customer.setActive(true);
+		customer.setEnabled(true);
 		customer.setFirstName("Toto");
 		customer.setLastName("Martin");
-		customer.setLogin("Martin");
+		customer.setUserName("Martin");
 		customer.setEmail("test@yopmail.com");
 		customer.setPassword("pwd");
+		customer.setGender(GenderEnum.MALE);
+		customer.setRole(RoleEnum.USER);
 		return customer;
 	}
 

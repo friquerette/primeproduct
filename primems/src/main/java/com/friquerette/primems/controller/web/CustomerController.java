@@ -1,5 +1,7 @@
 package com.friquerette.primems.controller.web;
 
+import static com.friquerette.primems.controller.web.AbstractWebController.ACCOUNT_HOME;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -10,9 +12,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.friquerette.primems.core.entity.Customer;
 import com.friquerette.primems.core.service.CustomerService;
 
+/**
+ * To reach this part of the application the user have to be authenticated
+ * 
+ * @author Rick
+ *
+ */
 @Controller
-@RequestMapping("/account")
-public class CustomerController {
+@RequestMapping(ACCOUNT_HOME)
+public class CustomerController extends AbstractWebController {
 	@Autowired(required = true)
 	@Qualifier(value = "customerService")
 	private CustomerService customerService;

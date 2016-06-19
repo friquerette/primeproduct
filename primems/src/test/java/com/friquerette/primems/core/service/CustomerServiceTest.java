@@ -7,6 +7,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.friquerette.primems.AbstractTest;
 import com.friquerette.primems.core.entity.Customer;
+import com.friquerette.primems.core.entity.GenderEnum;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 public class CustomerServiceTest extends AbstractTest {
@@ -16,8 +17,8 @@ public class CustomerServiceTest extends AbstractTest {
 
 	@Test
 	public void testCreateCustomer() {
-		Customer customer = new Customer();
-		customer.setActive(true);
+		Customer customer = customerService.getNewCustomer();
+		customer.setEnabled(true);
 		customer.setFirstName("Toto");
 		try {
 			customerService.createCustomer(customer);
@@ -26,9 +27,10 @@ public class CustomerServiceTest extends AbstractTest {
 			assertNull(customer.getId());
 		}
 		customer.setLastName("Martin");
-		customer.setLogin("Martin");
+		customer.setUserName("Martin");
 		customer.setEmail("test@yopmail.com");
 		customer.setPassword("pwd");
+		customer.setGender(GenderEnum.MALE);
 		customerService.createCustomer(customer);
 		assertNotNull(customer.getId());
 

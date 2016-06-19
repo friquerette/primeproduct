@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.friquerette.primems.core.dao.CustomerDao;
 import com.friquerette.primems.core.entity.Customer;
+import com.friquerette.primems.core.entity.RoleEnum;
 
 @Service("customerService")
 public class CustomerServiceImpl implements CustomerService {
@@ -66,8 +67,8 @@ public class CustomerServiceImpl implements CustomerService {
 	@Override
 	public Customer getNewCustomer() {
 		Customer customer = new Customer();
-		customer.setActive(true);
-		customer.setAdmin(false);
+		customer.setEnabled(true);
+		customer.setRole(RoleEnum.USER);
 		return customer;
 	}
 

@@ -16,6 +16,7 @@
 		<div class="page-header">
 			<h1>Purchase Requests</h1>
 		</div>
+		<a href="../../logout">logout</a>
 		<div class="row">
 			<ul class="nav nav-tabs">
 				<li role="presentation" class="active"><a href="#">Saved</a></li>

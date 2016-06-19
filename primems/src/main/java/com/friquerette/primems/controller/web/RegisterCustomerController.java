@@ -18,6 +18,12 @@ import com.friquerette.primems.core.entity.Customer;
 import com.friquerette.primems.core.service.CustomerService;
 import com.friquerette.primems.core.service.PrimemsServiceException;
 
+/**
+ * The registration service of the application
+ * 
+ * @author Rick
+ *
+ */
 @Controller
 @RequestMapping(ROOT_REGISTER)
 public class RegisterCustomerController {
@@ -45,7 +51,7 @@ public class RegisterCustomerController {
 		// implement your own registration logic here...
 
 		// for testing purpose:
-		logger.info("read login: " + customer.getLogin());
+		logger.info("read UserName: " + customer.getUserName());
 		System.out.println("birth date: " + customer.getBirthdate());
 		// System.out.println("profession: " + customer.getProfession());
 		try {

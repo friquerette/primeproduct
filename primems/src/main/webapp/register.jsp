@@ -32,8 +32,8 @@
 					<td><form:input path="lastName" required="required" /></td>
 				</tr>
 				<tr>
-					<td>Login:</td>
-					<td><form:input path="login" required="required" /></td>
+					<td>UserName:</td>
+					<td><form:input path="username" required="required" /></td>
 				</tr>
 				<tr>
 					<td>Password:</td>

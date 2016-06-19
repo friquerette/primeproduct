@@ -24,8 +24,8 @@
                     <td>${customer.lastName}</td>
                 </tr>
                 <tr>
-                    <td>Login:</td>
-                    <td>${customer.login}</td>
+                    <td>UserName:</td>
+                    <td>${customer.username}</td>
                 </tr>
                 <tr>
                     <td>Password:</td>
