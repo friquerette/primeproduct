@@ -1,8 +1,8 @@
 package com.friquerette.primems.core.entity;
 
 public enum RoleEnum {
-	USER("A simple user"), //
-	ADMIN("A sysadmin user");
+	ROLE_USER("A simple user"), //
+	ROLE_ADMIN("A sysadmin user");
 
 	String description;
 

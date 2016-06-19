@@ -68,7 +68,7 @@ public class CustomerServiceImpl implements CustomerService {
 	public Customer getNewCustomer() {
 		Customer customer = new Customer();
 		customer.setEnabled(true);
-		customer.setRole(RoleEnum.USER);
+		customer.setRole(RoleEnum.ROLE_USER);
 		return customer;
 	}
 

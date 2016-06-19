@@ -74,7 +74,7 @@ public class CustomerDaoTest extends AbstractTest {
 		customer.setEmail("test@yopmail.com");
 		customer.setPassword("pwd");
 		customer.setGender(GenderEnum.MALE);
-		customer.setRole(RoleEnum.USER);
+		customer.setRole(RoleEnum.ROLE_USER);
 		return customer;
 	}
 
