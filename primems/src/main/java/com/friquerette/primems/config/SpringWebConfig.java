@@ -11,12 +11,14 @@ import org.springframework.web.servlet.view.JstlView;
 
 @EnableWebMvc // <mvc:annotation-driven />
 @Configuration
-@ComponentScan({ "com.friquerette.primems.restcontroller" })
+@ComponentScan({ "com.friquerette.primems.controller.rest", //
+		"com.friquerette.primems.controller.web" })
 public class SpringWebConfig extends WebMvcConfigurerAdapter {
 
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
+		registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
 	}
 
 	@Bean

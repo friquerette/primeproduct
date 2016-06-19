@@ -1,4 +1,6 @@
-package com.friquerette.primems.entity;
+package com.friquerette.primems.core.entity;
+
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -6,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "customer")
@@ -37,6 +41,10 @@ public class Customer extends AbstractEntity {
 
 	@Column(name = "admin", nullable = false)
 	private boolean admin;
+
+	@Column(name = "birthDate", columnDefinition = "DATETIME")
+	@Temporal(TemporalType.DATE)
+	private Date birthdate;
 
 	public Customer() {
 	}
@@ -106,7 +114,15 @@ public class Customer extends AbstractEntity {
 	@Override
 	public String toString() {
 		return "Customer [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
-				+ ", admin=" + admin + "]";
+				+ ", login=" + login + ", password=" + password + ", admin=" + admin + ", birthdate=" + birthdate + "]";
+	}
+
+	public Date getBirthdate() {
+		return birthdate;
+	}
+
+	public void setBirthdate(Date birthdate) {
+		this.birthdate = birthdate;
 	}
 
 }

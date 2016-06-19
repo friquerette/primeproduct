@@ -1,12 +1,12 @@
-package com.friquerette.primems.dao;
+package com.friquerette.primems.core.dao;
 
 import java.util.List;
 
-import com.friquerette.primems.entity.Customer;
+import com.friquerette.primems.core.entity.Customer;
 
 public interface CustomerDao {
 
-	public void create(Customer customer);
+	public Long create(Customer customer);
 
 	public void update(Customer customer);
 

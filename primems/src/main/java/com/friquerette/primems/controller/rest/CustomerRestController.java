@@ -1,4 +1,4 @@
-package com.friquerette.primems.restcontroller;
+package com.friquerette.primems.controller.rest;
 
 import java.util.List;
 
@@ -13,10 +13,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.friquerette.primems.entity.Customer;
-import com.friquerette.primems.service.CustomerService;
+import com.friquerette.primems.core.entity.Customer;
+import com.friquerette.primems.core.service.CustomerService;
 
 @RestController
+@RequestMapping(RestConstant.ROOT_WS + RestConstant.CUSTOMER)
 public class CustomerRestController {
 
 	private static final Logger logger = LoggerFactory.getLogger(CustomerRestController.class);
@@ -24,20 +25,27 @@ public class CustomerRestController {
 	@Autowired
 	private CustomerService customerService;
 
-	@RequestMapping(value = "/customer", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Customer> getUser() {
-		Customer customer = null;
+	@RequestMapping(value = RestConstant.ALL, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<Customer>> getUser() {
+		List<Customer> customers = null;
 		try {
-			List<Customer> customers = customerService.findAllCustomers();
-			if (customers != null && !customers.isEmpty()) {
-				customer = customers.get(0);
-				logger.info("Customer with id 2 " + customer.getId());
-			}
+			customers = customerService.findAllCustomers();
 		} catch (Exception e) {
 			logger.error("Failed to read all the customers", e);
 		}
 
-		return new ResponseEntity<Customer>(customer, HttpStatus.OK);
+		return new ResponseEntity<List<Customer>>(customers, HttpStatus.OK);
+	}
+
+	@RequestMapping(value = RestConstant.BY_ID, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Customer> getCategoryById(@PathVariable("id") Long id) {
+		Customer category = null;
+		try {
+			category = customerService.findById(id);
+		} catch (Exception e) {
+			logger.error("Failed to read customer for the id " + id, e);
+		}
+		return new ResponseEntity<Customer>(category, HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/customer/{firstname}/{lastname}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)

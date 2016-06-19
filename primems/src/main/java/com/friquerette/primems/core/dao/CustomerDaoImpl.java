@@ -1,4 +1,4 @@
-package com.friquerette.primems.dao;
+package com.friquerette.primems.core.dao;
 
 import java.util.List;
 
@@ -6,14 +6,14 @@ import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
-import com.friquerette.primems.entity.Customer;
+import com.friquerette.primems.core.entity.Customer;
 
 @Repository("customerDao")
 public class CustomerDaoImpl extends AbstractDao<Customer>implements CustomerDao {
 
 	@Override
-	public void create(Customer customer) {
-		persistEntity(customer);
+	public Long create(Customer customer) {
+		return persistEntity(customer);
 	}
 
 	@Override

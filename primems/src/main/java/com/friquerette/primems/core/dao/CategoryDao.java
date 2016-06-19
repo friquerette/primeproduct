@@ -1,12 +1,12 @@
-package com.friquerette.primems.dao;
+package com.friquerette.primems.core.dao;
 
 import java.util.List;
 
-import com.friquerette.primems.entity.Category;
+import com.friquerette.primems.core.entity.Category;
 
 public interface CategoryDao {
 
-	public void create(Category category);
+	public Long create(Category category);
 
 	public void update(Category category);
 

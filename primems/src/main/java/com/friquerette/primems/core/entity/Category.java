@@ -1,4 +1,4 @@
-package com.friquerette.primems.entity;
+package com.friquerette.primems.core.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

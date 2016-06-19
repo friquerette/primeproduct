@@ -1,8 +1,8 @@
-package com.friquerette.primems.service;
+package com.friquerette.primems.core.service;
 
 import java.util.List;
 
-import com.friquerette.primems.entity.Category;
+import com.friquerette.primems.core.entity.Category;
 
 public interface CategoryService {
 

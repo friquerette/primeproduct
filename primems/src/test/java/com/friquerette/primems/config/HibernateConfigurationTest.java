@@ -18,9 +18,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @EnableTransactionManagement
-@ComponentScan({ "com.friquerette.primems.entity", //
-		"com.friquerette.primems.dao", //
-		"com.friquerette.primems.service" })
+@ComponentScan({ "com.friquerette.primems.core" })
 @PropertySource(value = { "classpath:test.properties" })
 public class HibernateConfigurationTest {
 
@@ -31,7 +29,7 @@ public class HibernateConfigurationTest {
 	public LocalSessionFactoryBean sessionFactory() {
 		LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
 		sessionFactory.setDataSource(dataSource());
-		sessionFactory.setPackagesToScan(new String[] { "com.friquerette.primems.entity" });
+		sessionFactory.setPackagesToScan(new String[] { "com.friquerette.primems.core.entity" });
 		sessionFactory.setHibernateProperties(hibernateProperties());
 		return sessionFactory;
 	}

@@ -1,4 +1,4 @@
-package com.friquerette.primems.dao;
+package com.friquerette.primems.core.dao;
 
 import java.util.Date;
 
@@ -7,7 +7,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.friquerette.primems.entity.AbstractEntity;
+import com.friquerette.primems.core.entity.AbstractEntity;
 
 @Transactional
 public abstract class AbstractDao<T extends AbstractEntity> {
@@ -19,10 +19,11 @@ public abstract class AbstractDao<T extends AbstractEntity> {
 		return sessionFactory.getCurrentSession();
 	}
 
-	protected void persistEntity(T entity) {
+	protected Long persistEntity(T entity) {
 		entity.setCreateDate(new Date());
 		entity.setUpdateDate(new Date());
 		getSession().persist(entity);
+		return entity.getId();
 	}
 
 	protected void deleteEntity(T entity) {

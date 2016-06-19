@@ -6,5 +6,6 @@ ok	add a test cover for DAO
 	Hibernate : created_by and last_modified_by not eager
 	Bootstrap_(framework)
 	
-	Test Unit :
-	Clean Data
+	Test Unit : clean Data
+	Spring Web MVC : pagination datable
+	i18n...

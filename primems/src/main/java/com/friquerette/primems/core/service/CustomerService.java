@@ -1,8 +1,8 @@
-package com.friquerette.primems.service;
+package com.friquerette.primems.core.service;
 
 import java.util.List;
 
-import com.friquerette.primems.entity.Customer;
+import com.friquerette.primems.core.entity.Customer;
 
 public interface CustomerService {
 
@@ -13,4 +13,8 @@ public interface CustomerService {
 	public Customer findById(Long id);
 
 	public void updateCustomer(Customer customer);
+
+	public Long createCustomer(Customer customer);
+
+	public Customer getNewCustomer();
 }

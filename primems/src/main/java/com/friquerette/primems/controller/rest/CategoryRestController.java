@@ -1,4 +1,4 @@
-package com.friquerette.primems.restcontroller;
+package com.friquerette.primems.controller.rest;
 
 import java.util.List;
 
@@ -13,10 +13,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.friquerette.primems.entity.Category;
-import com.friquerette.primems.service.CategoryService;
+import com.friquerette.primems.core.entity.Category;
+import com.friquerette.primems.core.service.CategoryService;
 
 @RestController
+@RequestMapping(RestConstant.ROOT_WS + RestConstant.CATEGORY)
 public class CategoryRestController {
 
 	private static final Logger logger = LoggerFactory.getLogger(CategoryRestController.class);
@@ -24,19 +25,25 @@ public class CategoryRestController {
 	@Autowired
 	private CategoryService categoryService;
 
-	@RequestMapping(value = "/category", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Category> getUser() {
-		Category category = null;
+	@RequestMapping(value = RestConstant.ALL, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<Category>> getCategoryAll() {
+		List<Category> categories = null;
 		try {
-			List<Category> categories = categoryService.findAllCategories();
-			if (categories != null && !categories.isEmpty()) {
-				category = categories.get(0);
-				logger.info("Category with id " + category.getId());
-			}
+			categories = categoryService.findAllCategories();
 		} catch (Exception e) {
 			logger.error("Failed to read all the categories", e);
 		}
+		return new ResponseEntity<List<Category>>(categories, HttpStatus.OK);
+	}
 
+	@RequestMapping(value = RestConstant.BY_ID, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Category> getCategoryById(@PathVariable("id") Long id) {
+		Category category = null;
+		try {
+			category = categoryService.findById(id);
+		} catch (Exception e) {
+			logger.error("Failed to read category for the id " + id, e);
+		}
 		return new ResponseEntity<Category>(category, HttpStatus.OK);
 	}
 

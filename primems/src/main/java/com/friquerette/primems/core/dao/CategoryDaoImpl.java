@@ -1,4 +1,4 @@
-package com.friquerette.primems.dao;
+package com.friquerette.primems.core.dao;
 
 import java.util.List;
 
@@ -6,14 +6,14 @@ import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
-import com.friquerette.primems.entity.Category;
+import com.friquerette.primems.core.entity.Category;
 
 @Repository("categoryDao")
 public class CategoryDaoImpl extends AbstractDao<Category>implements CategoryDao {
 
 	@Override
-	public void create(Category category) {
-		persistEntity(category);
+	public Long create(Category category) {
+		return persistEntity(category);
 	}
 
 	@Override

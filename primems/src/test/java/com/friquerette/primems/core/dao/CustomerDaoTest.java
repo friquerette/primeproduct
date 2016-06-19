@@ -1,4 +1,4 @@
-package com.friquerette.primems.dao;
+package com.friquerette.primems.core.dao;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -6,7 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.friquerette.primems.AbstractTest;
-import com.friquerette.primems.entity.Customer;
+import com.friquerette.primems.core.dao.CustomerDao;
+import com.friquerette.primems.core.entity.Customer;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 public class CustomerDaoTest extends AbstractTest {
