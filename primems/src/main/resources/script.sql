@@ -16,7 +16,7 @@ CREATE TABLE customer (
 	created_by INT NULL,
 	last_modified_by INT NULL,
 	enabled TINYINT NOT NULL,
-	gender VARCHAR(255) NOT NULL,
+	gender VARCHAR(255) NULL,
 	first_name VARCHAR(255) NOT NULL,
 	last_name VARCHAR(255) NOT NULL,
 	email VARCHAR(255) NOT NULL,

@@ -21,7 +21,7 @@
 		<form:form method="post" commandName="customer">
 			<table border="0">
 				<tr>
-					<td colspan="2" align="center"><h2>Registration</h2></td>
+					<td colspan="2" align="center"><h2>Registration form</h2></td>
 				</tr>
 				<tr>
 					<td>First Name:</td>
@@ -33,7 +33,7 @@
 				</tr>
 				<tr>
 					<td>UserName:</td>
-					<td><form:input path="username" required="required" /></td>
+					<td><form:input path="userName" required="required" /></td>
 				</tr>
 				<tr>
 					<td>Password:</td>
@@ -44,12 +44,19 @@
 					<td><form:input path="email" required="required" /></td>
 				</tr>
 				<tr>
-					<td>Birthdate (mm/dd/yyyy):</td>
-					<td><form:input path="birthdate" required="required" /></td>
+					<td>Gender:</td>
+					<td>
+						<form:select path="gender">
+							<form:options items="${genderList}" />
+						</form:select>
+					</td>
 				</tr>
 				<tr>
 					<td colspan="2" align="center"><input type="submit"
-						value="Register" /></td>
+						value="Register" />
+						<form:hidden path="role" />
+						<form:hidden path="enabled" />
+					</td>
 				</tr>
 			</table>
 		</form:form>

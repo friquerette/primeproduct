@@ -2,6 +2,7 @@ package com.friquerette.primems.controller.web;
 
 import static com.friquerette.primems.controller.web.AbstractWebController.ROOT_REGISTER;
 
+import java.util.List;
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -13,8 +14,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.friquerette.primems.core.entity.Customer;
+import com.friquerette.primems.core.entity.GenderEnum;
 import com.friquerette.primems.core.service.CustomerService;
 import com.friquerette.primems.core.service.PrimemsServiceException;
 
@@ -29,6 +32,11 @@ import com.friquerette.primems.core.service.PrimemsServiceException;
 public class RegisterCustomerController {
 	private static final Logger logger = LoggerFactory.getLogger(RegisterCustomerController.class);
 
+	@ModelAttribute("genderList")
+	public List<GenderEnum> getAllSupportedLanguages() {
+		return GenderEnum.getAllGenders();
+	}
+
 	@Autowired(required = true)
 	@Qualifier(value = "customerService")
 	private CustomerService customerService;
@@ -37,16 +45,13 @@ public class RegisterCustomerController {
 	public String registration(Model model) {
 		model.addAttribute("customer", customerService.getNewCustomer());
 
-		// List<String> professionList = new ArrayList<>();
-		// professionList.add("Developer");
-		// professionList.add("Designer");
-		// professionList.add("IT Manager");
-		// model.addAttribute("professionList", professionList);
+		model.addAttribute("genderList", GenderEnum.values());
+
 		return "register";
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	public String processRegistration(@ModelAttribute("customer") Customer customer, Map<String, Object> model) {
+	public ModelAndView processRegistration(@ModelAttribute("customer") Customer customer, Map<String, Object> model) {
 
 		// implement your own registration logic here...
 
@@ -57,10 +62,12 @@ public class RegisterCustomerController {
 		try {
 			customerService.createCustomer(customer);
 			logger.info("user create with ID " + customer.getId());
-			return "registrationsuccess";
+			return new ModelAndView("registrationsuccess", "customer", customer);
 		} catch (PrimemsServiceException e) {
 			logger.error("Failed to create the user", e);
-			return "registrationfailed";
+			ModelAndView model2 = new ModelAndView("registrationfailed");
+			model2.addObject("message", e.getErrMsg());
+			return model2;
 		}
 	}
 }

@@ -110,7 +110,7 @@ public class Customer extends AbstractEntity {
 		this.email = email;
 	}
 
-	public RoleEnum isRole() {
+	public RoleEnum getRole() {
 		return role;
 	}
 
