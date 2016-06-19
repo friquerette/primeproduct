@@ -10,7 +10,18 @@
 	</jsp:include>
 </head>
 <body>
-	<jsp:include page="../include/links.jsp" />
-	<h2>Admin</h2>
+	<div class="container-fluid">
+		<jsp:include page="../include/links.jsp" />
+		<div class="page-header">
+			<h2>Admin</h2>
+		</div>
+		<div class="row">
+			<ul class="nav nav-tabs">
+				<li role="presentation" class="active"><a href="#">Category</a></li>
+				<li role="presentation"><a href="#">Product</a></li>
+				<li role="presentation"><a href="#">Customer</a></li>
+			</ul>
+		</div>
+	</div>
 </body>
 </html>

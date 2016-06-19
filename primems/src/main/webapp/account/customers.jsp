@@ -15,9 +15,8 @@
 	<jsp:include page="../include/links.jsp" />
 	<div class="container-fluid">
 		<div class="page-header">
-			<h1>Purchase Requests</h1>
+			<h2>Purchase Requests</h2>
 		</div>
-		<a href="../../logout">logout</a>
 		<div class="row">
 			<ul class="nav nav-tabs">
 				<li role="presentation" class="active"><a href="#">Saved</a></li>
@@ -46,7 +45,5 @@
 			</table>
 		</div>
 	</div>
-
-
 </body>
 </html>

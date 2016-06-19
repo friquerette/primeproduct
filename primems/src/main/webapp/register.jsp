@@ -11,44 +11,44 @@
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 </head>
 <body>
-<jsp:include page="include/links.jsp" />
-	<div align="center">
+	<div align="center" class="container-fluid">
+		<jsp:include page="include/links.jsp" />
 		<form:form method="post" commandName="customer">
-			<table border="0">
+			<table class="table">
 				<tr>
-					<td colspan="2" align="center"><h2>Registration form</h2></td>
+					<th colspan="2"><h2>Registration form</h2></th>
 				</tr>
 				<tr>
 					<td>First Name:</td>
-					<td><form:input path="firstName" required="required" /></td>
+					<td><form:input path="firstName" required="required" class="form-control"/></td>
 				</tr>
 				<tr>
 					<td>Last Name:</td>
-					<td><form:input path="lastName" required="required" /></td>
+					<td><form:input path="lastName" required="required" class="form-control"/></td>
 				</tr>
 				<tr>
 					<td>UserName:</td>
-					<td><form:input path="userName" required="required" /></td>
+					<td><form:input path="userName" required="required" class="form-control"/></td>
 				</tr>
 				<tr>
 					<td>Password:</td>
-					<td><form:password path="password" required="required" /></td>
+					<td><form:password path="password" required="required" class="form-control"/></td>
 				</tr>
 				<tr>
 					<td>Email:</td>
-					<td><form:input path="email" required="required" /></td>
+					<td><form:input path="email" required="required" class="form-control"/></td>
 				</tr>
 				<tr>
 					<td>Gender:</td>
 					<td>
-						<form:select path="gender">
+						<form:select path="gender" class="form-control">
 							<form:options items="${genderList}" />
 						</form:select>
 					</td>
 				</tr>
 				<tr>
-					<td colspan="2" align="center"><input type="submit"
-						value="Register" />
+					<td colspan="2" align="center">
+						<input type="submit" value="Register" class="btn btn-default"/>
 						<form:hidden path="role" />
 						<form:hidden path="enabled" />
 					</td>

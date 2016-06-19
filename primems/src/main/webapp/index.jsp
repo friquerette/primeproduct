@@ -10,7 +10,9 @@
 	</jsp:include>
 </head>
 <body>
-	<jsp:include page="include/links.jsp" />
-	<h2>Welcome</h2>
+	<div align="center" class="container-fluid">
+		<jsp:include page="include/links.jsp" />
+		<h2>Welcome</h2>
+	</div>
 </body>
 </html>
