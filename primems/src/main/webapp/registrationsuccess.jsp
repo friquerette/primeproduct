@@ -10,8 +10,8 @@
 	</jsp:include>
 </head>
 <body>
-	<jsp:include page="include/links.jsp" />
-	<div align="center">
+	<div class="container-fluid">
+		<jsp:include page="include/links.jsp" />
 		<form:form action="register" method="post" commandName="customer">
 			<table border="0">
 				<tr>
