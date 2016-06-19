@@ -30,9 +30,9 @@ CREATE TABLE customer (
 ENGINE InnoDB;
 
 INSERT INTO customer (create_date, update_date, enabled, first_name, last_name, email, username, password, birthDate, /*salt,*/ role, gender)
-VALUES (now(), now(), 1, 'Pierre', 'Apsyre', 'pierre@primems.com', 'admin', 'root123', '1981-04-01', /*'',*/ 'ROLE_ADMIN', 'MALE');
+VALUES (now(), now(), 1, 'Pierre', 'Apsyre', 'pierre@primems.com', 'admin', 'admin', '1981-04-01', /*'',*/ 'ROLE_ADMIN', 'MALE');
 INSERT INTO customer (create_date, update_date, enabled, first_name, last_name, email, username, password, birthDate, /*salt,*/ role, gender)
-VALUES (now(), now(), 1, 'Jeanne', 'Ubyon', 'jeanne@primems.com', 'user', 'user123', '1981-04-01', /*'',*/ 'ROLE_USER', 'FEMALE');
+VALUES (now(), now(), 1, 'Jeanne', 'Ubyon', 'jeanne@primems.com', 'user', 'user', '1981-04-01', /*'',*/ 'ROLE_USER', 'FEMALE');
 
 CREATE TABLE category (
 	category_id INT NOT NULL AUTO_INCREMENT,

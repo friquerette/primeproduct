@@ -1,4 +1,7 @@
 
+	include de page JSP
+	
+	
 ok	add a test cover for DAO
 	Finish entity layer and his script of creation
 	Don't use root user ...
@@ -9,3 +12,4 @@ ok	add a test cover for DAO
 	Test Unit : clean Data
 	Spring Web MVC : pagination datable
 	i18n...
+	
