@@ -11,7 +11,7 @@ import org.springframework.web.servlet.view.JstlView;
 
 @EnableWebMvc // <mvc:annotation-driven />
 @Configuration
-@ComponentScan({ "com.friquerette.primems.controller" })
+@ComponentScan({ "com.friquerette.primems.restcontroller" })
 public class SpringWebConfig extends WebMvcConfigurerAdapter {
 
 	@Override

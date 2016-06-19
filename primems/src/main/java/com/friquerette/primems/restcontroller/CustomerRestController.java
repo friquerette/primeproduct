@@ -1,4 +1,4 @@
-package com.friquerette.primems.controller;
+package com.friquerette.primems.restcontroller;
 
 import java.util.List;
 
@@ -31,7 +31,7 @@ public class CustomerRestController {
 			List<Customer> customers = customerService.findAllCustomers();
 			if (customers != null && !customers.isEmpty()) {
 				customer = customers.get(0);
-				logger.info("Customer with id " + customer.getId());
+				logger.info("Customer with id 2 " + customer.getId());
 			}
 		} catch (Exception e) {
 			logger.error("Failed to read all the customers", e);

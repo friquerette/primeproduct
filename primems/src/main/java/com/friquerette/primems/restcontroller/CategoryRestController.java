@@ -1,4 +1,4 @@
-package com.friquerette.primems.controller;
+package com.friquerette.primems.restcontroller;
 
 import java.util.List;
 
