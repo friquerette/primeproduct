@@ -1,17 +1,18 @@
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+    "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 <head>
-<title>Purchase Requests</title>
-<meta name="viewport" content="initial-scale=1, maximum-scale=1">
-<link rel='stylesheet'
-	href='/primems/webjars/bootstrap/3.3.6/css/bootstrap.min.css'>
-<script type="text/javascript" src="/primems/webjars/jquery/2.2.4/jquery.min.js"></script>
-<script type="text/javascript"
-	src="/primems/webjars/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<jsp:useBean id="customers" scope="request" type="java.util.List" />
+	<jsp:include page="../include/header.jsp">
+		<jsp:param name="title" value="Admin" />
+	</jsp:include>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+	<jsp:useBean id="customers" scope="request" type="java.util.List" />
 </head>
 <body>
+	<jsp:include page="../include/links.jsp" />
 	<div class="container-fluid">
 		<div class="page-header">
 			<h1>Purchase Requests</h1>
