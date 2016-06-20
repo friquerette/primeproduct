@@ -8,7 +8,6 @@
 	<jsp:include page="include/header.jsp" >
 		<jsp:param name="title" value="Registration" />
 	</jsp:include>
-	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 </head>
 <body>
 	<div align="center" class="container-fluid">

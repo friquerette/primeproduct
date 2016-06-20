@@ -9,6 +9,7 @@
 		<jsp:param name="title" value="Account" />
 	</jsp:include>
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 	<jsp:useBean id="customers" scope="request" type="java.util.List" />
 </head>
 <body>

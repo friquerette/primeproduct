@@ -32,8 +32,8 @@ public class Product extends AbstractEntity {
 
 	@Lob
 	@Basic(fetch = EAGER)
-	@Column(name = "desciption")
-	private String desciption;
+	@Column(name = "description")
+	private String description;
 
 	@Column(name = "price")
 	private Double price;
@@ -58,12 +58,12 @@ public class Product extends AbstractEntity {
 		this.title = title;
 	}
 
-	public String getDesciption() {
-		return desciption;
+	public String getDescription() {
+		return description;
 	}
 
-	public void setDesciption(String desciption) {
-		this.desciption = desciption;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public Double getPrice() {
