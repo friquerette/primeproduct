@@ -39,6 +39,8 @@
 							<td>${customer.id}</td>
 							<td>${customer.firstName}</td>
 							<td>${customer.lastName}</td>
+							<td><a href="<c:url value='./edit/${customer.id}' />" class="glyphicon glyphicon-edit"></a></td>
+							<td><a href="<c:url value='./delete/${customer.id}' />" class="glyphicon glyphicon-trash"></a></td>
 						</tr>
 					</c:forEach>
 				</tbody>

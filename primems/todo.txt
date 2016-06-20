@@ -1,6 +1,11 @@
 
 Layer Service :
-	-	CRUD product...
+		edit product admin
+		delete product admin
+		edit product user
+		list product user
+		edit customer user
+		edit customer admin
 	ok 	public can see all the product
 	-	be able to edit his own product
 		
@@ -38,7 +43,7 @@ ok	add a test cover for DAO
 	
 	Presentation Layer
 		ok	Bootstrap_(framework)
-			FontAweSome for nice Icon
+	useless	FontAweSome for nice Icon
 			Spring Web MVC : pagination of the datatable
 			Use Converter and ModelWeb for all the controler
 			handle the error when a action of creation/update failed

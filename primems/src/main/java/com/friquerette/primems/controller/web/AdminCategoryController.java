@@ -37,6 +37,7 @@ public class AdminCategoryController extends AbstractWebController {
 	@Qualifier(value = "categoryConverter")
 	private CategoryConverter categoryConverter;
 
+	// ALL
 	@RequestMapping(value = PATH_ALL, method = RequestMethod.GET)
 	public String getAll(Model model) {
 		model.addAttribute("category", new Customer());
