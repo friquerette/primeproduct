@@ -1,9 +1,13 @@
 
-ok	fiche produit
-	creation de category
-	update de category
-ok	liste de category
-	choix de catégorie mère
+Layer Service :
+	-	CRUD product...
+	- 	public can see all the produc
+	-	be able to edit his own product
+		
+	ok	create category
+	ok	update category
+	ok	list of category
+		Add a parent category to a category
 	
 	creation de produit
 	update de produit
@@ -13,27 +17,32 @@ ok	liste de category
 	update de user as sys admin
 	update du profil perso
 	
-	choix de la monnaie
-	
-
-ok	include de page JSP
-	
-ok	add a test cover for DAO
-	Finish entity layer and his script of creation
-	Don't use root user ...
-	Password encrypt with salt ...
-	Hibernate : created_by and last_modified_by not eager
-ok	Bootstrap_(framework)
-	FontAweSome for nice Icon
-	
-	Test Unit : clean Data
-	Spring Web MVC : pagination datable
-	i18n...
-	standardiser les interfaces classes services
-	handle the error when a creation/update failed
-	
-	Currency : add a Enum for the list of currency
+	Currency : add a Enum for the currency's list
 	Currency : add a service to get the lastest currency information
 	Currency : create the Client Rest for the CurrencySerfvice, all the information are in the tutorial
 		http://websystique.com/springmvc/spring-mvc-4-restful-web-services-crud-example-resttemplate/
+	
+
+ok	be able to include a JSP into another one
+	
+ok	add a test cover for DAO
+	Finish entity layer and his script of creation
+	standardiser les interfaces classes services
+	
+	Hibernate : created_by and last_modified_by not eager
+	Hibernate : Search on http://www.springbyexample.org/examples/simple-hibernate-xml-config-code-example.html
+	Hibernate : MySQL Don't use root user ...
+	Hibernate : fix the issue on CustomerDaoImpl.findByFilter(...)
+	Hibernate/Spring Security : Password encryption with salt ...
+	
+	Presentation Layer
+		ok	Bootstrap_(framework)
+			FontAweSome for nice Icon
+			Spring Web MVC : pagination of the datatable
+			Use Converter and ModelWeb for all the controler
+			handle the error when a action of creation/update failed
+			integration i18n
+	
+	Test Unit
+			clean the Data properly
 	

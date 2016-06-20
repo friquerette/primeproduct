@@ -27,17 +27,20 @@ public abstract class AbstractDao<T extends AbstractEntity> {
 	protected Long persistEntity(T entity) {
 		entity.setCreateDate(new Date());
 		entity.setUpdateDate(new Date());
-		getHibernateTemplate().persist(entity);
+		// getHibernateTemplate().persist(entity);
+		getSession().persist(entity);
 		return entity.getId();
 	}
 
 	protected void deleteEntity(T entity) {
-		getHibernateTemplate().delete(entity);
+		// getHibernateTemplate().delete(entity);
+		getSession().delete(entity);
 	}
 
 	protected void updateEntity(T entity) {
 		entity.setUpdateDate(new Date());
-		getHibernateTemplate().update(entity);
+		// getHibernateTemplate().update(entity);
+		getSession().update(entity);
 	}
 
 	protected void fillQueryWithParameter(Query query, Map<String, String> parameters) {

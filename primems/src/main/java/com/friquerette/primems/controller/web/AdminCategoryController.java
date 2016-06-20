@@ -40,14 +40,14 @@ public class AdminCategoryController extends AbstractWebController {
 	@RequestMapping(value = PATH_ALL, method = RequestMethod.GET)
 	public String getAll(Model model) {
 		model.addAttribute("category", new Customer());
-		model.addAttribute("categories", this.categoryService.findAllCategories());
+		model.addAttribute("categories", this.categoryService.findAll());
 		return "admin/categories";
 	}
 
 	// -- DELETE
 	@RequestMapping(value = "/delete/{id}")
 	public String delete(@PathVariable("id") long id) {
-		categoryService.deleteCategoryById(id);
+		categoryService.deleteById(id);
 		return "redirect:.." + PATH_ALL;
 	}
 
@@ -62,7 +62,7 @@ public class AdminCategoryController extends AbstractWebController {
 
 	@RequestMapping(value = "/edit/{id}", method = RequestMethod.POST)
 	public String update(@ModelAttribute("category") CategoryWeb web, Map<String, Object> map) {
-		categoryService.updateCategory(categoryConverter.fromWeb(web));
+		categoryService.update(categoryConverter.fromWeb(web));
 		return "redirect:.." + PATH_ALL;
 	}
 
@@ -76,7 +76,7 @@ public class AdminCategoryController extends AbstractWebController {
 
 	@RequestMapping(value = "/edit/new", method = RequestMethod.POST)
 	public String create(@ModelAttribute("category") CategoryWeb web, Map<String, Object> map) {
-		categoryService.createCategory(categoryConverter.fromWeb(web));
+		categoryService.create(categoryConverter.fromWeb(web));
 		return "redirect:.." + PATH_ALL;
 	}
 

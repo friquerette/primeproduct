@@ -55,7 +55,7 @@ public class RegisterCustomerController {
 		logger.info("read UserName: " + customer.getUserName());
 		System.out.println("birth date: " + customer.getBirthdate());
 		try {
-			customerService.createCustomer(customer);
+			customerService.create(customer);
 			logger.info("user create with ID " + customer.getId());
 			return new ModelAndView("registrationsuccess", "customer", customer);
 		} catch (PrimemsServiceException e) {

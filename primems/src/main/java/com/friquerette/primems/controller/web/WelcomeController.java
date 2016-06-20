@@ -37,14 +37,14 @@ public class WelcomeController extends AbstractWebController {
 	@RequestMapping(value = "/customers", method = RequestMethod.GET)
 	public String listPersons(Model model) {
 		model.addAttribute("customer", new Customer());
-		model.addAttribute("customers", this.customerService.findAllCustomers());
+		model.addAttribute("customers", this.customerService.findAll());
 		return "customers";
 	}
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String welcome(Model model) {
 		model.addAttribute("customer", new Customer());
-		model.addAttribute("customers", this.customerService.findAllCustomers());
+		model.addAttribute("customers", this.customerService.findAll());
 		return "index";
 	}
 

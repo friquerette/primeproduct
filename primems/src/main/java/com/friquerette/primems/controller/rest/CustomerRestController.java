@@ -29,7 +29,7 @@ public class CustomerRestController {
 	public ResponseEntity<List<Customer>> getUser() {
 		List<Customer> customers = null;
 		try {
-			customers = customerService.findAllCustomers();
+			customers = customerService.findAll();
 		} catch (Exception e) {
 			logger.error("Failed to read all the customers", e);
 		}

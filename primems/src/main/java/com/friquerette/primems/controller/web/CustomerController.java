@@ -38,7 +38,7 @@ public class CustomerController extends AbstractWebController {
 	@RequestMapping(value = "/customers", method = RequestMethod.GET)
 	public String listCustomers(Model model) {
 		model.addAttribute("customer", new Customer());
-		model.addAttribute("customers", this.customerService.findAllCustomers());
+		model.addAttribute("customers", this.customerService.findAll());
 		return "account/customers";
 	}
 

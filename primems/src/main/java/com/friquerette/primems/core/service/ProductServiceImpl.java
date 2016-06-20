@@ -8,23 +8,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.friquerette.primems.core.dao.CategoryDao;
-import com.friquerette.primems.core.entity.Category;
+import com.friquerette.primems.core.dao.ProductDao;
 import com.friquerette.primems.core.entity.Customer;
+import com.friquerette.primems.core.entity.Product;
 
-@Service("categoryService")
-public class CategoryServiceImpl implements CategoryService {
+@Service("productService")
+public class ProductServiceImpl implements ProductService {
 
 	private static final Logger logger = LoggerFactory.getLogger(CategoryServiceImpl.class);
 
 	@Autowired
-	private CategoryDao dao;
+	private ProductDao dao;
 	@Autowired
 	private CustomerService customerService;
 
 	@Override
 	@Transactional
-	public List<Category> findAll() {
+	public List<Product> findAll() {
 		return dao.findAll();
 	}
 
@@ -32,14 +32,14 @@ public class CategoryServiceImpl implements CategoryService {
 	@Transactional
 	public void deleteById(Long id) {
 		try {
-			Category category = findById(id);
-			if (category != null) {
-				dao.delete(category);
+			Product product = findById(id);
+			if (product != null) {
+				dao.delete(product);
 			} else {
-				logger.error("Category not found for id " + id);
+				logger.error("Product not found for id " + id);
 			}
 		} catch (Exception e) {
-			String message = "Failed to update the category";
+			String message = "Failed to update the product";
 			logger.error(message, e);
 			throw new PrimemsServiceException(message, e);
 		}
@@ -47,17 +47,17 @@ public class CategoryServiceImpl implements CategoryService {
 
 	@Override
 	@Transactional
-	public Category findById(Long id) {
+	public Product findById(Long id) {
 		return dao.findById(id);
 	}
 
 	@Override
 	@Transactional
-	public void update(Category category) {
+	public void update(Product product) {
 		try {
-			dao.update(category);
+			dao.update(product);
 		} catch (Exception e) {
-			String message = "Failed to update the category";
+			String message = "Failed to update the product";
 			logger.error(message, e);
 			throw new PrimemsServiceException(message, e);
 		}
@@ -65,29 +65,26 @@ public class CategoryServiceImpl implements CategoryService {
 
 	@Override
 	@Transactional
-	public Long create(Category category) {
+	public Long create(Product product) {
 		try {
-			return dao.create(category);
+			return dao.create(product);
 		} catch (Exception e) {
-			String message = "Failed to create the category";
+			String message = "Failed to create the product";
 			logger.error(message, e);
 			throw new PrimemsServiceException(message, e);
 		}
 	}
 
-	/**
-	 * Design pattern Factory
-	 * 
-	 * @return
-	 */
 	@Override
-	public Category getInstance() {
-		Category category = new Category();
-		category.setEnabled(true);
+	@Transactional
+	public Product getInstance() {
+		Product product = new Product();
 		Customer currentCustomer = customerService.getCurrentCustomerFromContext();
-		category.setCreatedBy(currentCustomer);
-		category.setLastModifiedBy(currentCustomer);
-		return category;
+		product.setCreatedBy(currentCustomer);
+		product.setLastModifiedBy(currentCustomer);
+		product.setOwner(currentCustomer);
+		product.setEnabled(true);
+		return product;
 	}
 
 }

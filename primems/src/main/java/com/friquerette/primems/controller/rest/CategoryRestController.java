@@ -29,7 +29,7 @@ public class CategoryRestController {
 	public ResponseEntity<List<Category>> getCategoryAll() {
 		List<Category> categories = null;
 		try {
-			categories = categoryService.findAllCategories();
+			categories = categoryService.findAll();
 		} catch (Exception e) {
 			logger.error("Failed to read all the categories", e);
 		}

@@ -21,7 +21,7 @@ public class CustomerServiceTest extends AbstractTest {
 		customer.setEnabled(true);
 		customer.setFirstName("Toto");
 		try {
-			customerService.createCustomer(customer);
+			customerService.create(customer);
 			fail("The user shouldn't be created !!!");
 		} catch (PrimemsServiceException e) {
 			assertNull(customer.getId());
@@ -31,10 +31,10 @@ public class CustomerServiceTest extends AbstractTest {
 		customer.setEmail("test@yopmail.com");
 		customer.setPassword("pwd");
 		customer.setGender(GenderEnum.MALE);
-		customerService.createCustomer(customer);
+		customerService.create(customer);
 		assertNotNull(customer.getId());
 
 		// TODO : Clean the data (to do on @After)
-		customerService.deleteCustomerById(customer.getId());
+		customerService.deleteById(customer.getId());
 	}
 }

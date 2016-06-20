@@ -29,7 +29,6 @@ public class CustomerDaoImpl extends AbstractDao<Customer>implements CustomerDao
 		Criteria criteria = getSession().createCriteria(Customer.class);
 		criteria.add(Restrictions.eq("id", id));
 		return (Customer) criteria.uniqueResult();
-
 	}
 
 	/**

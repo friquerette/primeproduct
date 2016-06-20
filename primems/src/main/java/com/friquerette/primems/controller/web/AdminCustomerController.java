@@ -33,7 +33,7 @@ public class AdminCustomerController extends AbstractWebController {
 	@RequestMapping(value = "/all", method = RequestMethod.GET)
 	public String admin(Model model) {
 		model.addAttribute("customer", new Customer());
-		model.addAttribute("customers", this.customerService.findAllCustomers());
+		model.addAttribute("customers", this.customerService.findAll());
 		return "admin/admin";
 	}
 }

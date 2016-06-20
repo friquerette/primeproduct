@@ -24,13 +24,13 @@ public class CustomerServiceImpl implements CustomerService {
 
 	@Override
 	@Transactional
-	public List<Customer> findAllCustomers() {
+	public List<Customer> findAll() {
 		return dao.findAll();
 	}
 
 	@Override
 	@Transactional
-	public void deleteCustomerById(Long id) {
+	public void deleteById(Long id) {
 		dao.delete(findById(id));
 	}
 
@@ -42,7 +42,7 @@ public class CustomerServiceImpl implements CustomerService {
 
 	@Override
 	@Transactional
-	public void updateCustomer(Customer customer) {
+	public void update(Customer customer) {
 		try {
 			dao.update(customer);
 		} catch (Exception e) {
@@ -54,7 +54,7 @@ public class CustomerServiceImpl implements CustomerService {
 
 	@Override
 	@Transactional
-	public Long createCustomer(Customer customer) {
+	public Long create(Customer customer) {
 		try {
 			return dao.create(customer);
 		} catch (Exception e) {
@@ -68,6 +68,11 @@ public class CustomerServiceImpl implements CustomerService {
 		}
 	}
 
+	/**
+	 * Design pattern Factory
+	 * 
+	 * @return
+	 */
 	@Override
 	public Customer getInstance() {
 		Customer customer = new Customer();
