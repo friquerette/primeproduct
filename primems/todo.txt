@@ -1,3 +1,4 @@
+
 ok	fiche produit
 	creation de category
 	update de category
@@ -23,8 +24,16 @@ ok	add a test cover for DAO
 	Password encrypt with salt ...
 	Hibernate : created_by and last_modified_by not eager
 ok	Bootstrap_(framework)
+	FontAweSome for nice Icon
 	
 	Test Unit : clean Data
 	Spring Web MVC : pagination datable
 	i18n...
+	standardiser les interfaces classes services
+	handle the error when a creation/update failed
+	
+	Currency : add a Enum for the list of currency
+	Currency : add a service to get the lastest currency information
+	Currency : create the Client Rest for the CurrencySerfvice, all the information are in the tutorial
+		http://websystique.com/springmvc/spring-mvc-4-restful-web-services-crud-example-resttemplate/
 	
