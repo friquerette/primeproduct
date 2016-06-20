@@ -5,12 +5,12 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.friquerette.primems.core.dao.CategoryDao;
 import com.friquerette.primems.core.entity.Category;
+import com.friquerette.primems.core.entity.Customer;
 
 @Service("categoryService")
 public class CategoryServiceImpl implements CategoryService {
@@ -19,6 +19,8 @@ public class CategoryServiceImpl implements CategoryService {
 
 	@Autowired
 	private CategoryDao dao;
+	@Autowired
+	private CustomerService customerService;
 
 	@Override
 	@Transactional
@@ -78,9 +80,9 @@ public class CategoryServiceImpl implements CategoryService {
 	public Category getInstance() {
 		Category category = new Category();
 		category.setEnabled(true);
-		// category.setRole(RoleEnum.ROLE_USER);
-		// TODO : find the current user from unique login...
-		SecurityContextHolder.getContext().getAuthentication();
+		Customer currentCustomer = customerService.getCurrentCustomerFromContext();
+		category.setCreatedBy(currentCustomer);
+		category.setLastModifiedBy(currentCustomer);
 		return category;
 	}
 

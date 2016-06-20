@@ -5,6 +5,8 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -74,4 +76,43 @@ public class CustomerServiceImpl implements CustomerService {
 		return customer;
 	}
 
+	/**
+	 * Return the customer from context the unique login that is kept by Spring
+	 * Security
+	 * 
+	 * TODO : to improve later by storing this information in Spring Context
+	 * 
+	 * @return
+	 */
+	@Override
+	@Transactional
+	public Customer getCurrentCustomerFromContext() {
+		// Map<String, String> filters = new HashMap<>();
+		// filters.put(CustomerDao.FILTER_USERNAME,
+		// getAuthenticationUsername());
+		// List<Customer> customers = dao.find(filters);
+		// Customer customer = null;
+		// if (customers != null && customers.size() == 1) {
+		// customer = customers.get(0);
+		// }
+		return dao.findByLogin(getAuthenticationUsername());
+	}
+
+	/**
+	 * Return the current Authentication user name in the Spring Context
+	 * 
+	 * @return
+	 */
+	@Override
+	public String getAuthenticationUsername() {
+		String userName = null;
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+		if (principal instanceof UserDetails) {
+			userName = ((UserDetails) principal).getUsername();
+		} else {
+			userName = principal.toString();
+		}
+		return userName;
+	}
 }

@@ -6,10 +6,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.friquerette.primems.controller.web.converterenum.GenderEnumConverter;
+import com.friquerette.primems.controller.web.converterenum.RoleEnumConverter;
 import com.friquerette.primems.core.entity.Customer;
+import com.friquerette.primems.core.entity.GenderEnum;
+import com.friquerette.primems.core.entity.RoleEnum;
 import com.friquerette.primems.core.service.CustomerService;
 
 /**
@@ -34,6 +40,12 @@ public class CustomerController extends AbstractWebController {
 		model.addAttribute("customer", new Customer());
 		model.addAttribute("customers", this.customerService.findAllCustomers());
 		return "account/customers";
+	}
+
+	@InitBinder
+	public void initBinder(WebDataBinder dataBinder) {
+		dataBinder.registerCustomEditor(GenderEnum.class, new GenderEnumConverter());
+		dataBinder.registerCustomEditor(RoleEnum.class, new RoleEnumConverter());
 	}
 
 }

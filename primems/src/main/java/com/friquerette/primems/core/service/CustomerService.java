@@ -17,4 +17,9 @@ public interface CustomerService {
 	public Long createCustomer(Customer customer);
 
 	public Customer getInstance();
+
+	public Customer getCurrentCustomerFromContext();
+
+	public String getAuthenticationUsername();
+
 }

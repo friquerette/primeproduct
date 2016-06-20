@@ -1,18 +1,15 @@
 package com.friquerette.primems.core.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
 
-import com.friquerette.primems.controller.web.converterenum.GenderEnumConverter;
-import com.friquerette.primems.controller.web.converterenum.RoleEnumConverter;
 import com.friquerette.primems.core.entity.Customer;
-import com.friquerette.primems.core.entity.GenderEnum;
-import com.friquerette.primems.core.entity.RoleEnum;
 
 @Repository("customerDao")
 public class CustomerDaoImpl extends AbstractDao<Customer>implements CustomerDao {
@@ -35,6 +32,18 @@ public class CustomerDaoImpl extends AbstractDao<Customer>implements CustomerDao
 
 	}
 
+	/**
+	 * A temporally method until the bug on
+	 * "findByFilter(Map<String, String> filter)" is fix
+	 */
+	@Override
+	@Deprecated
+	public Customer findByLogin(String username) {
+		Criteria criteria = getSession().createCriteria(Customer.class);
+		criteria.add(Restrictions.eq("userName", username));
+		return (Customer) criteria.uniqueResult();
+	}
+
 	@Override
 	@SuppressWarnings("unchecked")
 	public List<Customer> findAll() {
@@ -47,9 +56,29 @@ public class CustomerDaoImpl extends AbstractDao<Customer>implements CustomerDao
 		super.deleteEntity(customer);
 	}
 
-	@InitBinder
-	public void initBinder(WebDataBinder dataBinder) {
-		dataBinder.registerCustomEditor(GenderEnum.class, new GenderEnumConverter());
-		dataBinder.registerCustomEditor(RoleEnum.class, new RoleEnumConverter());
+	/**
+	 * To fixe later : this method works with spring 3 and hibernate 4 but
+	 * generate this exception with hibernate4/spring4 :
+	 * 
+	 * Etat HTTP 500 - Handler processing failed; nested exception is
+	 * java.lang.NoSuchMethodError:
+	 * org.hibernate.Session.createQuery(Ljava/lang/String;)Lorg/hibernate/query
+	 * /Query;
+	 */
+	@Override
+	@Deprecated
+	public List<Customer> findByFilter(Map<String, String> filter) {
+		Map<String, String> parameters = new HashMap<>();
+		String queryString = "FROM Customer c WHERE 1 = 1";
+		for (Map.Entry<String, String> entry : filter.entrySet()) {
+			if (FILTER_USERNAME.equals(entry.getKey()) && false) {
+				queryString += " AND c.username=:username ";
+				parameters.put("username", entry.getValue());
+			}
+		}
+		Query query = getSession().createQuery(queryString);
+		fillQueryWithParameter(query, parameters);
+		return query.list();
 	}
+
 }

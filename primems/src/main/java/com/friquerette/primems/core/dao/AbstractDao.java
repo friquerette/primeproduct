@@ -1,16 +1,21 @@
 package com.friquerette.primems.core.dao;
 
 import java.util.Date;
+import java.util.Map;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.orm.hibernate4.HibernateTemplate;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.friquerette.primems.core.entity.AbstractEntity;
 
 @Transactional
 public abstract class AbstractDao<T extends AbstractEntity> {
+
+	private HibernateTemplate hibernateTemplate = null;
 
 	@Autowired
 	private SessionFactory sessionFactory;
@@ -22,17 +27,38 @@ public abstract class AbstractDao<T extends AbstractEntity> {
 	protected Long persistEntity(T entity) {
 		entity.setCreateDate(new Date());
 		entity.setUpdateDate(new Date());
-		getSession().persist(entity);
+		getHibernateTemplate().persist(entity);
 		return entity.getId();
 	}
 
 	protected void deleteEntity(T entity) {
-		getSession().delete(entity);
+		getHibernateTemplate().delete(entity);
 	}
 
 	protected void updateEntity(T entity) {
 		entity.setUpdateDate(new Date());
-		getSession().update(entity);
+		getHibernateTemplate().update(entity);
 	}
 
+	protected void fillQueryWithParameter(Query query, Map<String, String> parameters) {
+		if (!parameters.isEmpty()) {
+			for (Map.Entry<String, String> parameter : parameters.entrySet()) {
+				query.setParameter(parameter.getKey(), parameter.getValue());
+			}
+		}
+	}
+
+	/**
+	 * Some documentation on the HibernateTemplate :
+	 * 
+	 * @url "http://www.springbyexample.org/examples/simple-hibernate-xml-config-code-example.html"
+	 *      To study for later...
+	 * @return HibernateTemplate
+	 */
+	public HibernateTemplate getHibernateTemplate() {
+		if (hibernateTemplate == null) {
+			hibernateTemplate = new HibernateTemplate(sessionFactory);
+		}
+		return hibernateTemplate;
+	}
 }
