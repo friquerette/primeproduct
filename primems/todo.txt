@@ -1,13 +1,27 @@
-
-	include de page JSP
+	creation de category
+	update de category
+	liste de category
+	choix de catégorie mère
 	
+	creation de produit
+	update de produit
+	liste de produit public avec recherche
+	liste de produit perso
+	
+	update de user as sys admin
+	update du profil perso
+	
+	choix de la monnaie
+	
+
+ok	include de page JSP
 	
 ok	add a test cover for DAO
 	Finish entity layer and his script of creation
 	Don't use root user ...
 	Password encrypt with salt ...
 	Hibernate : created_by and last_modified_by not eager
-	Bootstrap_(framework)
+ok	Bootstrap_(framework)
 	
 	Test Unit : clean Data
 	Spring Web MVC : pagination datable

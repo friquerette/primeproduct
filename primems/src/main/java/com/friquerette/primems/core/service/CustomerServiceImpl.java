@@ -7,14 +7,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
 
-import com.friquerette.primems.controller.web.converter.GenderEnumConverter;
-import com.friquerette.primems.controller.web.converter.RoleEnumConverter;
 import com.friquerette.primems.core.dao.CustomerDao;
 import com.friquerette.primems.core.entity.Customer;
-import com.friquerette.primems.core.entity.GenderEnum;
 import com.friquerette.primems.core.entity.RoleEnum;
 
 @Service("customerService")
@@ -24,12 +19,6 @@ public class CustomerServiceImpl implements CustomerService {
 
 	@Autowired
 	private CustomerDao dao;
-
-	@InitBinder
-	public void initBinder(WebDataBinder dataBinder) {
-		dataBinder.registerCustomEditor(GenderEnum.class, new GenderEnumConverter());
-		dataBinder.registerCustomEditor(RoleEnum.class, new RoleEnumConverter());
-	}
 
 	@Override
 	@Transactional
@@ -41,7 +30,6 @@ public class CustomerServiceImpl implements CustomerService {
 	@Transactional
 	public void deleteCustomerById(Long id) {
 		dao.delete(findById(id));
-
 	}
 
 	@Override
@@ -56,11 +44,10 @@ public class CustomerServiceImpl implements CustomerService {
 		try {
 			dao.update(customer);
 		} catch (Exception e) {
-			String message = "Failed to update the user";
+			String message = "Failed to update the customer";
 			logger.error(message, e);
 			throw new PrimemsServiceException(message, e);
 		}
-
 	}
 
 	@Override
@@ -76,7 +63,7 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 
 	@Override
-	public Customer getNewCustomer() {
+	public Customer getNewInstance() {
 		Customer customer = new Customer();
 		customer.setEnabled(true);
 		customer.setRole(RoleEnum.ROLE_USER);

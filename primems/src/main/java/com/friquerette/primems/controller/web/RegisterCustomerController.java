@@ -43,7 +43,7 @@ public class RegisterCustomerController {
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String registration(Model model) {
-		model.addAttribute("customer", customerService.getNewCustomer());
+		model.addAttribute("customer", customerService.getNewInstance());
 
 		model.addAttribute("genderList", GenderEnum.values());
 

@@ -17,9 +17,9 @@
 		</div>
 		<div class="row">
 			<ul class="nav nav-tabs">
-				<li role="presentation"><a href="../categories/all">Category</a></li>
-				<li role="presentation"><a href="products">Product</a></li>
-				<li role="presentation" class="active"><a href="#">Customer</a></li>
+				<li role="presentation"><a href="../categories/all">Categories</a></li>
+				<li role="presentation" class="active"><a href="#">Product</a></li>
+				<li role="presentation"><a href="../customers/all">Customer</a></li>
 			</ul>
 		</div>
 	</div>

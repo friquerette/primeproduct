@@ -16,5 +16,5 @@ public interface CustomerService {
 
 	public Long createCustomer(Customer customer);
 
-	public Customer getNewCustomer();
+	public Customer getNewInstance();
 }

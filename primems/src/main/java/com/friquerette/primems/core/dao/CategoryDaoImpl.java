@@ -30,6 +30,7 @@ public class CategoryDaoImpl extends AbstractDao<Category>implements CategoryDao
 	}
 
 	@Override
+	@SuppressWarnings("unchecked")
 	public List<Category> findAll() {
 		Criteria criteria = getSession().createCriteria(Category.class);
 		return (List<Category>) criteria.list();

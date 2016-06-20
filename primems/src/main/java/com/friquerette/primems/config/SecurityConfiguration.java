@@ -17,8 +17,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception {
-		auth.jdbcAuthentication().dataSource(dataSource)
-				.usersByUsernameQuery("select username,password, enabled from customer where username=?")
+		auth.jdbcAuthentication()//
+				.dataSource(dataSource)
+				.usersByUsernameQuery("select username, password, enabled from customer where username=?")
 				.authoritiesByUsernameQuery("select username, role from customer where username=?");
 	}
 
@@ -30,7 +31,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.antMatchers("/home/admin/**").access("hasRole('ADMIN')")//
 				.antMatchers("/home/account/**").access("hasRole('USER') or hasRole('ADMIN') ")//
 				.antMatchers("/db/**").access("hasRole('ADMIN') and hasRole('DBA')")//
-				.and().formLogin()//
+				.and().formLogin() // .loginPage("/login")//
 				.and().exceptionHandling().accessDeniedPage("/accessdenied");
 
 	}

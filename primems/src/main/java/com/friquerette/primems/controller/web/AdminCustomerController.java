@@ -21,7 +21,7 @@ import com.friquerette.primems.core.service.CustomerService;
  */
 @Controller
 @RequestMapping(ADMIN_HOME)
-public class AdminController extends AbstractWebController {
+public class AdminCustomerController extends AbstractWebController {
 	@Autowired(required = true)
 	@Qualifier(value = "customerService")
 	private CustomerService customerService;
@@ -30,7 +30,7 @@ public class AdminController extends AbstractWebController {
 		this.customerService = customerService;
 	}
 
-	@RequestMapping(value = "/customers", method = RequestMethod.GET)
+	@RequestMapping(value = "/all", method = RequestMethod.GET)
 	public String admin(Model model) {
 		model.addAttribute("customer", new Customer());
 		model.addAttribute("customers", this.customerService.findAllCustomers());

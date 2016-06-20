@@ -14,4 +14,5 @@ public interface CategoryService {
 
 	public void updateCategory(Category category);
 
+	public Category getNewInstance();
 }

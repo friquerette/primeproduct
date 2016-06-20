@@ -3,6 +3,12 @@ package com.friquerette.primems.core.entity;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * The gender of a customer
+ * 
+ * @author Rick
+ *
+ */
 public enum GenderEnum {
 	MALE("Male"), //
 	FEMALE("Female");
@@ -15,5 +21,9 @@ public enum GenderEnum {
 
 	public static List<GenderEnum> getAllGenders() {
 		return Arrays.asList(GenderEnum.values());
+	}
+
+	public String getLabel() {
+		return label;
 	}
 }
