@@ -15,7 +15,7 @@
 	<div class="container-fluid">
 		<jsp:include page="../include/links.jsp" />
 		<div class="page-header">
-			<h2>Admin</h2>
+			<h2>Admin > Customers</h2>
 		</div>
 		<div class="row">
 			<ul class="nav nav-tabs">

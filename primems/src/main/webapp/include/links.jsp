@@ -2,11 +2,11 @@
 <div class=container>
 <div class=navbar-header>
 	<ul class="nav navbar-nav">
-		<li><a href="/primems/">home</a></li>
-		<li><a href="/primems/register">register</a></li>
-		<li><a href="/primems/home/admin/categories/all">admin</a></li>
-		<li><a href="/primems/home/account/customers">account</a></li>
-		<li><a href="/primems/logout">logout</a></li>
+		<li><a href="/primems/">Home</a></li>
+		<li><a href="/primems/register">Register</a></li>
+		<li><a href="/primems/home/admin/categories/all">Admin</a></li>
+		<li><a href="/primems/home/account/customers">Account</a></li>
+		<li><a href="/primems/logout">Logout</a></li>
 	</ul>
 </div>
 </div>

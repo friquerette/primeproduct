@@ -1,7 +1,7 @@
 
 Layer Service :
 	-	CRUD product...
-	- 	public can see all the produc
+	ok 	public can see all the product
 	-	be able to edit his own product
 		
 	ok	create category

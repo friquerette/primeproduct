@@ -16,7 +16,7 @@
 	<div class="container-fluid">
 		<jsp:include page="../include/links.jsp" />
 		<div class="page-header">
-			<h2>Categories setting</h2>
+			<h2>Admin > Categories</h2>
 			<a href="./edit/new">new category</a>
 		</div>
 		<div class="row">
@@ -43,8 +43,8 @@
 							<td>${cat.id}</td>
 							<td>${cat.name}</td>
 							<td>${cat.description}</td>
-							<td><a href="<c:url value='./edit/${cat.id}' />" >Edit</a></td>
-							<td><a href="<c:url value='./delete/${cat.id}' />" >Delete</a></td>
+							<td><a href="<c:url value='./edit/${cat.id}' />" class="glyphicon glyphicon-edit"></a></td>
+							<td><a href="<c:url value='./delete/${cat.id}' />" class="glyphicon glyphicon-trash"></a></td>
 						</tr>
 					</c:forEach>
 				</tbody>
