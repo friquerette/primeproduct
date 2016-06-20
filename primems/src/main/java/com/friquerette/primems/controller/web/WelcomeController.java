@@ -10,10 +10,13 @@ import org.springframework.security.web.authentication.logout.SecurityContextLog
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.friquerette.primems.controller.web.converterweb.ProductConverter;
+import com.friquerette.primems.core.entity.Product;
 import com.friquerette.primems.core.service.CustomerService;
 import com.friquerette.primems.core.service.ProductService;
 
@@ -32,6 +35,9 @@ public class WelcomeController extends AbstractWebController {
 	@Autowired(required = true)
 	private ProductService productService;
 
+	@Autowired(required = true)
+	private ProductConverter productConverter;
+
 	public void setCustomerService(CustomerService customerService) {
 		this.customerService = customerService;
 	}
@@ -40,10 +46,36 @@ public class WelcomeController extends AbstractWebController {
 		this.productService = productService;
 	}
 
+	public void setProductConverter(ProductConverter productConverter) {
+		this.productConverter = productConverter;
+	}
+
 	@RequestMapping(value = "", method = RequestMethod.GET)
-	public String welcome(Model model) {
-		model.addAttribute("products", this.productService.findAll());
-		return "home";
+	public ModelAndView welcome(Model model) {
+		ModelAndView modelView = new ModelAndView("home");
+		try {
+			model.addAttribute("products", this.productService.findAll());
+		} catch (Exception e) {
+			modelView = new ModelAndView("error");
+			modelView.addObject("message", "Failed to read the product list");
+			modelView.addObject("cause", e.getCause());
+		}
+		return modelView;
+	}
+
+	@RequestMapping(value = "/view/{id}", method = RequestMethod.GET)
+	public ModelAndView view(@PathVariable("id") long id) {
+		ModelAndView model = new ModelAndView("view");
+		try {
+			Product product = productService.findById(id);
+			model.addObject("product", productConverter.toWeb(product));
+			return model;
+		} catch (Exception e) {
+			model = new ModelAndView("error");
+			model.addObject("message", "Failed to read the product id " + id);
+			model.addObject("cause", e.getCause());
+			return model;
+		}
 	}
 
 	@RequestMapping(value = "/accessdenied", method = RequestMethod.GET)
@@ -58,7 +90,7 @@ public class WelcomeController extends AbstractWebController {
 		if (auth != null) {
 			new SecurityContextLogoutHandler().logout(request, response, auth);
 		}
-		return "index";
+		return "redirect:./";
 	}
 
 }

@@ -8,12 +8,14 @@
 	<jsp:include page="../include/header.jsp">
 		<jsp:param name="title" value="Admin" />
 	</jsp:include>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+	<jsp:useBean id="products" scope="request" type="java.util.List" />
 </head>
 <body>
 	<div class="container-fluid">
 		<jsp:include page="../include/links.jsp" />
 		<div class="page-header">
-			<h2>Admin</h2>
+			<h2>Products</h2>
 		</div>
 		<div class="row">
 			<ul class="nav nav-tabs">
@@ -21,6 +23,26 @@
 				<li role="presentation" class="active"><a href="#">Product</a></li>
 				<li role="presentation"><a href="../customers/all">Customer</a></li>
 			</ul>
+		</div>
+		<div class="row">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Title</th>
+						<th>Price</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach items="${products}" var="pro">
+						<tr>
+							<td><a href="view/${pro.id}" >${pro.id}</a></td>
+							<td>${pro.title}</td>
+							<td>${pro.price}</td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
 		</div>
 	</div>
 </body>

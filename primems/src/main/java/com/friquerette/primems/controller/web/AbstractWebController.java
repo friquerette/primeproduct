@@ -11,6 +11,7 @@ public class AbstractWebController {
 	protected final static String ROOT_HOME = "/home";
 	protected final static String ACCOUNT_HOME = ROOT_HOME + "/account";
 	protected final static String ADMIN_CUSTOMERS = ROOT_HOME + "/admin/customers";
+	protected final static String ADMIN_PRODUCTS = ROOT_HOME + "/admin/products";
 	protected final static String ADMIN_CATEGORIES = ROOT_HOME + "/admin/categories";
 	protected final static String ROOT_REGISTER = "/register";
 

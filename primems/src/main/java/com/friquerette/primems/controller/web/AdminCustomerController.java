@@ -9,7 +9,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.friquerette.primems.core.entity.Customer;
 import com.friquerette.primems.core.service.CustomerService;
 
 /**
@@ -32,8 +31,7 @@ public class AdminCustomerController extends AbstractWebController {
 
 	@RequestMapping(value = "/all", method = RequestMethod.GET)
 	public String admin(Model model) {
-		model.addAttribute("customer", new Customer());
 		model.addAttribute("customers", this.customerService.findAll());
-		return "admin/admin";
+		return "admin/customers";
 	}
 }

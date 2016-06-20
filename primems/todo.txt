@@ -22,6 +22,7 @@ Layer Service :
 	Currency : create the Client Rest for the CurrencySerfvice, all the information are in the tutorial
 		http://websystique.com/springmvc/spring-mvc-4-restful-web-services-crud-example-resttemplate/
 	
+	IHM validator email
 
 ok	be able to include a JSP into another one
 	
