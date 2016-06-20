@@ -1,7 +1,5 @@
 package com.friquerette.primems.core.entity;
 
-import static javax.persistence.FetchType.EAGER;
-
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -31,14 +29,18 @@ public class Product extends AbstractEntity {
 	private String title;
 
 	@Lob
-	@Basic(fetch = EAGER)
+	@Basic(fetch = FetchType.LAZY)
 	@Column(name = "description")
 	private String description;
 
 	@Column(name = "price")
 	private Double price;
 
-	@ManyToOne(fetch = FetchType.EAGER, optional = true)
+	@ManyToOne(fetch = FetchType.LAZY, optional = true)
+	@JoinColumn(name = "category_id")
+	private Category category;
+
+	@ManyToOne(fetch = FetchType.LAZY, optional = true)
 	@JoinColumn(name = "owner")
 	private Customer owner;
 
@@ -80,5 +82,13 @@ public class Product extends AbstractEntity {
 
 	public void setOwner(Customer owner) {
 		this.owner = owner;
+	}
+
+	public Category getCategory() {
+		return category;
+	}
+
+	public void setCategory(Category category) {
+		this.category = category;
 	}
 }

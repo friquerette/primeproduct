@@ -45,21 +45,21 @@ public class AdminCustomerController extends AbstractWebController {
 	}
 
 	// ALL
-	@RequestMapping(value = "/all", method = RequestMethod.GET)
+	@RequestMapping(value = PATH_ALL, method = RequestMethod.GET)
 	public String admin(Model model) {
 		model.addAttribute("customers", this.customerService.findAll());
 		return "admin/customers";
 	}
 
 	// -- DELETE
-	@RequestMapping(value = "/delete/{id}")
+	@RequestMapping(value = PATH_DELETE)
 	public String delete(@PathVariable("id") long id) {
 		customerService.deleteById(id);
 		return "redirect:.." + PATH_ALL;
 	}
 
 	// -- UPDATE
-	@RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = PATH_EDIT, method = RequestMethod.GET)
 	public ModelAndView updateForm(@PathVariable("id") long id) {
 		ModelAndView model = new ModelAndView("admin/customer");
 		Customer customer = customerService.findById(id);
@@ -68,21 +68,21 @@ public class AdminCustomerController extends AbstractWebController {
 		return model;
 	}
 
-	@RequestMapping(value = "/edit/{id}", method = RequestMethod.POST)
+	@RequestMapping(value = PATH_EDIT, method = RequestMethod.POST)
 	public String update(@ModelAttribute("customer") CustomerWeb web, Map<String, Object> map) {
 		customerService.update(customerConverter.fromWeb(web));
 		return "redirect:.." + PATH_ALL;
 	}
 
 	// -- CREATE
-	@RequestMapping(value = "/edit/new", method = RequestMethod.GET)
+	@RequestMapping(value = PATH_NEW, method = RequestMethod.GET)
 	public ModelAndView newForm() {
 		ModelAndView model = new ModelAndView("admin/customer");
 		model.addObject("customer", customerConverter.toWeb(null));
 		return model;
 	}
 
-	@RequestMapping(value = "/edit/new", method = RequestMethod.POST)
+	@RequestMapping(value = PATH_NEW, method = RequestMethod.POST)
 	public String create(@ModelAttribute("customer") CustomerWeb web, Map<String, Object> map) {
 		customerService.create(customerConverter.fromWeb(web));
 		return "redirect:.." + PATH_ALL;

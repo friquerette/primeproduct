@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
-import com.friquerette.primems.controller.web.PrimemsWebException;
 import com.friquerette.primems.controller.web.webmodel.CustomerWeb;
 import com.friquerette.primems.core.entity.Customer;
 import com.friquerette.primems.core.service.CustomerService;
@@ -23,23 +22,22 @@ public class CustomerConverter implements WebModelConverter<Customer, CustomerWe
 	private CustomerService customerService;
 
 	public Customer fromWeb(CustomerWeb web) {
-		Customer customer;
-		if (web == null) {
-			throw new PrimemsWebException("The web model is null");
+		Customer customer = null;
+		if (web != null) {
+			if (web.getId() == null) {
+				customer = customerService.getInstance();
+			} else {
+				customer = customerService.findById(web.getId());
+			}
+			customer.setId(web.getId());
+			customer.setFirstName(web.getFirstName());
+			customer.setLastName(web.getLastName());
+			customer.setUserName(web.getUserName());
+			customer.setPassword(web.getPassword());
+			customer.setEmail(web.getEmail());
+			// customer.setRole(web.getRole());
+			// customer.setGender(web.getGender());
 		}
-		if (web.getId() == null) {
-			customer = customerService.getInstance();
-		} else {
-			customer = customerService.findById(web.getId());
-		}
-		customer.setId(web.getId());
-		customer.setFirstName(web.getFirstName());
-		customer.setLastName(web.getLastName());
-		customer.setUserName(web.getUserName());
-		customer.setPassword(web.getPassword());
-		customer.setEmail(web.getEmail());
-		// customer.setRole(web.getRole());
-		// customer.setGender(web.getGender());
 		return customer;
 	}
 

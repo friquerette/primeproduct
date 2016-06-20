@@ -2,6 +2,7 @@ package com.friquerette.primems.core.service;
 
 import java.util.List;
 
+import org.hibernate.Hibernate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,26 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	@Transactional
 	public List<Product> findAll() {
-		return dao.findAll();
+		try {
+			return dao.findAll();
+		} catch (Exception e) {
+			String message = "Failed to all the product";
+			logger.error(message, e);
+			throw new PrimemsServiceException(message, e);
+		}
+	}
+
+	@Override
+	@Transactional
+	public List<Product> findForCurrentUser() {
+		try {
+			Customer customer = customerService.getCurrentCustomerFromContext();
+			return dao.findByCustomer(customer);
+		} catch (Exception e) {
+			String message = "Failed to all the customer's product";
+			logger.error(message, e);
+			throw new PrimemsServiceException(message, e);
+		}
 	}
 
 	@Override
@@ -48,7 +68,12 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	@Transactional
 	public Product findById(Long id) {
-		return dao.findById(id);
+		Product product = dao.findById(id);
+		// Force to load the data
+		Hibernate.initialize(product.getCategory());
+		Hibernate.initialize(product.getOwner());
+		Hibernate.initialize(product.getDescription());
+		return product;
 	}
 
 	@Override

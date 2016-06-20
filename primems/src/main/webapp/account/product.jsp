@@ -6,31 +6,35 @@
 <html lang="en">
 <head>
 	<jsp:include page="../include/header.jsp">
-		<jsp:param name="title" value="Edit form" />
+		<jsp:param name="title" value="Edit Customer" />
 	</jsp:include>
 </head>
 <body>
 	<div class="container-fluid">
 		<jsp:include page="../include/links.jsp" />
-		<form:form method="post" commandName="category">
+		<form:form method="post" commandName="product">
 			<table class="table">
 				<tr>
 					<th colspan="2">
-					<h2>Edit Category</h2>
+					<h2>User - Edit Product</h2>
 					</th>
 				</tr>
 				<tr>
-					<td>Category Name:</td>
-					<td><form:input path="name" required="required" class="form-control"/></td>
+					<td>Title:</td>
+					<td><form:input path="title" required="required" class="form-control"/></td>
 				</tr>
 				<tr>
 					<td>Description:</td>
 					<td><form:input path="description" class="form-control"/></td>
 				</tr>
 				<tr>
+					<td>Price:</td>
+					<td><form:input path="price" class="form-control"/></td>
+				</tr>
+
+				<tr>
 					<td colspan="2" align="center">
 						<input type="submit" value="Save" class="btn btn-default"/>
-						<form:hidden path="id" />
 					</td>
 				</tr>
 				

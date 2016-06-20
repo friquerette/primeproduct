@@ -8,6 +8,12 @@ public class ProductWeb extends AbstractWebModel {
 
 	private String description;
 
+	private Double price;
+
+	private CustomerWeb owner;
+
+	private CategoryWeb category;
+
 	public Long getId() {
 		return id;
 	}
@@ -30,6 +36,30 @@ public class ProductWeb extends AbstractWebModel {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public Double getPrice() {
+		return price;
+	}
+
+	public void setPrice(Double price) {
+		this.price = price;
+	}
+
+	public CustomerWeb getOwner() {
+		return owner;
+	}
+
+	public void setOwner(CustomerWeb owner) {
+		this.owner = owner;
+	}
+
+	public CategoryWeb getCategory() {
+		return category;
+	}
+
+	public void setCategory(CategoryWeb category) {
+		this.category = category;
 	}
 
 }

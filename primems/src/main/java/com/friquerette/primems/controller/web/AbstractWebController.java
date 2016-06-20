@@ -16,4 +16,8 @@ public class AbstractWebController {
 	protected final static String ROOT_REGISTER = "/register";
 
 	protected final static String PATH_ALL = "/all";
+	protected final static String PATH_EDIT = "/edit/{id}";
+	protected final static String PATH_DELETE = "/delete/{id}";
+	protected final static String PATH_NEW = "/edit/new";
+
 }

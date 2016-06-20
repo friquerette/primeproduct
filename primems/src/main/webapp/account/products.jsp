@@ -10,7 +10,7 @@
 	</jsp:include>
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-	<jsp:useBean id="customers" scope="request" type="java.util.List" />
+	<jsp:useBean id="products" scope="request" type="java.util.List" />
 </head>
 <body>
 	<div class="container-fluid">
@@ -20,9 +20,8 @@
 		</div>
 		<div class="row">
 			<ul class="nav nav-tabs">
-				<li role="presentation" class="active"><a href="#">Saved</a></li>
-				<li role="presentation"><a href="#">Submitted</a></li>
-				<li role="presentation"><a href="#">Approved</a></li>
+				<li role="presentation" class="active"><a href="#">My Products</a></li>
+				<li role="presentation"><a href="#">My profile</a></li>
 			</ul>
 		</div>
 		<div class="row">
@@ -30,16 +29,17 @@
 				<thead>
 					<tr>
 						<th>ID</th>
-						<th>First Name</th>
-						<th>Last Name</th>
+						<th>Title</th>
+						<th>Price</th>
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach items="${customers}" var="customer">
+					<c:forEach items="${products}" var="pro">
 						<tr>
-							<td>${customer.id}</td>
-							<td>${customer.firstName}</td>
-							<td>${customer.lastName}</td>
+							<td>${pro.id}</td>
+							<td>${pro.title}</td>
+							<td>${pro.price}</td>
+							<td><a href="<c:url value='./edit/${pro.id}' />" class="glyphicon glyphicon-edit"></a></td>
 						</tr>
 					</c:forEach>
 				</tbody>

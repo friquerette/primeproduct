@@ -36,9 +36,11 @@
 				<tbody>
 					<c:forEach items="${products}" var="pro">
 						<tr>
-							<td><a href="view/${pro.id}" >${pro.id}</a></td>
+							<td>${pro.id}</td>
 							<td>${pro.title}</td>
 							<td>${pro.price}</td>
+							<td><a href="<c:url value='./edit/${pro.id}' />" class="glyphicon glyphicon-edit"></a></td>
+							<td><a href="<c:url value='./delete/${pro.id}' />" class="glyphicon glyphicon-trash"></a></td>
 						</tr>
 					</c:forEach>
 				</tbody>

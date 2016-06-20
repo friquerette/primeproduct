@@ -1,6 +1,6 @@
 package com.friquerette.primems.controller.web;
 
-import static com.friquerette.primems.controller.web.AbstractWebController.ADMIN_PRODUCTS;
+import static com.friquerette.primems.controller.web.AbstractWebController.ACCOUNT_HOME;
 
 import java.util.Map;
 
@@ -19,27 +19,25 @@ import com.friquerette.primems.core.entity.GenderEnum;
 import com.friquerette.primems.core.entity.Product;
 import com.friquerette.primems.core.service.ProductService;
 
+/**
+ * To reach this part of the application the user have to be authenticated
+ * 
+ * @author Rick
+ *
+ */
 @Controller
-@RequestMapping(ADMIN_PRODUCTS)
-public class AdminProductController extends AbstractWebController {
-
+@RequestMapping(ACCOUNT_HOME)
+public class ProductController extends AbstractWebController {
 	@Autowired(required = true)
 	private ProductService productService;
 
 	@Autowired(required = true)
 	private ProductConverter productConverter;
 
-	@RequestMapping(value = PATH_ALL, method = RequestMethod.GET)
-	public String admin(Model model) {
-		model.addAttribute("products", this.productService.findAll());
-		return "admin/products";
-	}
-
-	// -- DELETE
-	@RequestMapping(value = PATH_DELETE)
-	public String delete(@PathVariable("id") long id) {
-		productService.deleteById(id);
-		return "redirect:.." + PATH_ALL;
+	@RequestMapping(value = "/products", method = RequestMethod.GET)
+	public String listCustomers(Model model) {
+		model.addAttribute("products", this.productService.findForCurrentUser());
+		return "account/products";
 	}
 
 	// -- UPDATE
@@ -64,11 +62,5 @@ public class AdminProductController extends AbstractWebController {
 		ModelAndView model = new ModelAndView("admin/product");
 		model.addObject("product", productConverter.toWeb(null));
 		return model;
-	}
-
-	@RequestMapping(value = PATH_NEW, method = RequestMethod.POST)
-	public String create(@ModelAttribute("product") ProductWeb web, Map<String, Object> map) {
-		productService.create(productConverter.fromWeb(web));
-		return "redirect:.." + PATH_ALL;
 	}
 }

@@ -1,10 +1,8 @@
 package com.friquerette.primems.controller.web.converterweb;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
-import com.friquerette.primems.controller.web.PrimemsWebException;
 import com.friquerette.primems.controller.web.webmodel.ProductWeb;
 import com.friquerette.primems.core.entity.Product;
 import com.friquerette.primems.core.service.ProductService;
@@ -19,22 +17,25 @@ import com.friquerette.primems.core.service.ProductService;
 public class ProductConverter implements WebModelConverter<Product, ProductWeb> {
 
 	@Autowired(required = true)
-	@Qualifier(value = "productService")
 	private ProductService productService;
 
+	@Autowired(required = true)
+	private CategoryConverter categoryConverter;
+
 	public Product fromWeb(ProductWeb web) {
-		Product product;
-		if (web == null) {
-			throw new PrimemsWebException("The web model is null");
+		Product product = null;
+		if (web != null) {
+			if (web.getId() == null) {
+				product = productService.getInstance();
+			} else {
+				product = productService.findById(web.getId());
+			}
+			product.setId(web.getId());
+			product.setTitle(web.getTitle());
+			product.setDescription(web.getDescription());
+			product.setPrice(web.getPrice());
+			product.setCategory(categoryConverter.fromWeb(web.getCategory()));
 		}
-		if (web.getId() == null) {
-			product = productService.getInstance();
-		} else {
-			product = productService.findById(web.getId());
-		}
-		product.setId(web.getId());
-		product.setTitle(web.getTitle());
-		product.setDescription(web.getDescription());
 		return product;
 	}
 
@@ -45,7 +46,9 @@ public class ProductConverter implements WebModelConverter<Product, ProductWeb> 
 		ProductWeb web = new ProductWeb();
 		web.setId(product.getId());
 		web.setTitle(product.getTitle());
+		web.setPrice(product.getPrice());
 		web.setDescription(product.getDescription());
+		web.setCategory(categoryConverter.toWeb(product.getCategory()));
 		return web;
 	}
 }

@@ -6,6 +6,7 @@ import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
+import com.friquerette.primems.core.entity.Customer;
 import com.friquerette.primems.core.entity.Product;
 
 @Repository("productDao")
@@ -40,4 +41,11 @@ public class ProductDaoImpl extends AbstractDao<Product>implements ProductDao {
 		super.deleteEntity(product);
 	}
 
+	@Override
+	@SuppressWarnings("unchecked")
+	public List<Product> findByCustomer(Customer customer) {
+		Criteria criteria = getSession().createCriteria(Product.class);
+		criteria.add(Restrictions.eq("owner.id", customer.getId()));
+		return (List<Product>) criteria.list();
+	}
 }

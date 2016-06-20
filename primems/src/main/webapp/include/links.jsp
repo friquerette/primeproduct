@@ -5,7 +5,7 @@
 		<li><a href="/primems/">Home</a></li>
 		<li><a href="/primems/register">Register</a></li>
 		<li><a href="/primems/home/admin/categories/all">Admin</a></li>
-		<li><a href="/primems/home/account/customers">Account</a></li>
+		<li><a href="/primems/home/account/products">Account</a></li>
 		<li><a href="/primems/logout">Logout</a></li>
 	</ul>
 </div>
