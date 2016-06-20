@@ -4,3 +4,5 @@
 <link rel='stylesheet' href='/primems/webjars/bootstrap/3.3.6/css/bootstrap.min.css'>
 <script type="text/javascript" src="/primems/webjars/jquery/2.2.4/jquery.min.js"></script>
 <script type="text/javascript" src="/primems/webjars/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
