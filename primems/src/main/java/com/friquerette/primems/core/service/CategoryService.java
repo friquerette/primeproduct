@@ -14,5 +14,7 @@ public interface CategoryService {
 
 	public void updateCategory(Category category);
 
-	public Category getNewInstance();
+	public Long createCategory(Category category);
+
+	public Category getInstance();
 }

@@ -17,7 +17,7 @@ public class CustomerServiceTest extends AbstractTest {
 
 	@Test
 	public void testCreateCustomer() {
-		Customer customer = customerService.getNewInstance();
+		Customer customer = customerService.getInstance();
 		customer.setEnabled(true);
 		customer.setFirstName("Toto");
 		try {

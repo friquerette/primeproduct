@@ -67,7 +67,7 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 
 	@Override
-	public Customer getNewInstance() {
+	public Customer getInstance() {
 		Customer customer = new Customer();
 		customer.setEnabled(true);
 		customer.setRole(RoleEnum.ROLE_USER);

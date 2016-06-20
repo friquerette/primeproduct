@@ -15,7 +15,8 @@
 	<div class="container-fluid">
 		<jsp:include page="../include/links.jsp" />
 		<div class="page-header">
-			<h2>Admin</h2>
+			<h2>Categories setting</h2>
+			<a href="./edit/new">new category</a>
 		</div>
 		<div class="row">
 			<ul class="nav nav-tabs">

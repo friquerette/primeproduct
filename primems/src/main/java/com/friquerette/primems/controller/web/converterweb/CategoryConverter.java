@@ -28,7 +28,7 @@ public class CategoryConverter implements WebModelConverter<Category, CategoryWe
 			throw new PrimemsWebException("The web model is null");
 		}
 		if (web.getId() == null) {
-			category = categoryService.getNewInstance();
+			category = categoryService.getInstance();
 		} else {
 			category = categoryService.findById(web.getId());
 		}
@@ -40,7 +40,7 @@ public class CategoryConverter implements WebModelConverter<Category, CategoryWe
 
 	public CategoryWeb toWeb(Category category) {
 		if (category == null) {
-			throw new PrimemsWebException("The category is null");
+			category = categoryService.getInstance();
 		}
 		CategoryWeb web = new CategoryWeb();
 		web.setId(category.getId());

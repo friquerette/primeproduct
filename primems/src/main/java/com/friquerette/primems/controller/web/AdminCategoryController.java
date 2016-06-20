@@ -44,14 +44,16 @@ public class AdminCategoryController extends AbstractWebController {
 		return "admin/categories";
 	}
 
+	// -- DELETE
 	@RequestMapping(value = "/delete/{id}")
 	public String delete(@PathVariable("id") long id) {
 		categoryService.deleteCategoryById(id);
 		return "redirect:.." + PATH_ALL;
 	}
 
+	// -- UPDATE
 	@RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
-	public ModelAndView edit(@PathVariable("id") long id) {
+	public ModelAndView updateForm(@PathVariable("id") long id) {
 		ModelAndView model = new ModelAndView("admin/category");
 		Category category = categoryService.findById(id);
 		model.addObject("category", categoryConverter.toWeb(category));
@@ -61,6 +63,20 @@ public class AdminCategoryController extends AbstractWebController {
 	@RequestMapping(value = "/edit/{id}", method = RequestMethod.POST)
 	public String update(@ModelAttribute("category") CategoryWeb web, Map<String, Object> map) {
 		categoryService.updateCategory(categoryConverter.fromWeb(web));
+		return "redirect:.." + PATH_ALL;
+	}
+
+	// -- CREATE
+	@RequestMapping(value = "/edit/new", method = RequestMethod.GET)
+	public ModelAndView newForm() {
+		ModelAndView model = new ModelAndView("admin/category");
+		model.addObject("category", categoryConverter.toWeb(null));
+		return model;
+	}
+
+	@RequestMapping(value = "/edit/new", method = RequestMethod.POST)
+	public String create(@ModelAttribute("category") CategoryWeb web, Map<String, Object> map) {
+		categoryService.createCategory(categoryConverter.fromWeb(web));
 		return "redirect:.." + PATH_ALL;
 	}
 

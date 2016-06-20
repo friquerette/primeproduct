@@ -63,10 +63,23 @@ public class CategoryServiceImpl implements CategoryService {
 	}
 
 	@Override
-	public Category getNewInstance() {
+	@Transactional
+	public Long createCategory(Category category) {
+		try {
+			return dao.create(category);
+		} catch (Exception e) {
+			String message = "Failed to create the category";
+			logger.error(message, e);
+			throw new PrimemsServiceException(message, e);
+		}
+	}
+
+	@Override
+	public Category getInstance() {
 		Category category = new Category();
 		category.setEnabled(true);
 		// category.setRole(RoleEnum.ROLE_USER);
+		// TODO : find the current user from unique login...
 		SecurityContextHolder.getContext().getAuthentication();
 		return category;
 	}
