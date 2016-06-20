@@ -14,19 +14,21 @@ public class PrimemsServiceException extends RuntimeException {
 
 	private String errCode;
 	private String errMsg;
+	private String causeMsg;
 
 	public PrimemsServiceException() {
 		super();
-
 	}
 
 	public PrimemsServiceException(String errMsg, Throwable cause) {
 		this.errMsg = errMsg;
+		this.causeMsg = "" + cause;
 	}
 
 	public PrimemsServiceException(String errCode, String errMsg, Throwable cause) {
 		this.errCode = errCode;
 		this.errMsg = errMsg;
+		this.causeMsg = "" + cause;
 	}
 
 	public String getErrCode() {
@@ -43,6 +45,14 @@ public class PrimemsServiceException extends RuntimeException {
 
 	public void setErrMsg(String errMsg) {
 		this.errMsg = errMsg;
+	}
+
+	public String getCauseMsg() {
+		return causeMsg;
+	}
+
+	public void setCauseMsg(String causeMsg) {
+		this.causeMsg = causeMsg;
 	}
 
 }

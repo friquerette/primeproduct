@@ -36,6 +36,9 @@ public class CustomerDaoTest extends AbstractTest {
 		customer = customerDao.findById(customer.getId());
 		assertNotNull(customer);
 		assertEquals("Jean2", customer.getFirstName());
+
+		// TODO : Clean the data (to do on @After)
+		customerDao.delete(customer);
 	}
 
 	@Test
@@ -45,6 +48,9 @@ public class CustomerDaoTest extends AbstractTest {
 		assertNotNull(customer.getId());
 		customer = customerDao.findById(customer.getId());
 		assertEquals("Toto", customer.getFirstName());
+
+		// TODO : Clean the data (to do on @After)
+		customerDao.delete(customer);
 	}
 
 	@Test

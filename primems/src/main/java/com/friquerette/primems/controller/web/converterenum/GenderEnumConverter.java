@@ -1,4 +1,4 @@
-package com.friquerette.primems.controller.web.converter;
+package com.friquerette.primems.controller.web.converterenum;
 
 import java.beans.PropertyEditorSupport;
 

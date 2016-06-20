@@ -56,6 +56,10 @@ public class CustomerServiceImpl implements CustomerService {
 		try {
 			return dao.create(customer);
 		} catch (Exception e) {
+			/**
+			 * TODO : Handle in a better the error (different catch... not a
+			 * Catch Exception)
+			 */
 			String message = "Failed to create the user";
 			logger.error(message, e);
 			throw new PrimemsServiceException(message, e);

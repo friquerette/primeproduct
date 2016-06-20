@@ -1,6 +1,6 @@
 package com.friquerette.primems.controller.web;
 
-import static com.friquerette.primems.controller.web.AbstractWebController.ADMIN_HOME;
+import static com.friquerette.primems.controller.web.AbstractWebController.ADMIN_CUSTOMERS;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -20,7 +20,7 @@ import com.friquerette.primems.core.service.CustomerService;
  *
  */
 @Controller
-@RequestMapping(ADMIN_HOME)
+@RequestMapping(ADMIN_CUSTOMERS)
 public class AdminCustomerController extends AbstractWebController {
 	@Autowired(required = true)
 	@Qualifier(value = "customerService")

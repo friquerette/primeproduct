@@ -8,8 +8,8 @@ import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 
-import com.friquerette.primems.controller.web.converter.GenderEnumConverter;
-import com.friquerette.primems.controller.web.converter.RoleEnumConverter;
+import com.friquerette.primems.controller.web.converterenum.GenderEnumConverter;
+import com.friquerette.primems.controller.web.converterenum.RoleEnumConverter;
 import com.friquerette.primems.core.entity.Customer;
 import com.friquerette.primems.core.entity.GenderEnum;
 import com.friquerette.primems.core.entity.RoleEnum;

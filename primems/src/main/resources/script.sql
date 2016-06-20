@@ -28,6 +28,7 @@ CREATE TABLE customer (
 	PRIMARY KEY ( customer_id )
 )
 ENGINE InnoDB;
+ALTER IGNORE TABLE customer ADD UNIQUE (username);
 
 INSERT INTO customer (create_date, update_date, enabled, first_name, last_name, email, username, password, birthDate, /*salt,*/ role, gender)
 VALUES (now(), now(), 1, 'Pierre', 'Apsyre', 'pierre@primems.com', 'admin', 'admin', '1981-04-01', /*'',*/ 'ROLE_ADMIN', 'MALE');

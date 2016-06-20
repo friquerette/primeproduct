@@ -34,5 +34,7 @@ public class CustomerServiceTest extends AbstractTest {
 		customerService.createCustomer(customer);
 		assertNotNull(customer.getId());
 
+		// TODO : Clean the data (to do on @After)
+		customerService.deleteCustomerById(customer.getId());
 	}
 }

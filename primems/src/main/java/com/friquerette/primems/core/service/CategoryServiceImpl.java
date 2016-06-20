@@ -29,7 +29,19 @@ public class CategoryServiceImpl implements CategoryService {
 	@Override
 	@Transactional
 	public void deleteCategoryById(Long id) {
-		dao.delete(findById(id));
+		try {
+			Category category = findById(id);
+			if (category != null) {
+				dao.delete(category);
+			} else {
+				logger.error("Category not found for id " + id);
+			}
+		} catch (Exception e) {
+			String message = "Failed to update the category";
+			logger.error(message, e);
+			throw new PrimemsServiceException(message, e);
+		}
+
 	}
 
 	@Override

@@ -14,6 +14,7 @@
 		<jsp:include page="include/links.jsp" />
 		<div class="bs-docs-header">
 			<h2>${message}</h2>
+			${cause}
 		</div>
 	</div>
 </body>

@@ -1,6 +1,7 @@
+ok	fiche produit
 	creation de category
 	update de category
-	liste de category
+ok	liste de category
 	choix de catégorie mère
 	
 	creation de produit

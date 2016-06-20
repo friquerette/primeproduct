@@ -52,22 +52,18 @@ public class RegisterCustomerController {
 
 	@RequestMapping(method = RequestMethod.POST)
 	public ModelAndView processRegistration(@ModelAttribute("customer") Customer customer, Map<String, Object> model) {
-
-		// implement your own registration logic here...
-
-		// for testing purpose:
 		logger.info("read UserName: " + customer.getUserName());
 		System.out.println("birth date: " + customer.getBirthdate());
-		// System.out.println("profession: " + customer.getProfession());
 		try {
 			customerService.createCustomer(customer);
 			logger.info("user create with ID " + customer.getId());
 			return new ModelAndView("registrationsuccess", "customer", customer);
 		} catch (PrimemsServiceException e) {
 			logger.error("Failed to create the user", e);
-			ModelAndView model2 = new ModelAndView("registrationfailed");
-			model2.addObject("message", e.getErrMsg());
-			return model2;
+			ModelAndView modelError = new ModelAndView("registrationfailed");
+			modelError.addObject("message", e.getErrMsg());
+			modelError.addObject("cause", e.getCauseMsg());
+			return modelError;
 		}
 	}
 }

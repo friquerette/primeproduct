@@ -8,6 +8,8 @@
 	<jsp:include page="../include/header.jsp">
 		<jsp:param name="title" value="Admin" />
 	</jsp:include>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+	<jsp:useBean id="categories" scope="request" type="java.util.List" />
 </head>
 <body>
 	<div class="container-fluid">
@@ -21,6 +23,30 @@
 				<li role="presentation"><a href="products">Product</a></li>
 				<li role="presentation"><a href="../customers/all">Customer</a></li>
 			</ul>
+		</div>
+		<div class="row">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Name</th>
+						<th>Description</th>
+						<th>Edit</th>
+						<th>Delete</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach items="${categories}" var="cat">
+						<tr>
+							<td>${cat.id}</td>
+							<td>${cat.name}</td>
+							<td>${cat.description}</td>
+							<td><a href="<c:url value='./edit/${cat.id}' />" >Edit</a></td>
+							<td><a href="<c:url value='./delete/${cat.id}' />" >Delete</a></td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
 		</div>
 	</div>
 </body>
