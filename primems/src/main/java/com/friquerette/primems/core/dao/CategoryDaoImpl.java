@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.friquerette.primems.core.entity.Category;
 
 @Repository("categoryDao")
-public class CategoryDaoImpl extends AbstractDao<Category>implements CategoryDao {
+public class CategoryDaoImpl extends AbstractDao<Category> implements CategoryDao {
 
 	@Override
 	public Long create(Category category) {
@@ -39,6 +39,15 @@ public class CategoryDaoImpl extends AbstractDao<Category>implements CategoryDao
 	@Override
 	public void delete(Category category) {
 		super.deleteEntity(category);
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Category> findAllActive() {
+		Criteria criteria = getSession().createCriteria(Category.class);
+		criteria.add(Restrictions.eq("enabled", true));
+		return (List<Category>) criteria.list();
+
 	}
 
 }

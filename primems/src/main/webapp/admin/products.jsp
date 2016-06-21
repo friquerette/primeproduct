@@ -16,6 +16,7 @@
 		<jsp:include page="../include/links.jsp" />
 		<div class="page-header">
 			<h2>Admin > Products</h2>
+			<!-- <a href="./edit/new">new product</a> -->
 		</div>
 		<div class="row">
 			<ul class="nav nav-tabs">

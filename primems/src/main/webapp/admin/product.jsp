@@ -8,6 +8,7 @@
 	<jsp:include page="../include/header.jsp">
 		<jsp:param name="title" value="Edit Customer" />
 	</jsp:include>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 </head>
 <body>
 	<div class="container-fluid">
@@ -29,7 +30,19 @@
 				</tr>
 				<tr>
 					<td>Category:</td>
-					<td>${product.category.name}</td>
+					<td>
+				        <c:choose>
+				            <c:when test="${not empty product.id}">
+				                ${product.category.name}
+				            </c:when>
+				            <c:otherwise>
+								<form:select path="category" class="form-control">
+									<form:options items="${categoriesList}" itemValue="id" itemLabel="name"/>
+								</form:select>
+				            </c:otherwise>
+				        </c:choose>
+					
+					</td>
 				</tr>
 				<tr>
 					<td>Description:</td>

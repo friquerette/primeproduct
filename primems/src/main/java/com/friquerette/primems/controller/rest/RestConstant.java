@@ -6,4 +6,5 @@ public class RestConstant {
 	public final static String CUSTOMER = "/customer";
 	public final static String ALL = "/all";
 	public final static String BY_ID = "/byid/{id}";
+	public final static String NEW = "/new";
 }

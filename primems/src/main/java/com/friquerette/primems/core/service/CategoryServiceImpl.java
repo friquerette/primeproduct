@@ -25,7 +25,25 @@ public class CategoryServiceImpl implements CategoryService {
 	@Override
 	@Transactional
 	public List<Category> findAll() {
-		return dao.findAll();
+		try {
+			return dao.findAll();
+		} catch (Exception e) {
+			String message = "Failed to read all the category";
+			logger.error(message, e);
+			throw new PrimemsServiceException(message, e);
+		}
+	}
+
+	@Override
+	@Transactional
+	public List<Category> getAllActiveCategoryForSelect() {
+		try {
+			return dao.findAllActive();
+		} catch (Exception e) {
+			String message = "Failed to read all the category";
+			logger.error(message, e);
+			throw new PrimemsServiceException(message, e);
+		}
 	}
 
 	@Override

@@ -63,4 +63,10 @@ public class ProductController extends AbstractWebController {
 		model.addObject("product", productConverter.toWeb(null));
 		return model;
 	}
+
+	@RequestMapping(value = PATH_NEW, method = RequestMethod.POST)
+	public String create(@ModelAttribute("product") ProductWeb web, Map<String, Object> map) {
+		productService.create(productConverter.fromWeb(web));
+		return "redirect:.." + PATH_ALL;
+	}
 }
