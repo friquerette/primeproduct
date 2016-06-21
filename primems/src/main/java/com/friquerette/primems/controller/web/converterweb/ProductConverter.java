@@ -27,6 +27,7 @@ public class ProductConverter implements WebModelConverter<Product, ProductWeb> 
 		if (web != null) {
 			if (web.getId() == null) {
 				product = productService.getInstance();
+				product.setCategory(categoryConverter.fromWeb(web.getCategory()));
 			} else {
 				product = productService.findById(web.getId());
 			}
@@ -34,7 +35,6 @@ public class ProductConverter implements WebModelConverter<Product, ProductWeb> 
 			product.setTitle(web.getTitle());
 			product.setDescription(web.getDescription());
 			product.setPrice(web.getPrice());
-			product.setCategory(categoryConverter.fromWeb(web.getCategory()));
 		}
 		return product;
 	}
