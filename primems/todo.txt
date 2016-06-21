@@ -23,14 +23,15 @@ Layer Service :
 		Add a parent category to a category
 	
 	creation de produit
-	update de produit
-	liste de produit public avec recherche
+ok	update de produit
+ok	liste de produit public
+	recherche de produit public
 	liste de produit perso
 	
 	update de user as sys admin
 	update du profil perso
 	
-	Currency : add a Enum for the currency's list
+ok	Currency : add a Enum for the currency's list
 	Currency : add a service to get the lastest currency information
 	Currency : create the Client Rest for the CurrencySerfvice, all the information are in the tutorial
 		http://websystique.com/springmvc/spring-mvc-4-restful-web-services-crud-example-resttemplate/

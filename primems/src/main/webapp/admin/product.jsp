@@ -28,6 +28,10 @@
 					<td><form:input path="title" required="required" class="form-control"/></td>
 				</tr>
 				<tr>
+					<td>Category:</td>
+					<td>${product.category.name}</td>
+				</tr>
+				<tr>
 					<td>Description:</td>
 					<td><form:input path="description" class="form-control"/></td>
 				</tr>
