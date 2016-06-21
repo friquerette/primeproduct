@@ -1,13 +1,10 @@
 package com.friquerette.primems.controller.web.webmodel;
 
-import com.friquerette.primems.core.entity.GenderEnum;
-import com.friquerette.primems.core.entity.RoleEnum;
-
 public class CustomerWeb extends AbstractWebModel {
 
 	private Long id;
 
-	private GenderEnum gender;
+	private String gender;
 
 	private String firstName;
 
@@ -19,7 +16,7 @@ public class CustomerWeb extends AbstractWebModel {
 
 	private String password;
 
-	private RoleEnum role;
+	private String role;
 
 	public Long getId() {
 		return id;
@@ -29,11 +26,11 @@ public class CustomerWeb extends AbstractWebModel {
 		this.id = id;
 	}
 
-	public GenderEnum getGender() {
+	public String getGender() {
 		return gender;
 	}
 
-	public void setGender(GenderEnum gender) {
+	public void setGender(String gender) {
 		this.gender = gender;
 	}
 
@@ -77,11 +74,11 @@ public class CustomerWeb extends AbstractWebModel {
 		this.password = password;
 	}
 
-	public RoleEnum getRole() {
+	public String getRole() {
 		return role;
 	}
 
-	public void setRole(RoleEnum role) {
+	public void setRole(String role) {
 		this.role = role;
 	}
 

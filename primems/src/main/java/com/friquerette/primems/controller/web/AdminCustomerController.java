@@ -64,7 +64,8 @@ public class AdminCustomerController extends AbstractWebController {
 		ModelAndView model = new ModelAndView("admin/customer");
 		Customer customer = customerService.findById(id);
 		model.addObject("customer", customerConverter.toWeb(customer));
-		model.addObject("genderList", GenderEnum.values());
+		model.addObject("genderMap", GenderEnum.getAllAsMap());
+		model.addObject("roleMap", RoleEnum.getAllAsMap());
 		return model;
 	}
 

@@ -1,11 +1,14 @@
 package com.friquerette.primems.controller.web.converterweb;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import com.friquerette.primems.controller.web.webmodel.CustomerWeb;
 import com.friquerette.primems.core.entity.Customer;
+import com.friquerette.primems.core.entity.GenderEnum;
+import com.friquerette.primems.core.entity.RoleEnum;
 import com.friquerette.primems.core.service.CustomerService;
 
 /**
@@ -33,10 +36,16 @@ public class CustomerConverter implements WebModelConverter<Customer, CustomerWe
 			customer.setFirstName(web.getFirstName());
 			customer.setLastName(web.getLastName());
 			customer.setUserName(web.getUserName());
-			customer.setPassword(web.getPassword());
 			customer.setEmail(web.getEmail());
-			// customer.setRole(web.getRole());
-			// customer.setGender(web.getGender());
+			if (StringUtils.isNotBlank(web.getRole())) {
+				customer.setRole(RoleEnum.valueOf(web.getRole()));
+			}
+			if (StringUtils.isNotBlank(web.getGender())) {
+				customer.setGender(GenderEnum.valueOf(web.getGender()));
+			}
+			if (StringUtils.isNotBlank(web.getPassword())) {
+				customer.setPassword(web.getPassword());
+			}
 		}
 		return customer;
 	}
@@ -52,8 +61,8 @@ public class CustomerConverter implements WebModelConverter<Customer, CustomerWe
 		web.setUserName(customer.getUserName());
 		web.setPassword(customer.getPassword());
 		web.setEmail(customer.getEmail());
-		web.setRole(customer.getRole());
-		web.setGender(customer.getGender());
+		web.setRole(customer.getRole().name());
+		web.setGender(customer.getGender().name());
 		return web;
 	}
 }

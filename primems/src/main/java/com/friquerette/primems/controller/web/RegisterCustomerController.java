@@ -34,7 +34,7 @@ public class RegisterCustomerController {
 
 	@ModelAttribute("genderList")
 	public List<GenderEnum> getAllSupportedLanguages() {
-		return GenderEnum.getAllGenders();
+		return GenderEnum.getAllAsList();
 	}
 
 	@Autowired(required = true)

@@ -37,7 +37,23 @@
 				</tr>
 				<tr>
 					<td>Password:</td>
-					<td><form:password path="password" required="required" class="form-control"/></td>
+					<td><form:password path="password" class="form-control"/></td>
+				</tr>
+				<tr>
+					<td>gender:</td>
+					<td>
+						<form:select path="gender" class="form-control">
+							<form:options items="${genderMap}" />
+						</form:select>
+					</td>
+				</tr>
+				<tr>
+					<td>Role:</td>
+					<td>
+						<form:select path="role" class="form-control">
+							<form:options items="${roleMap}" />
+						</form:select>
+					</td>
 				</tr>
 
 				<tr>

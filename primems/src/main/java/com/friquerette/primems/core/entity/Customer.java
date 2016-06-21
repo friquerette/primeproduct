@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "customer")
@@ -139,6 +140,12 @@ public class Customer extends AbstractEntity {
 
 	public void setGender(GenderEnum gender) {
 		this.gender = gender;
+	}
+
+	@Transient
+	@Override
+	public String getLabel() {
+		return getUserName();
 	}
 
 }

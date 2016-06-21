@@ -79,4 +79,6 @@ public abstract class AbstractEntity implements Serializable {
 	}
 
 	public abstract Long getId();
+
+	public abstract String getLabel();
 }

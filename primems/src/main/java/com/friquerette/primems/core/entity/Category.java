@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "category")
@@ -54,4 +55,11 @@ public class Category extends AbstractEntity {
 	public void setId(Long id) {
 		this.id = id;
 	}
+
+	@Transient
+	@Override
+	public String getLabel() {
+		return getName();
+	}
+
 }

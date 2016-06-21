@@ -1,7 +1,9 @@
 package com.friquerette.primems.core.entity;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * The gender of a customer
@@ -9,7 +11,7 @@ import java.util.List;
  * @author Rick
  *
  */
-public enum GenderEnum {
+public enum GenderEnum implements IPrimemsEnum {
 	MALE("Male"), //
 	FEMALE("Female");
 
@@ -19,11 +21,21 @@ public enum GenderEnum {
 		this.label = label;
 	}
 
-	public static List<GenderEnum> getAllGenders() {
-		return Arrays.asList(GenderEnum.values());
-	}
-
+	@Override
 	public String getLabel() {
 		return label;
 	}
+
+	public static List<GenderEnum> getAllAsList() {
+		return Arrays.asList(GenderEnum.values());
+	}
+
+	public static Map<String, String> getAllAsMap() {
+		Map<String, String> genderMap = new HashMap<>();
+		for (GenderEnum gender : GenderEnum.values()) {
+			genderMap.put(gender.name(), gender.getLabel());
+		}
+		return genderMap;
+	}
+
 }
