@@ -53,7 +53,7 @@ public class AdminCategoryController extends AbstractWebController {
 	}
 
 	// -- UPDATE
-	@RequestMapping(value = PATH_EDIT, method = RequestMethod.GET)
+	@RequestMapping(value = PATH_EDIT_ID, method = RequestMethod.GET)
 	public ModelAndView updateForm(@PathVariable("id") long id) {
 		ModelAndView model = new ModelAndView("admin/category");
 		Category category = categoryService.findById(id);
@@ -61,7 +61,7 @@ public class AdminCategoryController extends AbstractWebController {
 		return model;
 	}
 
-	@RequestMapping(value = PATH_EDIT, method = RequestMethod.POST)
+	@RequestMapping(value = PATH_EDIT_ID, method = RequestMethod.POST)
 	public String update(@ModelAttribute("category") CategoryWeb web, Map<String, Object> map) {
 		categoryService.update(categoryConverter.fromWeb(web));
 		return "redirect:.." + PATH_ALL;

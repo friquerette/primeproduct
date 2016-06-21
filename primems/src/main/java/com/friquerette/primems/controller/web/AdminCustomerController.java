@@ -34,15 +34,12 @@ import com.friquerette.primems.core.service.CustomerService;
 @Controller
 @RequestMapping(ADMIN_CUSTOMERS)
 public class AdminCustomerController extends AbstractWebController {
+
 	@Autowired(required = true)
 	private CustomerService customerService;
 
 	@Autowired(required = true)
 	private CustomerConverter customerConverter;
-
-	public void setCustomerService(CustomerService customerService) {
-		this.customerService = customerService;
-	}
 
 	// ALL
 	@RequestMapping(value = PATH_ALL, method = RequestMethod.GET)
@@ -59,7 +56,7 @@ public class AdminCustomerController extends AbstractWebController {
 	}
 
 	// -- UPDATE
-	@RequestMapping(value = PATH_EDIT, method = RequestMethod.GET)
+	@RequestMapping(value = PATH_EDIT_ID, method = RequestMethod.GET)
 	public ModelAndView updateForm(@PathVariable("id") long id) {
 		ModelAndView model = new ModelAndView("admin/customer");
 		Customer customer = customerService.findById(id);
@@ -69,7 +66,7 @@ public class AdminCustomerController extends AbstractWebController {
 		return model;
 	}
 
-	@RequestMapping(value = PATH_EDIT, method = RequestMethod.POST)
+	@RequestMapping(value = PATH_EDIT_ID, method = RequestMethod.POST)
 	public String update(@ModelAttribute("customer") CustomerWeb web, Map<String, Object> map) {
 		customerService.update(customerConverter.fromWeb(web));
 		return "redirect:.." + PATH_ALL;

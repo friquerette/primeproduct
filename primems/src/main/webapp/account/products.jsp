@@ -21,7 +21,7 @@
 		<div class="row">
 			<ul class="nav nav-tabs">
 				<li role="presentation" class="active"><a href="#">My Products</a></li>
-				<li role="presentation"><a href="#">My profile</a></li>
+				<li role="presentation"><a href="../customer/edit">My profile</a></li>
 			</ul>
 		</div>
 		<div class="row">

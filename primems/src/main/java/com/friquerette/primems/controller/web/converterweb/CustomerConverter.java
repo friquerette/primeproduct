@@ -35,7 +35,9 @@ public class CustomerConverter implements WebModelConverter<Customer, CustomerWe
 			customer.setId(web.getId());
 			customer.setFirstName(web.getFirstName());
 			customer.setLastName(web.getLastName());
-			customer.setUserName(web.getUserName());
+			if (StringUtils.isNotBlank(web.getUserName())) {
+				customer.setUserName(web.getUserName());
+			}
 			customer.setEmail(web.getEmail());
 			if (StringUtils.isNotBlank(web.getRole())) {
 				customer.setRole(RoleEnum.valueOf(web.getRole()));

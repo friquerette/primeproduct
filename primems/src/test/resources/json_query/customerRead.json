@@ -1,0 +1,18 @@
+// GET http://localhost:8080/primems/rest/customer/byid/1
+{
+	"createDate":1466493456000,
+	"updateDate":1466515058000,
+	"createdBy":null,
+	"lastModifiedBy":null,
+	"enabled":true,
+	"id":1,
+	"gender":"MALE",
+	"firstName":"Pierre",
+	"lastName":"Apsyre",
+	"email":"pierre@primems.com",
+	"userName":"admin",
+	"password":"admin",
+	"role":"ROLE_ADMIN",
+	"birthdate":"1981-04-01",
+	"label":"admin"
+}

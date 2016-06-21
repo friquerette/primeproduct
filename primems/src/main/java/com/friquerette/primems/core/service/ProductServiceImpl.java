@@ -16,7 +16,7 @@ import com.friquerette.primems.core.entity.Product;
 @Service("productService")
 public class ProductServiceImpl implements ProductService {
 
-	private static final Logger logger = LoggerFactory.getLogger(CategoryServiceImpl.class);
+	private static final Logger logger = LoggerFactory.getLogger(ProductServiceImpl.class);
 
 	@Autowired
 	private ProductDao dao;

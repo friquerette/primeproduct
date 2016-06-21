@@ -1,0 +1,9 @@
+// POST http://localhost:8080/primems/rest/category/new
+// Content-type : application/json
+// Accept : application/json
+{
+	"enabled":true,
+	"name":"Computers & Office",
+	"description":"21",
+	"label":"Computers & Office"
+}

@@ -1,11 +1,11 @@
-	Web service Rest
-	Parent category
-	product category
+	Web service Rest CRUD
+	category on category & product
+	currency on create product
+	spring security web service rest
+	
 	fin IHM admin
 	fin IHM customer
 	bug hibernate hql
-	currency
-	spring security web service rest
 
 Layer Service :
 		edit product admin
@@ -13,9 +13,9 @@ Layer Service :
 		edit product user
 		list product user
 		edit customer user
-		edit customer admin
+	ok	edit customer admin
 	ok 	public can see all the product
-	-	be able to edit his own product
+	ok	be able to edit his own product
 		
 	ok	create category
 	ok	update category

@@ -54,7 +54,7 @@ public class AdminProductController extends AbstractWebController {
 	}
 
 	// -- UPDATE
-	@RequestMapping(value = PATH_EDIT, method = RequestMethod.GET)
+	@RequestMapping(value = PATH_EDIT_ID, method = RequestMethod.GET)
 	public ModelAndView updateForm(@PathVariable("id") long id) {
 		ModelAndView model = new ModelAndView("admin/product");
 		Product product = productService.findById(id);
@@ -63,7 +63,7 @@ public class AdminProductController extends AbstractWebController {
 		return model;
 	}
 
-	@RequestMapping(value = PATH_EDIT, method = RequestMethod.POST)
+	@RequestMapping(value = PATH_EDIT_ID, method = RequestMethod.POST)
 	public String update(@ModelAttribute("product") ProductWeb web, Map<String, Object> map) {
 		productService.update(productConverter.fromWeb(web));
 		return "redirect:.." + PATH_ALL;
