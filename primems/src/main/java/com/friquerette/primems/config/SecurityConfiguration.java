@@ -30,9 +30,19 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.antMatchers("/", "/home").permitAll() //
 				.antMatchers("/home/admin/**").access("hasRole('ADMIN')")//
 				.antMatchers("/home/account/**").access("hasRole('USER') or hasRole('ADMIN') ")//
-				.antMatchers("/db/**").access("hasRole('ADMIN') and hasRole('DBA')")//
-				.and().formLogin() // .loginPage("/login")//
+				.and().formLogin()// .loginPage("/login")//
 				.and().exceptionHandling().accessDeniedPage("/accessdenied");
+
+		/**
+		 * HttpBasic Authentication is used to simple but this method is not
+		 * very secure. Do better with more time (OAuth2 ...)
+		 * 
+		 * The category and the customer are
+		 */
+		http.authorizeRequests()//
+				.antMatchers("/rest/category/**").access("hasRole('USER') or hasRole('ADMIN')")//
+				.antMatchers("/rest/customer/**").access("hasRole('ADMIN') ")//
+				.and().httpBasic();
 
 	}
 }

@@ -18,7 +18,7 @@ import com.friquerette.primems.core.entity.boundary.FixerConst;
 
 import junit.framework.TestCase;
 
-public class ClientRestTest extends TestCase {
+public class ClientRestWebTest extends TestCase {
 
 	/**
 	 * This case test the reading of the web service for a simple
@@ -30,7 +30,14 @@ public class ClientRestTest extends TestCase {
 	public void testReadUrl() throws Exception {
 		String line = "";
 		URL url = new URL(FixerConst.URL_LATEST);
-		HttpURLConnection uc = (HttpURLConnection) url.openConnection(getProxy());
+		Proxy proxy = getProxy();
+		HttpURLConnection uc;
+		if (proxy == null) {
+			uc = (HttpURLConnection) url.openConnection();
+		} else {
+			uc = (HttpURLConnection) url.openConnection(proxy);
+		}
+
 		uc.connect();
 
 		String page = "";
