@@ -12,23 +12,29 @@
 <body>
 	<div align="center" class="container-fluid">
 		<jsp:include page="include/links.jsp" />
-		<a href="../">back</a>
-		<div class="page-header">
-			<h1>${product.title}</h1>
-		</div>
-		<div class="row">
-			<div class="col-md-4">${product.id}</div>
-		</div>
-		<div class="row">
-			<div class="col-md-6 col-md-offset-3" id="description">
-				Description : <h3>${product.description}</h3>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-6 col-md-offset-3" id="description">
-				Price : <h3>$ {product.price}</h3>
-			</div>
-		</div>
+		
+		<table class="table">
+			<tr>
+				<td><a href="../" class="glyphicon glyphicon-arrow-left"> Back</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>Title:</td>
+				<td><h3>${product.title}</h3></td>
+			</tr>
+			<tr>
+				<td>Category:</td>
+				<td>${product.category.name}</td>
+			</tr>
+			<tr>
+				<td>Description:</td>
+				<td>${product.description}</td>
+			</tr>
+			<tr>
+				<td>Price:</td>
+				<td>${product.price}</td>
+			</tr>
+		</table>
 	</div>
 </body>
 </html>

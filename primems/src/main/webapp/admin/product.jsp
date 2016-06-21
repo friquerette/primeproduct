@@ -37,7 +37,6 @@
 						<input type="submit" value="Save" class="btn btn-default"/>
 					</td>
 				</tr>
-				
 			</table>
 		</form:form>
 	</div>

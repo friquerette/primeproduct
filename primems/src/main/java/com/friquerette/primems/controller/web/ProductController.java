@@ -43,7 +43,7 @@ public class ProductController extends AbstractWebController {
 	// -- UPDATE
 	@RequestMapping(value = PATH_EDIT, method = RequestMethod.GET)
 	public ModelAndView updateForm(@PathVariable("id") long id) {
-		ModelAndView model = new ModelAndView("admin/product");
+		ModelAndView model = new ModelAndView("account/product");
 		Product product = productService.findById(id);
 		model.addObject("product", productConverter.toWeb(product));
 		model.addObject("genderList", GenderEnum.values());

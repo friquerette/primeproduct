@@ -27,7 +27,9 @@ public class ProductServiceImpl implements ProductService {
 	@Transactional
 	public List<Product> findAll() {
 		try {
-			return dao.findAll();
+			List<Product> products = dao.findAll();
+			initializeCategory(products);
+			return products;
 		} catch (Exception e) {
 			String message = "Failed to all the product";
 			logger.error(message, e);
@@ -40,11 +42,19 @@ public class ProductServiceImpl implements ProductService {
 	public List<Product> findForCurrentUser() {
 		try {
 			Customer customer = customerService.getCurrentCustomerFromContext();
-			return dao.findByCustomer(customer);
+			List<Product> products = dao.findByCustomer(customer);
+			initializeCategory(products);
+			return products;
 		} catch (Exception e) {
 			String message = "Failed to all the customer's product";
 			logger.error(message, e);
 			throw new PrimemsServiceException(message, e);
+		}
+	}
+
+	private void initializeCategory(List<Product> products) {
+		for (Product product : products) {
+			Hibernate.initialize(product.getCategory());
 		}
 	}
 
