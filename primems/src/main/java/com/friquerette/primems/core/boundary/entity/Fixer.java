@@ -1,4 +1,4 @@
-package com.friquerette.primems.core.entity.boundary;
+package com.friquerette.primems.core.boundary.entity;
 
 import java.util.Map;
 

@@ -9,6 +9,12 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
+/**
+ * Managed the security of the application
+ * 
+ * @author Rick
+ *
+ */
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
@@ -19,10 +25,16 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception {
 		auth.jdbcAuthentication()//
 				.dataSource(dataSource)
-				.usersByUsernameQuery("select username, password, enabled from customer where username=?")
+				.usersByUsernameQuery("select username, password, enabled "//
+						+ "from customer where username=?")
 				.authoritiesByUsernameQuery("select username, role from customer where username=?");
 	}
 
+	/**
+	 * Only two role are used : Admin and User. A Customer can have only one
+	 * role at this time. It will be better to add a relation table to add
+	 * multiple role to a user.
+	 */
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 
@@ -40,6 +52,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		 * The category and the customer are
 		 */
 		http.authorizeRequests()//
+				.antMatchers("/rest/product/public/**").permitAll()//
+				.antMatchers("/rest/product/private/**").access("hasRole('USER') or hasRole('ADMIN')")//
 				.antMatchers("/rest/category/**").access("hasRole('USER') or hasRole('ADMIN')")//
 				.antMatchers("/rest/customer/**").access("hasRole('ADMIN') ")//
 				.and().httpBasic();

@@ -13,6 +13,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "product")
 public class Product extends AbstractEntity {
@@ -37,12 +39,13 @@ public class Product extends AbstractEntity {
 	@Column(name = "price")
 	private Double price;
 
-	@ManyToOne(fetch = FetchType.LAZY, optional = true)
+	@ManyToOne(fetch = FetchType.EAGER, optional = true)
 	@JoinColumn(name = "category_id")
 	private Category category;
 
 	@ManyToOne(fetch = FetchType.LAZY, optional = true)
 	@JoinColumn(name = "owner")
+	@JsonIgnore
 	private Customer owner;
 
 	public Long getId() {

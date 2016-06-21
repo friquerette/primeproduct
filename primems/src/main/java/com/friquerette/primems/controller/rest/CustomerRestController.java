@@ -26,7 +26,7 @@ public class CustomerRestController {
 	private CustomerService customerService;
 
 	@RequestMapping(value = RestConstant.ALL, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<Customer>> getUser() {
+	public ResponseEntity<List<Customer>> getUsers() {
 		List<Customer> customers = null;
 		try {
 			customers = customerService.findAll();
@@ -57,11 +57,4 @@ public class CustomerRestController {
 		return new ResponseEntity<Customer>(customer, HttpStatus.OK);
 	}
 
-	public CustomerService getCustomerService() {
-		return customerService;
-	}
-
-	public void setCustomerService(CustomerService customerService) {
-		this.customerService = customerService;
-	}
 }

@@ -1,30 +1,31 @@
-package com.friquerette.primems.core.service;
+package com.friquerette.primems.core.boundary.service;
 
 /**
  * 
  * @author Rick
  *
  */
-public class PrimemsServiceException extends RuntimeException {
+public class BoundaryServiceException extends RuntimeException {
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -1346627984579144295L;
+	private static final long serialVersionUID = 1195227683352625486L;
+
 	private String errCode;
 	private String errMsg;
 	private String causeMsg;
 
-	public PrimemsServiceException() {
+	public BoundaryServiceException() {
 		super();
 	}
 
-	public PrimemsServiceException(String errMsg, Throwable cause) {
+	public BoundaryServiceException(String errMsg, Throwable cause) {
 		this.errMsg = errMsg;
 		this.causeMsg = "" + cause;
 	}
 
-	public PrimemsServiceException(String errCode, String errMsg, Throwable cause) {
+	public BoundaryServiceException(String errCode, String errMsg, Throwable cause) {
 		this.errCode = errCode;
 		this.errMsg = errMsg;
 		this.causeMsg = "" + cause;

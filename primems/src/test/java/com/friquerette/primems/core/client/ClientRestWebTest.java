@@ -3,18 +3,17 @@ package com.friquerette.primems.core.client;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.InetSocketAddress;
 import java.net.Proxy;
 import java.net.URL;
 
-import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 import org.springframework.http.client.SimpleClientHttpRequestFactory;
 import org.springframework.web.client.RestTemplate;
 
-import com.friquerette.primems.core.entity.boundary.CurrencyEnum;
-import com.friquerette.primems.core.entity.boundary.Fixer;
-import com.friquerette.primems.core.entity.boundary.FixerConst;
+import com.friquerette.primems.core.boundary.entity.CurrencyEnum;
+import com.friquerette.primems.core.boundary.entity.Fixer;
+import com.friquerette.primems.core.boundary.entity.FixerConst;
+import com.friquerette.primems.core.boundary.entity.FixerUtil;
 
 import junit.framework.TestCase;
 
@@ -30,7 +29,7 @@ public class ClientRestWebTest extends TestCase {
 	public void testReadUrl() throws Exception {
 		String line = "";
 		URL url = new URL(FixerConst.URL_LATEST);
-		Proxy proxy = getProxy();
+		Proxy proxy = FixerUtil.getProxy();
 		HttpURLConnection uc;
 		if (proxy == null) {
 			uc = (HttpURLConnection) url.openConnection();
@@ -55,7 +54,7 @@ public class ClientRestWebTest extends TestCase {
 	@Test
 	public void testWithRestTemplate() {
 		SimpleClientHttpRequestFactory clientHttpRequestFactory = new SimpleClientHttpRequestFactory();
-		clientHttpRequestFactory.setProxy(getProxy());
+		clientHttpRequestFactory.setProxy(FixerUtil.getProxy());
 
 		RestTemplate restTemplate = new RestTemplate(clientHttpRequestFactory);
 		Fixer response = restTemplate.getForObject(FixerConst.URL_LATEST, Fixer.class);
@@ -64,11 +63,4 @@ public class ClientRestWebTest extends TestCase {
 
 	}
 
-	private Proxy getProxy() {
-		Proxy proxy = null;
-		if (StringUtils.isNotBlank(FixerConst.PROXY_URL)) {
-			proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress(FixerConst.PROXY_URL, FixerConst.PROXY_PORT));
-		}
-		return proxy;
-	}
 }

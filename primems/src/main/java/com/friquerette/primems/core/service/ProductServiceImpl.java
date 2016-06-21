@@ -55,6 +55,8 @@ public class ProductServiceImpl implements ProductService {
 	private void initializeCategory(List<Product> products) {
 		for (Product product : products) {
 			Hibernate.initialize(product.getCategory());
+			Hibernate.initialize(product.getOwner());
+			Hibernate.initialize(product.getDescription());
 		}
 	}
 

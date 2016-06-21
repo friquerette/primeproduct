@@ -1,4 +1,4 @@
-package com.friquerette.primems.core.entity.boundary;
+package com.friquerette.primems.core.boundary.entity;
 
 public enum CurrencyEnum {
 	AUD(1, "Australian Dollar"), //

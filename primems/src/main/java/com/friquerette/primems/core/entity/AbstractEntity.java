@@ -11,6 +11,8 @@ import javax.persistence.MappedSuperclass;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @MappedSuperclass
 public abstract class AbstractEntity implements Serializable {
 
@@ -20,19 +22,21 @@ public abstract class AbstractEntity implements Serializable {
 	private static final long serialVersionUID = -5594566079507897195L;
 
 	@Column(name = "create_date", columnDefinition = "DATETIME")
-	@Temporal(TemporalType.TIMESTAMP)
+	@Temporal(TemporalType.DATE)
 	private Date createDate;
 
 	@Column(name = "update_date", columnDefinition = "DATETIME")
-	@Temporal(TemporalType.TIMESTAMP)
+	@Temporal(TemporalType.DATE)
 	private Date updateDate;
 
 	@ManyToOne(fetch = FetchType.EAGER, optional = true)
 	@JoinColumn(name = "created_by")
+	@JsonIgnore
 	private Customer createdBy;
 
 	@ManyToOne(fetch = FetchType.EAGER, optional = true)
 	@JoinColumn(name = "last_modified_by")
+	@JsonIgnore
 	private Customer lastModifiedBy;
 
 	@Column(name = "enabled", nullable = false)
