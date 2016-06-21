@@ -25,15 +25,17 @@
 						<th>Category</th>
 						<th>Title</th>
 						<th>Price</th>
+						<th></th>
 					</tr>
 				</thead>
 				<tbody>
 					<c:forEach items="${products}" var="pro">
 						<tr>
-							<td><a href="view/${pro.id}" >${pro.id}</a></td>
+							<td>${pro.id}</td>
 							<td>${pro.category.label}</td>
 							<td>${pro.title}</td>
 							<td>${pro.price}</td>
+							<td><a href="view/${pro.id}" class="glyphicon glyphicon-search"></a></td>
 						</tr>
 					</c:forEach>
 				</tbody>
