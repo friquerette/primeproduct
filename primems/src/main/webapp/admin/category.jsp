@@ -15,6 +15,10 @@
 		<form:form method="post" commandName="category">
 			<table class="table">
 				<tr>
+					<td><a href="../all" class="glyphicon glyphicon-arrow-left"> Back</a></td>
+					<td></td>
+				</tr>
+				<tr>
 					<th colspan="2">
 					<h2>Edit Category</h2>
 					</th>
