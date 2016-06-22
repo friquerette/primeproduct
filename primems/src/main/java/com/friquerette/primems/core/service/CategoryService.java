@@ -8,4 +8,5 @@ public interface CategoryService extends IService<Category> {
 
 	public List<Category> getAllActiveCategoryForSelect();
 
+	public void updateFromCopy(Category cc);
 }

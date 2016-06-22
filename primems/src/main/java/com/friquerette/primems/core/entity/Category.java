@@ -30,7 +30,7 @@ public class Category extends AbstractEntity {
 	@Column(name = "description", nullable = true)
 	private String description;
 
-	@ManyToOne(fetch = FetchType.LAZY, optional = true)
+	@ManyToOne(fetch = FetchType.EAGER, optional = true)
 	@JoinColumn(name = "parent_id")
 	private Category parent;
 

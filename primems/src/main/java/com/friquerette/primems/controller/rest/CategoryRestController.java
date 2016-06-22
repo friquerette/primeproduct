@@ -26,7 +26,7 @@ public class CategoryRestController {
 	@Autowired
 	private CategoryService categoryService;
 
-	@RequestMapping(value = RestConstant.ALL, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<Category>> getCategoryAll() {
 		List<Category> categories = null;
 		try {
@@ -48,7 +48,7 @@ public class CategoryRestController {
 		return new ResponseEntity<Category>(category, HttpStatus.OK);
 	}
 
-	@RequestMapping(value = RestConstant.NEW, method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Category> create(@RequestBody Category category) {
 		try {
 			Long id = categoryService.create(category);
@@ -58,6 +58,29 @@ public class CategoryRestController {
 			new ResponseEntity<Category>(category, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		return new ResponseEntity<Category>(category, HttpStatus.OK);
+	}
+
+	@RequestMapping(method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Category> update(@RequestBody Category category) {
+		try {
+			categoryService.updateFromCopy(category);
+			category = categoryService.findById(category.getId());
+		} catch (Exception e) {
+			logger.error("Failed to update the category", e);
+			new ResponseEntity<Category>(category, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		return new ResponseEntity<Category>(category, HttpStatus.OK);
+	}
+
+	@RequestMapping(value = RestConstant.BY_ID, method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Category> deleteById(@PathVariable("id") Long id) {
+		try {
+			categoryService.deleteById(id);
+		} catch (Exception e) {
+			logger.error("Failed to delete the category for the id " + id, e);
+			new ResponseEntity<Category>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		return new ResponseEntity<Category>(HttpStatus.NO_CONTENT);
 	}
 
 }

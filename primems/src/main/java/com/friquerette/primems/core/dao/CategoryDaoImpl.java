@@ -3,13 +3,14 @@ package com.friquerette.primems.core.dao;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.FetchMode;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
 import com.friquerette.primems.core.entity.Category;
 
 @Repository("categoryDao")
-public class CategoryDaoImpl extends AbstractDao<Category> implements CategoryDao {
+public class CategoryDaoImpl extends AbstractDao<Category>implements CategoryDao {
 
 	@Override
 	public Long create(Category category) {
@@ -23,8 +24,9 @@ public class CategoryDaoImpl extends AbstractDao<Category> implements CategoryDa
 
 	@Override
 	public Category findById(Long id) {
-		Criteria criteria = getSession().createCriteria(Category.class);
+		Criteria criteria = getSession().createCriteria(Category.class, "category");
 		criteria.add(Restrictions.eq("id", id));
+		criteria.setFetchMode("employee.address", FetchMode.JOIN);
 		return (Category) criteria.uniqueResult();
 
 	}

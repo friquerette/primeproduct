@@ -73,10 +73,7 @@ public class CategoryServiceImpl implements CategoryService {
 	public Category findById(Long id) {
 		try {
 			Category category = dao.findById(id);
-			if (category != null) {
-				// Force to load the data
-				Hibernate.initialize(category.getParent());
-			}
+			Hibernate.initialize(category);
 			return category;
 		} catch (Exception e) {
 			String message = "Failed to read the category " + id;
@@ -91,6 +88,32 @@ public class CategoryServiceImpl implements CategoryService {
 	public void update(Category category) {
 		try {
 			dao.update(category);
+		} catch (Exception e) {
+			String message = "Failed to update the category";
+			logger.error(message, e);
+			throw new PrimemsServiceException(message, e);
+		}
+	}
+
+	/**
+	 * Received a "carbon copy". Update the category from this. Maybe
+	 * transformer this method by a converter like for the APP Web. For this add
+	 * a layer converter between Service and Controller Rest
+	 */
+	@Override
+	@Transactional
+	public void updateFromCopy(Category cc) {
+		try {
+			if (cc != null) {
+				Category category = dao.findById(cc.getId());
+				category.setDescription(cc.getDescription());
+				category.setName(cc.getName());
+				if (cc.getParent() != null && cc.getParent().getId() != null) {
+					Category newParent = dao.findById(cc.getParent().getId());
+					category.setParent(newParent);
+				}
+				update(category);
+			}
 		} catch (Exception e) {
 			String message = "Failed to update the category";
 			logger.error(message, e);

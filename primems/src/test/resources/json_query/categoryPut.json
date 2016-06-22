@@ -1,24 +1,19 @@
-// CREATION
-// POST http://localhost:8080/primems/rest/category/new
+// UPDATE
+// PUT http://localhost:8080/primems/rest/category/new
 // Authorization : Basic YWRtaW46YWRtaW4=
 // Content-Type : application/json
-{
-	"name":"Test",
-	"description":"A description",
-	"label":"Computers & Office"
-}
-// With category
 {
         "createDate": "2016-06-22",
         "updateDate": "2016-06-22",
         "enabled": true,
-        "name": "TOTOTO",
+        "id": 12,
+        "name": "TATA",
         "description": "TOTOTOTOTOTO",
         "parent": {
             "createDate": "2016-06-22",
             "updateDate": "2016-06-22",
             "enabled": true,
-            "id": 2,
+            "id": 4,
             "name": "Electronics",
             "description": null,
             "parent": null,
