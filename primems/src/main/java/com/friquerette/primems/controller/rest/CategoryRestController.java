@@ -59,4 +59,5 @@ public class CategoryRestController {
 		}
 		return new ResponseEntity<Category>(category, HttpStatus.OK);
 	}
+
 }
