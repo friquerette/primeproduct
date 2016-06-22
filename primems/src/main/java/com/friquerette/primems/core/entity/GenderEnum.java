@@ -26,6 +26,11 @@ public enum GenderEnum implements IPrimemsEnum {
 		return label;
 	}
 
+	@Override
+	public String getValues() {
+		return this.name();
+	}
+
 	public static List<GenderEnum> getAllAsList() {
 		return Arrays.asList(GenderEnum.values());
 	}

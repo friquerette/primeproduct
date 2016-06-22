@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.friquerette.primems.core.boundary.entity.CurrencyEnum;
+import com.friquerette.primems.core.boundary.service.FixerService;
 import com.friquerette.primems.core.dao.ProductDao;
 import com.friquerette.primems.core.entity.Customer;
 import com.friquerette.primems.core.entity.Product;
@@ -22,6 +24,8 @@ public class ProductServiceImpl implements ProductService {
 	private ProductDao dao;
 	@Autowired
 	private CustomerService customerService;
+	@Autowired
+	private FixerService fixerService;
 
 	@Override
 	@Transactional
@@ -111,6 +115,13 @@ public class ProductServiceImpl implements ProductService {
 	@Transactional
 	public Long create(Product product) {
 		try {
+			if (product != null && product.getPrice() != null
+					&& !CurrencyEnum.EUR.name().equals(product.getCurrency().name())) {
+				Double rate = fixerService.getExchangeRate(product.getCurrency(), CurrencyEnum.EUR);
+				Double priceEuro = product.getPrice() * rate;
+				product.setPrice(priceEuro);
+				product.setCurrency(CurrencyEnum.EUR);
+			}
 			return dao.create(product);
 		} catch (Exception e) {
 			String message = "Failed to create the product";
@@ -128,6 +139,7 @@ public class ProductServiceImpl implements ProductService {
 		product.setLastModifiedBy(currentCustomer);
 		product.setOwner(currentCustomer);
 		product.setEnabled(true);
+		product.setCurrency(CurrencyEnum.EUR);
 		return product;
 	}
 

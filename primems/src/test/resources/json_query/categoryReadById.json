@@ -1,4 +1,5 @@
 // GET http://localhost:8080/primems/rest/category/byid/1
+// Answer :
 {
 	"createDate":1466493456000,
 	"updateDate":1466515534000,

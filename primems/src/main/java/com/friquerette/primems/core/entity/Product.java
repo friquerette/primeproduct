@@ -14,6 +14,7 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.friquerette.primems.core.boundary.entity.CurrencyEnum;
 
 @Entity
 @Table(name = "product")
@@ -47,6 +48,13 @@ public class Product extends AbstractEntity {
 	@JoinColumn(name = "owner")
 	@JsonIgnore
 	private Customer owner;
+
+	/**
+	 * The currency, a transient object. All the product price are in Euro. Will
+	 * be persist if the currency change later.
+	 */
+	@Transient
+	private CurrencyEnum currency;
 
 	public Long getId() {
 		return id;
@@ -100,5 +108,13 @@ public class Product extends AbstractEntity {
 	@Override
 	public String getLabel() {
 		return getTitle();
+	}
+
+	public CurrencyEnum getCurrency() {
+		return currency;
+	}
+
+	public void setCurrency(CurrencyEnum currency) {
+		this.currency = currency;
 	}
 }

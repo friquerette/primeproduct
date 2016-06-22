@@ -89,6 +89,6 @@ public abstract class AbstractEntity implements Serializable {
 	public abstract String getLabel();
 
 	public void setLabel(String label) {
-		// do nothing
+		// do nothing...
 	}
 }

@@ -1,5 +1,8 @@
 package com.friquerette.primems.core.boundary.service;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +15,7 @@ import com.friquerette.primems.core.boundary.entity.Fixer;
 @Service("fixerService")
 public class FixerServiceImpl implements FixerService {
 
+	private static List<CurrencyEnum> currencies = null;
 	@Autowired
 	private FixerDao fixerDao;
 
@@ -28,4 +32,19 @@ public class FixerServiceImpl implements FixerService {
 			throw new BoundaryServiceException(msg, e);
 		}
 	}
+
+	/**
+	 * Return a list of currencies from the Enum. Maybe get it from Fixer.io
+	 * later...
+	 * 
+	 * Design pattern singleton
+	 */
+	@Override
+	public List<CurrencyEnum> getAllCurrencies() {
+		if (currencies == null) {
+			currencies = Arrays.asList(CurrencyEnum.values());
+		}
+		return currencies;
+	}
+
 }

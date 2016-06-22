@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
 import com.friquerette.primems.core.entity.Customer;
 
 @Repository("customerDao")
-public class CustomerDaoImpl extends AbstractDao<Customer>implements CustomerDao {
+public class CustomerDaoImpl extends AbstractDao<Customer> implements CustomerDao {
 
 	@Override
 	public Long create(Customer customer) {
@@ -64,13 +64,14 @@ public class CustomerDaoImpl extends AbstractDao<Customer>implements CustomerDao
 	 * org.hibernate.Session.createQuery(Ljava/lang/String;)Lorg/hibernate/query
 	 * /Query;
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	@Deprecated
 	public List<Customer> findByFilter(Map<String, String> filter) {
 		Map<String, String> parameters = new HashMap<>();
 		String queryString = "FROM Customer c WHERE 1 = 1";
 		for (Map.Entry<String, String> entry : filter.entrySet()) {
-			if (FILTER_USERNAME.equals(entry.getKey()) && false) {
+			if (FILTER_USERNAME.equals(entry.getKey())) {
 				queryString += " AND c.username=:username ";
 				parameters.put("username", entry.getValue());
 			}

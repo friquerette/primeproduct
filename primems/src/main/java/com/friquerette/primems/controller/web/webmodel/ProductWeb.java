@@ -1,5 +1,7 @@
 package com.friquerette.primems.controller.web.webmodel;
 
+import com.friquerette.primems.core.boundary.entity.CurrencyEnum;
+
 public class ProductWeb extends AbstractWebModel {
 
 	private Long id;
@@ -9,6 +11,8 @@ public class ProductWeb extends AbstractWebModel {
 	private String description;
 
 	private Double price;
+
+	private String currency = CurrencyEnum.EUR.name();
 
 	private CustomerWeb owner;
 
@@ -69,6 +73,14 @@ public class ProductWeb extends AbstractWebModel {
 
 	public void setCategoryLabel(String categoryLabel) {
 		this.categoryLabel = categoryLabel;
+	}
+
+	public String getCurrency() {
+		return currency;
+	}
+
+	public void setCurrency(String currency) {
+		this.currency = currency;
 	}
 
 }

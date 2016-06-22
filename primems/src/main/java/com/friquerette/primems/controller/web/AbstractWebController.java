@@ -15,6 +15,7 @@ import com.friquerette.primems.controller.web.converterenum.RoleEnumConverter;
 import com.friquerette.primems.core.entity.AbstractEntity;
 import com.friquerette.primems.core.entity.Category;
 import com.friquerette.primems.core.entity.GenderEnum;
+import com.friquerette.primems.core.entity.IPrimemsEnum;
 import com.friquerette.primems.core.entity.RoleEnum;
 import com.friquerette.primems.core.service.CategoryService;
 
@@ -51,6 +52,16 @@ public abstract class AbstractWebController {
 		if (entity != null) {
 			for (AbstractEntity abstractEntity : entity) {
 				entitiesMap.put(abstractEntity.getId(), abstractEntity.getLabel());
+			}
+		}
+		return entitiesMap;
+	}
+
+	protected Map<String, String> enumToSelect(List<? extends IPrimemsEnum> enums) {
+		Map<String, String> entitiesMap = new HashMap<>();
+		if (enums != null) {
+			for (IPrimemsEnum anEnum : enums) {
+				entitiesMap.put(anEnum.getValues(), anEnum.getLabel());
 			}
 		}
 		return entitiesMap;

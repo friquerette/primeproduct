@@ -33,7 +33,7 @@
 					<td>
 				        <c:choose>
 				            <c:when test="${not empty product.id}">
-				                ${product.categoryLabel}2
+				                ${product.categoryLabel}
 				            </c:when>
 				            <c:otherwise>
 								<form:select path="categoryId" class="form-control">
@@ -51,7 +51,21 @@
 					<td>Price:</td>
 					<td><form:input path="price" class="form-control"/></td>
 				</tr>
-
+				<tr>
+					<td>Currency:</td>
+					<td>
+				        <c:choose>
+				            <c:when test="${not empty product.id}">
+				                ${product.currency}
+				            </c:when>
+				            <c:otherwise>
+								<form:select path="currency" class="form-control">
+									<form:options items="${currenciesList}"/>
+								</form:select>
+				            </c:otherwise>
+				        </c:choose>
+					</td>
+				</tr>
 				<tr>
 					<td colspan="2" align="center">
 						<input type="submit" value="Save" class="btn btn-default"/>

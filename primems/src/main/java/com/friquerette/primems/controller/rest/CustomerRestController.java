@@ -48,13 +48,4 @@ public class CustomerRestController {
 		return new ResponseEntity<Customer>(category, HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/customer/{firstname}/{lastname}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Customer> createUser(//
-			@PathVariable("firstname") String firstname, //
-			@PathVariable("lastname") String lastname) {
-		logger.info("Fetching Customer with id ");
-		Customer customer = new Customer(firstname, lastname);
-		return new ResponseEntity<Customer>(customer, HttpStatus.OK);
-	}
-
 }

@@ -1,9 +1,12 @@
 package com.friquerette.primems.controller.web.converterweb;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.friquerette.primems.controller.web.webmodel.ProductWeb;
+import com.friquerette.primems.core.boundary.entity.CurrencyEnum;
 import com.friquerette.primems.core.entity.Product;
 import com.friquerette.primems.core.service.CategoryService;
 import com.friquerette.primems.core.service.ProductService;
@@ -16,6 +19,8 @@ import com.friquerette.primems.core.service.ProductService;
  */
 @Component
 public class ProductConverter implements WebModelConverter<Product, ProductWeb> {
+
+	private static final Logger logger = LoggerFactory.getLogger(ProductConverter.class);
 
 	@Autowired(required = true)
 	private CategoryService categoryService;
@@ -35,8 +40,15 @@ public class ProductConverter implements WebModelConverter<Product, ProductWeb> 
 			product.setTitle(web.getTitle());
 			product.setDescription(web.getDescription());
 			product.setPrice(web.getPrice());
-			if (web.getCategoryId() != null) {
+			if (web.getCategoryId() != null && web.getCategoryId() != 0) {
 				product.setCategory(categoryService.findById(web.getCategoryId()));
+			}
+			if (web.getCurrency() != null) {
+				try {
+					product.setCurrency(CurrencyEnum.valueOf(web.getCurrency()));
+				} catch (Exception e) {
+					logger.error("Failed to read the currency", e);
+				}
 			}
 		}
 

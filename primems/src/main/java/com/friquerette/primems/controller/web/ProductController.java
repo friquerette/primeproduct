@@ -5,6 +5,8 @@ import static com.friquerette.primems.controller.web.AbstractWebController.ACCOU
 import java.util.List;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,10 +18,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.friquerette.primems.controller.web.converterweb.ProductConverter;
 import com.friquerette.primems.controller.web.webmodel.ProductWeb;
+import com.friquerette.primems.core.boundary.entity.CurrencyEnum;
+import com.friquerette.primems.core.boundary.service.FixerService;
 import com.friquerette.primems.core.entity.Category;
 import com.friquerette.primems.core.entity.GenderEnum;
 import com.friquerette.primems.core.entity.Product;
-import com.friquerette.primems.core.service.CategoryService;
 import com.friquerette.primems.core.service.ProductService;
 
 /**
@@ -31,14 +34,31 @@ import com.friquerette.primems.core.service.ProductService;
 @Controller
 @RequestMapping(ACCOUNT_HOME)
 public class ProductController extends AbstractWebController {
+
+	private static final Logger logger = LoggerFactory.getLogger(ProductController.class);
+
 	@Autowired(required = true)
 	private ProductService productService;
 
 	@Autowired(required = true)
-	private CategoryService categoryService;
+	private ProductConverter productConverter;
 
 	@Autowired(required = true)
-	private ProductConverter productConverter;
+	private FixerService fixerService;
+
+	public FixerService getFixerService() {
+		return fixerService;
+	}
+
+	public void setFixerService(FixerService fixerService) {
+		this.fixerService = fixerService;
+	}
+
+	/**
+	 * Should be in a service list
+	 * 
+	 * @return
+	 */
 
 	@RequestMapping(value = "/products", method = RequestMethod.GET)
 	public String listCustomers(Model model) {
@@ -67,8 +87,9 @@ public class ProductController extends AbstractWebController {
 	public ModelAndView newForm() {
 		ModelAndView model = new ModelAndView("admin/product");
 		model.addObject("product", productConverter.toWeb(null));
-		List<Category> category = categoryService.getAllActiveCategoryForSelect();
+		List<Category> category = getCategoryService().getAllActiveCategoryForSelect();
 		model.addObject("categoriesList", entityToSelect(category));
+		model.addObject("currenciesList", getCurrenciesList());
 		return model;
 	}
 
@@ -76,5 +97,21 @@ public class ProductController extends AbstractWebController {
 	public String create(@ModelAttribute("product") ProductWeb web, Map<String, Object> map) {
 		productService.create(productConverter.fromWeb(web));
 		return "redirect:../products";
+	}
+
+	/**
+	 * Should be in a service list
+	 * 
+	 * @return
+	 */
+	protected Map<String, String> getCurrenciesList() {
+		Map<String, String> currenciesMap = null;
+		try {
+			List<CurrencyEnum> category = getFixerService().getAllCurrencies();
+			currenciesMap = enumToSelect(category);
+		} catch (Exception e) {
+			logger.error("Failed to load the categories for list select", e);
+		}
+		return currenciesMap;
 	}
 }

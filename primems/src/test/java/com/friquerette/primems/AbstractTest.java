@@ -24,6 +24,7 @@ import junit.framework.TestCase;
 // @TestPropertySource(properties = "assets.file=classpath:test.properties")
 public abstract class AbstractTest extends TestCase {
 
+	@SuppressWarnings("unused")
 	private Date startDate = null;
 
 	@Before

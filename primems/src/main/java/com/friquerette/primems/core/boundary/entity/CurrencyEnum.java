@@ -1,6 +1,15 @@
 package com.friquerette.primems.core.boundary.entity;
 
-public enum CurrencyEnum {
+import com.friquerette.primems.core.entity.IPrimemsEnum;
+
+/**
+ * The currency enum. The interface is not in the good package ... Move it in a
+ * abstract package later
+ * 
+ * @author rick
+ *
+ */
+public enum CurrencyEnum implements IPrimemsEnum {
 	AUD(1, "Australian Dollar"), //
 	BGN(2, "Bulgarian Lev"), //
 	BRL(3, "Brazilian Real"), //
@@ -48,5 +57,9 @@ public enum CurrencyEnum {
 
 	public String getLabel() {
 		return label;
+	}
+
+	public String getValues() {
+		return this.name();
 	}
 }

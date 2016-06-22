@@ -9,12 +9,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.friquerette.primems.controller.rest.answer.CreateAnswer;
 import com.friquerette.primems.core.entity.Category;
 import com.friquerette.primems.core.service.CategoryService;
 
@@ -47,23 +45,6 @@ public class CategoryRestController {
 			logger.error("Failed to read category for the id " + id, e);
 		}
 		return new ResponseEntity<Category>(category, HttpStatus.OK);
-	}
-
-	@RequestMapping(value = "TOTO", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<CreateAnswer> create(@RequestBody Category category) {
-		CreateAnswer answer = new CreateAnswer();
-		HttpStatus status;
-		try {
-			Long id = categoryService.create(category);
-			answer.setEntity(categoryService.findById(id));
-			answer.setId(id);
-			answer.setMessage("Category create");
-			status = HttpStatus.OK;
-		} catch (Exception e) {
-			answer.setError(e.getMessage());
-			status = HttpStatus.INTERNAL_SERVER_ERROR;
-		}
-		return new ResponseEntity<CreateAnswer>(answer, status);
 	}
 
 	public CategoryService getCategoryService() {

@@ -26,6 +26,11 @@ public enum RoleEnum implements IPrimemsEnum {
 		return label;
 	}
 
+	@Override
+	public String getValues() {
+		return this.name();
+	}
+
 	public static List<RoleEnum> getAllAsList() {
 		return Arrays.asList(RoleEnum.values());
 	}

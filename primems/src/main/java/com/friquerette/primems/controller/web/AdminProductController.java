@@ -2,7 +2,7 @@ package com.friquerette.primems.controller.web;
 
 import static com.friquerette.primems.controller.web.AbstractWebController.ADMIN_PRODUCTS;
 
-import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -16,12 +16,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.friquerette.primems.controller.web.converterweb.CategoryConverter;
 import com.friquerette.primems.controller.web.converterweb.ProductConverter;
-import com.friquerette.primems.controller.web.webmodel.CategoryWeb;
 import com.friquerette.primems.controller.web.webmodel.ProductWeb;
+import com.friquerette.primems.core.boundary.entity.CurrencyEnum;
+import com.friquerette.primems.core.boundary.service.FixerService;
 import com.friquerette.primems.core.entity.Category;
-import com.friquerette.primems.core.entity.GenderEnum;
 import com.friquerette.primems.core.entity.Product;
 import com.friquerette.primems.core.service.ProductService;
 
@@ -38,7 +37,15 @@ public class AdminProductController extends AbstractWebController {
 	private ProductConverter productConverter;
 
 	@Autowired(required = true)
-	private CategoryConverter categoryConverter;
+	private FixerService fixerService;
+
+	public FixerService getFixerService() {
+		return fixerService;
+	}
+
+	public void setFixerService(FixerService fixerService) {
+		this.fixerService = fixerService;
+	}
 
 	@RequestMapping(value = PATH_ALL, method = RequestMethod.GET)
 	public String admin(Model model) {
@@ -59,7 +66,6 @@ public class AdminProductController extends AbstractWebController {
 		ModelAndView model = new ModelAndView("admin/product");
 		Product product = productService.findById(id);
 		model.addObject("product", productConverter.toWeb(product));
-		model.addObject("genderList", GenderEnum.values());
 		model.addObject("categoriesList", getCategoriesList());
 		return model;
 	}
@@ -75,8 +81,8 @@ public class AdminProductController extends AbstractWebController {
 	public ModelAndView newForm() {
 		ModelAndView model = new ModelAndView("admin/product");
 		model.addObject("product", productConverter.toWeb(null));
-		model.addObject("categoriesMap", getCategoryWebForSelect());
 		model.addObject("categoriesList", getCategoriesList());
+		model.addObject("currenciesList", getCurrenciesList());
 		return model;
 	}
 
@@ -86,12 +92,30 @@ public class AdminProductController extends AbstractWebController {
 		return "redirect:.." + PATH_ALL;
 	}
 
-	private Map<CategoryWeb, String> getCategoryWebForSelect() {
-		Map<CategoryWeb, String> categoriesMap = new HashMap<>();
-		for (Category category : getCategoryService().getAllActiveCategoryForSelect()) {
-			CategoryWeb web = categoryConverter.toWeb(category);
-			categoriesMap.put(web, category.getLabel());
+	protected Map<Long, String> getCategoriesList() {
+		Map<Long, String> categoriesMap = null;
+		try {
+			List<Category> category = getCategoryService().getAllActiveCategoryForSelect();
+			categoriesMap = entityToSelect(category);
+		} catch (Exception e) {
+			logger.error("Failed to load the categories for list select", e);
 		}
 		return categoriesMap;
+	}
+
+	/**
+	 * Should be in a service list
+	 * 
+	 * @return
+	 */
+	protected Map<String, String> getCurrenciesList() {
+		Map<String, String> currenciesMap = null;
+		try {
+			List<CurrencyEnum> category = getFixerService().getAllCurrencies();
+			currenciesMap = enumToSelect(category);
+		} catch (Exception e) {
+			logger.error("Failed to load the categories for list select", e);
+		}
+		return currenciesMap;
 	}
 }
