@@ -17,7 +17,7 @@
 		<jsp:include page="../include/links.jsp" />
 		<div class="page-header">
 			<h2>Admin > Categories</h2>
-			<a href="./edit/new">new category</a>
+			<a href="./edit/new" class="glyphicon glyphicon-plus">new category</a>
 		</div>
 		<div class="row">
 			<ul class="nav nav-tabs">

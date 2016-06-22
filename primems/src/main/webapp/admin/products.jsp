@@ -13,10 +13,10 @@
 </head>
 <body>
 	<div class="container-fluid">
-		<jsp:include page="../include/links.jsp" />
+		<jsp:include page="../include/links.jsp"/>
 		<div class="page-header">
 			<h2>Admin > Products</h2>
-			<a href="./edit/new">new product</a>
+			<a href="./edit/new" class="glyphicon glyphicon-plus">new product</a>
 		</div>
 		<div class="row">
 			<ul class="nav nav-tabs">
