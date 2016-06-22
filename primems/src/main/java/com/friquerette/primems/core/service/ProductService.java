@@ -8,4 +8,6 @@ public interface ProductService extends IService<Product> {
 
 	public List<Product> findForCurrentUser();
 
+	public void updateFromCopy(Product product);
+
 }

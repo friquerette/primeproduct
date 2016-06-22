@@ -7,6 +7,8 @@ import java.net.Proxy;
 import java.net.URL;
 
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.client.SimpleClientHttpRequestFactory;
 import org.springframework.web.client.RestTemplate;
 
@@ -18,6 +20,7 @@ import com.friquerette.primems.core.boundary.entity.FixerUtil;
 import junit.framework.TestCase;
 
 public class ClientRestWebTest extends TestCase {
+	private static final Logger logger = LoggerFactory.getLogger(ClientRestWebTest.class);
 
 	/**
 	 * This case test the reading of the web service for a simple
@@ -58,7 +61,7 @@ public class ClientRestWebTest extends TestCase {
 
 		RestTemplate restTemplate = new RestTemplate(clientHttpRequestFactory);
 		Fixer response = restTemplate.getForObject(FixerConst.URL_LATEST, Fixer.class);
-		System.out.println(response);
+		logger.info("" + response);
 		assertTrue(response.getRates().get(CurrencyEnum.GBP) < 2);
 
 	}

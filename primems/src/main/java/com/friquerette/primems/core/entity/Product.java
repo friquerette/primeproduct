@@ -54,7 +54,7 @@ public class Product extends AbstractEntity {
 	 * be persist if the currency change later.
 	 */
 	@Transient
-	private CurrencyEnum currency;
+	private CurrencyEnum currency = CurrencyEnum.EUR;
 
 	public Long getId() {
 		return id;

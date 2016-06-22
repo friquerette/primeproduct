@@ -17,6 +17,12 @@ import org.springframework.web.bind.annotation.RestController;
 import com.friquerette.primems.core.entity.Category;
 import com.friquerette.primems.core.service.CategoryService;
 
+/**
+ * The Rest Controller for the connected ROLE_ADMIN
+ * 
+ * @author Rick
+ *
+ */
 @RestController
 @RequestMapping(RestConstant.ROOT_WS + RestConstant.CATEGORY)
 public class CategoryRestController {
@@ -26,61 +32,89 @@ public class CategoryRestController {
 	@Autowired
 	private CategoryService categoryService;
 
+	/**
+	 * Method Get All
+	 * 
+	 * @return
+	 */
 	@RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<Category>> getCategoryAll() {
-		List<Category> categories = null;
 		try {
-			categories = categoryService.findAll();
+			List<Category> categories = categoryService.findAll();
+			return new ResponseEntity<List<Category>>(categories, HttpStatus.OK);
 		} catch (Exception e) {
 			logger.error("Failed to read all the categories", e);
+			return new ResponseEntity<List<Category>>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		return new ResponseEntity<List<Category>>(categories, HttpStatus.OK);
 	}
 
+	/**
+	 * Method Get By Id
+	 * 
+	 * @param id
+	 * @return
+	 */
 	@RequestMapping(value = RestConstant.BY_ID, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Category> getCategoryById(@PathVariable("id") Long id) {
-		Category category = null;
 		try {
-			category = categoryService.findById(id);
+			Category category = categoryService.findById(id);
+			return new ResponseEntity<Category>(category, HttpStatus.OK);
 		} catch (Exception e) {
-			logger.error("Failed to read category for the id " + id, e);
+			logger.error("Failed to read category " + id, e);
+			return new ResponseEntity<Category>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		return new ResponseEntity<Category>(category, HttpStatus.OK);
 	}
 
+	/**
+	 * Method Post to create
+	 * 
+	 * @param category
+	 * @return
+	 */
 	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Category> create(@RequestBody Category category) {
 		try {
 			Long id = categoryService.create(category);
 			category = categoryService.findById(id);
+			return new ResponseEntity<Category>(category, HttpStatus.OK);
 		} catch (Exception e) {
 			logger.error("Failed to create the category", e);
-			new ResponseEntity<Category>(category, HttpStatus.INTERNAL_SERVER_ERROR);
+			return new ResponseEntity<Category>(category, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		return new ResponseEntity<Category>(category, HttpStatus.OK);
 	}
 
+	/**
+	 * Method Put to update
+	 * 
+	 * @param category
+	 * @return
+	 */
 	@RequestMapping(method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Category> update(@RequestBody Category category) {
 		try {
 			categoryService.updateFromCopy(category);
 			category = categoryService.findById(category.getId());
+			return new ResponseEntity<Category>(category, HttpStatus.OK);
 		} catch (Exception e) {
 			logger.error("Failed to update the category", e);
-			new ResponseEntity<Category>(category, HttpStatus.INTERNAL_SERVER_ERROR);
+			return new ResponseEntity<Category>(category, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		return new ResponseEntity<Category>(category, HttpStatus.OK);
 	}
 
+	/**
+	 * Method Delete by id
+	 * 
+	 * @param id
+	 * @return
+	 */
 	@RequestMapping(value = RestConstant.BY_ID, method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Category> deleteById(@PathVariable("id") Long id) {
 		try {
 			categoryService.deleteById(id);
+			return new ResponseEntity<Category>(HttpStatus.NO_CONTENT);
 		} catch (Exception e) {
 			logger.error("Failed to delete the category for the id " + id, e);
-			new ResponseEntity<Category>(HttpStatus.INTERNAL_SERVER_ERROR);
+			return new ResponseEntity<Category>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		return new ResponseEntity<Category>(HttpStatus.NO_CONTENT);
 	}
-
 }

@@ -34,7 +34,7 @@
 							<td>${pro.id}</td>
 							<td>${pro.category.label}</td>
 							<td>${pro.title}</td>
-							<td>${pro.price}</td>
+							<td>${pro.price} ${pro.currency}</td>
 							<td><a href="view/${pro.id}" class="glyphicon glyphicon-search"></a></td>
 						</tr>
 					</c:forEach>

@@ -1,0 +1,3 @@
+// DELETE http://localhost:8080/primems/rest/product/8
+// Authorization : Basic YWRtaW46YWRtaW4=
+// Content-Type : application/json

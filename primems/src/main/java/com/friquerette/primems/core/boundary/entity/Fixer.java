@@ -34,4 +34,9 @@ public class Fixer {
 		this.rates = rates;
 	}
 
+	@Override
+	public String toString() {
+		return "Fixer [base=" + base + ", date=" + date + ", rates=" + rates + "]";
+	}
+
 }

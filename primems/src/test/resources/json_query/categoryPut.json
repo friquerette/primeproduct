@@ -1,5 +1,5 @@
 // UPDATE
-// PUT http://localhost:8080/primems/rest/category/new
+// PUT http://localhost:8080/primems/rest/category
 // Authorization : Basic YWRtaW46YWRtaW4=
 // Content-Type : application/json
 {
