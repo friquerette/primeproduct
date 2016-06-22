@@ -8,6 +8,10 @@ public class CategoryWeb extends AbstractWebModel {
 
 	private String description;
 
+	private Long parentId = 0l;
+
+	private String parentLabel;
+
 	public Long getId() {
 		return id;
 	}
@@ -30,6 +34,22 @@ public class CategoryWeb extends AbstractWebModel {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public Long getParentId() {
+		return parentId;
+	}
+
+	public void setParentId(Long parentId) {
+		this.parentId = parentId;
+	}
+
+	public String getParentLabel() {
+		return parentLabel;
+	}
+
+	public void setParentLabel(String parentLabel) {
+		this.parentLabel = parentLabel;
 	}
 
 }

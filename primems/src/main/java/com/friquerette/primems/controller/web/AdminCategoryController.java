@@ -4,6 +4,8 @@ import static com.friquerette.primems.controller.web.AbstractWebController.ADMIN
 
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -18,7 +20,6 @@ import com.friquerette.primems.controller.web.converterweb.CategoryConverter;
 import com.friquerette.primems.controller.web.webmodel.CategoryWeb;
 import com.friquerette.primems.core.entity.Category;
 import com.friquerette.primems.core.entity.Customer;
-import com.friquerette.primems.core.service.CategoryService;
 
 /**
  * To reach this part of the application the user have to be an admin
@@ -29,9 +30,8 @@ import com.friquerette.primems.core.service.CategoryService;
 @Controller
 @RequestMapping(ADMIN_CATEGORIES)
 public class AdminCategoryController extends AbstractWebController {
-	@Autowired(required = true)
-	@Qualifier(value = "categoryService")
-	private CategoryService categoryService;
+
+	private static final Logger logger = LoggerFactory.getLogger(AdminCategoryController.class);
 
 	@Autowired(required = true)
 	@Qualifier(value = "categoryConverter")
@@ -41,14 +41,19 @@ public class AdminCategoryController extends AbstractWebController {
 	@RequestMapping(value = PATH_ALL, method = RequestMethod.GET)
 	public String getAll(Model model) {
 		model.addAttribute("category", new Customer());
-		model.addAttribute("categories", this.categoryService.findAll());
+		model.addAttribute("categories", getCategoryService().findAll());
 		return "admin/categories";
 	}
 
 	// -- DELETE
 	@RequestMapping(value = PATH_DELETE)
 	public String delete(@PathVariable("id") long id) {
-		categoryService.deleteById(id);
+		try {
+			getCategoryService().deleteById(id);
+		} catch (Exception e) {
+			logger.error("Failed to delete the category" + id, e);
+		}
+
 		return "redirect:.." + PATH_ALL;
 	}
 
@@ -56,14 +61,15 @@ public class AdminCategoryController extends AbstractWebController {
 	@RequestMapping(value = PATH_EDIT_ID, method = RequestMethod.GET)
 	public ModelAndView updateForm(@PathVariable("id") long id) {
 		ModelAndView model = new ModelAndView("admin/category");
-		Category category = categoryService.findById(id);
+		Category category = getCategoryService().findById(id);
 		model.addObject("category", categoryConverter.toWeb(category));
+		model.addObject("categoriesList", getCategoriesList());
 		return model;
 	}
 
 	@RequestMapping(value = PATH_EDIT_ID, method = RequestMethod.POST)
 	public String update(@ModelAttribute("category") CategoryWeb web, Map<String, Object> map) {
-		categoryService.update(categoryConverter.fromWeb(web));
+		getCategoryService().update(categoryConverter.fromWeb(web));
 		return "redirect:.." + PATH_ALL;
 	}
 
@@ -72,20 +78,14 @@ public class AdminCategoryController extends AbstractWebController {
 	public ModelAndView newForm() {
 		ModelAndView model = new ModelAndView("admin/category");
 		model.addObject("category", categoryConverter.toWeb(null));
+		model.addObject("categoriesList", getCategoriesList());
 		return model;
 	}
 
 	@RequestMapping(value = PATH_NEW, method = RequestMethod.POST)
 	public String create(@ModelAttribute("category") CategoryWeb web, Map<String, Object> map) {
-		categoryService.create(categoryConverter.fromWeb(web));
+		getCategoryService().create(categoryConverter.fromWeb(web));
 		return "redirect:.." + PATH_ALL;
 	}
 
-	public void setCategoryService(CategoryService categoryService) {
-		this.categoryService = categoryService;
-	}
-
-	public void setCategoryConverter(CategoryConverter categoryConverter) {
-		this.categoryConverter = categoryConverter;
-	}
 }

@@ -4,14 +4,19 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 
 import com.friquerette.primems.controller.web.converterenum.GenderEnumConverter;
 import com.friquerette.primems.controller.web.converterenum.RoleEnumConverter;
 import com.friquerette.primems.core.entity.AbstractEntity;
+import com.friquerette.primems.core.entity.Category;
 import com.friquerette.primems.core.entity.GenderEnum;
 import com.friquerette.primems.core.entity.RoleEnum;
+import com.friquerette.primems.core.service.CategoryService;
 
 /**
  * 
@@ -20,7 +25,10 @@ import com.friquerette.primems.core.entity.RoleEnum;
  * @author Rick
  *
  */
-public class AbstractWebController {
+public abstract class AbstractWebController {
+
+	private static final Logger logger = LoggerFactory.getLogger(AbstractWebController.class);
+
 	protected final static String ROOT_HOME = "/home";
 	protected final static String ACCOUNT_HOME = ROOT_HOME + "/account";
 	protected final static String ACCOUNT_CUSTOMER = ROOT_HOME + "/customer";
@@ -34,6 +42,9 @@ public class AbstractWebController {
 	protected final static String PATH_EDIT = "/edit";
 	protected final static String PATH_DELETE = "/delete/{id}";
 	protected final static String PATH_NEW = "/edit/new";
+
+	@Autowired(required = true)
+	private CategoryService categoryService;
 
 	protected Map<Long, String> entityToSelect(List<? extends AbstractEntity> entity) {
 		Map<Long, String> entitiesMap = new HashMap<>();
@@ -49,5 +60,29 @@ public class AbstractWebController {
 	public void initBinder(WebDataBinder dataBinder) {
 		dataBinder.registerCustomEditor(GenderEnum.class, new GenderEnumConverter());
 		dataBinder.registerCustomEditor(RoleEnum.class, new RoleEnumConverter());
+	}
+
+	/**
+	 * See later to generate a "service" to handle all the Select List
+	 * 
+	 * @return
+	 */
+	protected Map<Long, String> getCategoriesList() {
+		Map<Long, String> categoriesMap = null;
+		try {
+			List<Category> category = getCategoryService().getAllActiveCategoryForSelect();
+			categoriesMap = entityToSelect(category);
+		} catch (Exception e) {
+			logger.error("Failed to load the categories for list select", e);
+		}
+		return categoriesMap;
+	}
+
+	public CategoryService getCategoryService() {
+		return categoryService;
+	}
+
+	public void setCategoryService(CategoryService categoryService) {
+		this.categoryService = categoryService;
 	}
 }

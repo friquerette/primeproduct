@@ -19,6 +19,10 @@ public class PrimemsServiceException extends RuntimeException {
 		super();
 	}
 
+	public PrimemsServiceException(String errMsg) {
+		this.errMsg = errMsg;
+	}
+
 	public PrimemsServiceException(String errMsg, Throwable cause) {
 		this.errMsg = errMsg;
 		this.causeMsg = "" + cause;

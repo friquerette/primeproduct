@@ -8,6 +8,7 @@
 	<jsp:include page="../include/header.jsp">
 		<jsp:param name="title" value="Edit form" />
 	</jsp:include>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 </head>
 <body>
 	<div class="container-fluid">
@@ -30,6 +31,22 @@
 				<tr>
 					<td>Description:</td>
 					<td><form:input path="description" class="form-control"/></td>
+				</tr>
+				<tr>
+					<td>Parent:</td>
+					<td>ok google
+				        <c:choose>
+				            <c:when test="${not empty category.id}">
+				                ${category.parentLabel}
+				            </c:when>
+				            <c:otherwise>
+								<form:select path="parentId" class="form-control">
+									<form:options items="${categoriesList}"/>
+								</form:select>
+				            </c:otherwise>
+				        </c:choose>
+					
+					</td>
 				</tr>
 				<tr>
 					<td colspan="2" align="center">

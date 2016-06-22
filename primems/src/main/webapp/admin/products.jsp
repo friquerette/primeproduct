@@ -30,6 +30,7 @@
 				<thead>
 					<tr>
 						<th>ID</th>
+						<th>Category</th>
 						<th>Title</th>
 						<th>Price</th>
 					</tr>
@@ -38,6 +39,7 @@
 					<c:forEach items="${products}" var="pro">
 						<tr>
 							<td>${pro.id}</td>
+							<td>${pro.category.label}</td>
 							<td>${pro.title}</td>
 							<td>${pro.price}</td>
 							<td><a href="<c:url value='./edit/${pro.id}' />" class="glyphicon glyphicon-edit"></a></td>

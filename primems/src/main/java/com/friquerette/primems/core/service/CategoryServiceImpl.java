@@ -2,6 +2,7 @@ package com.friquerette.primems.core.service;
 
 import java.util.List;
 
+import org.hibernate.Hibernate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,22 +52,38 @@ public class CategoryServiceImpl implements CategoryService {
 	public void deleteById(Long id) {
 		try {
 			Category category = findById(id);
-			if (category != null) {
-				dao.delete(category);
-			} else {
+			if (category == null) {
 				logger.error("Category not found for id " + id);
+			} else if (category.getParent() == null) {
+				logger.error("Your're not allow to delete a top parent category " + id);
+				throw new PrimemsServiceException("Your're not allow to delete a top parent category ");
+			} else {
+				dao.delete(category);
 			}
 		} catch (Exception e) {
 			String message = "Failed to update the category";
 			logger.error(message, e);
 			throw new PrimemsServiceException(message, e);
 		}
+
 	}
 
 	@Override
 	@Transactional
 	public Category findById(Long id) {
-		return dao.findById(id);
+		try {
+			Category category = dao.findById(id);
+			if (category != null) {
+				// Force to load the data
+				Hibernate.initialize(category.getParent());
+			}
+			return category;
+		} catch (Exception e) {
+			String message = "Failed to read the category " + id;
+			logger.error(message, e);
+			throw new PrimemsServiceException(message, e);
+
+		}
 	}
 
 	@Override

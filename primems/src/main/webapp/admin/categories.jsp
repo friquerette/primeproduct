@@ -33,6 +33,7 @@
 						<th>ID</th>
 						<th>Name</th>
 						<th>Description</th>
+						<th>Parent</th>
 						<th>Edit</th>
 						<th>Delete</th>
 					</tr>
@@ -43,6 +44,7 @@
 							<td>${cat.id}</td>
 							<td>${cat.name}</td>
 							<td>${cat.description}</td>
+							<td>${cat.parent.label}</td>
 							<td><a href="<c:url value='./edit/${cat.id}' />" class="glyphicon glyphicon-edit"></a></td>
 							<td><a href="<c:url value='./delete/${cat.id}' />" class="glyphicon glyphicon-trash"></a></td>
 						</tr>

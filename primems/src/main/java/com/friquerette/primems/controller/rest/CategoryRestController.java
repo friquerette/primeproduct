@@ -49,7 +49,7 @@ public class CategoryRestController {
 		return new ResponseEntity<Category>(category, HttpStatus.OK);
 	}
 
-	@RequestMapping(value = RestConstant.NEW, method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "TOTO", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<CreateAnswer> create(@RequestBody Category category) {
 		CreateAnswer answer = new CreateAnswer();
 		HttpStatus status;

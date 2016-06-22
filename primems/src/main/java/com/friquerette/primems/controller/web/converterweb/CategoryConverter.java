@@ -30,6 +30,9 @@ public class CategoryConverter implements WebModelConverter<Category, CategoryWe
 			category.setId(web.getId());
 			category.setName(web.getName());
 			category.setDescription(web.getDescription());
+			if (web.getParentId() != null) {
+				category.setParent(categoryService.findById(web.getParentId()));
+			}
 		}
 		return category;
 	}
@@ -42,6 +45,13 @@ public class CategoryConverter implements WebModelConverter<Category, CategoryWe
 		web.setId(category.getId());
 		web.setName(category.getName());
 		web.setDescription(category.getDescription());
+		/**
+		 * TODO later : See how to map select box with an object...
+		 */
+		if (category.getParent() != null) {
+			web.setParentId(category.getParent().getId());
+			web.setParentLabel(category.getParent().getLabel());
+		}
 		return web;
 	}
 }

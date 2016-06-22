@@ -80,12 +80,19 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	@Transactional
 	public Product findById(Long id) {
-		Product product = dao.findById(id);
-		// Force to load the data
-		Hibernate.initialize(product.getCategory());
-		Hibernate.initialize(product.getOwner());
-		Hibernate.initialize(product.getDescription());
-		return product;
+		try {
+			Product product = dao.findById(id);
+			// Force to load the data
+			Hibernate.initialize(product.getCategory());
+			Hibernate.initialize(product.getOwner());
+			Hibernate.initialize(product.getDescription());
+			return product;
+		} catch (Exception e) {
+			String message = "Failed to read the product " + id;
+			logger.error(message, e);
+			throw new PrimemsServiceException(message, e);
+
+		}
 	}
 
 	@Override

@@ -3,7 +3,6 @@ package com.friquerette.primems.controller.web;
 import static com.friquerette.primems.controller.web.AbstractWebController.ADMIN_PRODUCTS;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -24,7 +23,6 @@ import com.friquerette.primems.controller.web.webmodel.ProductWeb;
 import com.friquerette.primems.core.entity.Category;
 import com.friquerette.primems.core.entity.GenderEnum;
 import com.friquerette.primems.core.entity.Product;
-import com.friquerette.primems.core.service.CategoryService;
 import com.friquerette.primems.core.service.ProductService;
 
 @Controller
@@ -35,9 +33,6 @@ public class AdminProductController extends AbstractWebController {
 
 	@Autowired(required = true)
 	private ProductService productService;
-
-	@Autowired(required = true)
-	private CategoryService categoryService;
 
 	@Autowired(required = true)
 	private ProductConverter productConverter;
@@ -93,25 +88,9 @@ public class AdminProductController extends AbstractWebController {
 
 	private Map<CategoryWeb, String> getCategoryWebForSelect() {
 		Map<CategoryWeb, String> categoriesMap = new HashMap<>();
-		for (Category category : this.categoryService.getAllActiveCategoryForSelect()) {
+		for (Category category : getCategoryService().getAllActiveCategoryForSelect()) {
 			CategoryWeb web = categoryConverter.toWeb(category);
 			categoriesMap.put(web, category.getLabel());
-		}
-		return categoriesMap;
-	}
-
-	/**
-	 * See later to generate a "service" to handle all the Select List
-	 * 
-	 * @return
-	 */
-	private Map<Long, String> getCategoriesList() {
-		Map<Long, String> categoriesMap = null;
-		try {
-			List<Category> category = categoryService.getAllActiveCategoryForSelect();
-			categoriesMap = entityToSelect(category);
-		} catch (Exception e) {
-			logger.error("Failed to load the categories for list select", e);
 		}
 		return categoriesMap;
 	}
