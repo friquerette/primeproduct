@@ -9,7 +9,6 @@
 		<jsp:param name="title" value="Account" />
 	</jsp:include>
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 	<jsp:useBean id="products" scope="request" type="java.util.List" />
 </head>
 <body>
@@ -17,6 +16,7 @@
 		<jsp:include page="../include/links.jsp" />
 		<div class="page-header">
 			<h2>My Products</h2>
+			<a href="./edit/new">new product</a>
 		</div>
 		<div class="row">
 			<ul class="nav nav-tabs">

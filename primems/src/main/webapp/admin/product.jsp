@@ -31,17 +31,9 @@
 				<tr>
 					<td>Category:</td>
 					<td>
-				        <c:choose>
-				            <c:when test="${not empty product.id}">
-				                ${product.category.name}
-				            </c:when>
-				            <c:otherwise>
-								<form:select path="category" class="form-control">
-									<form:options items="${categoriesList}" itemValue="id" itemLabel="name"/>
-								</form:select>
-				            </c:otherwise>
-				        </c:choose>
-					
+						<form:select path="categoryId" class="form-control">
+							<form:options items="${categoriesList}"/>
+						</form:select>
 					</td>
 				</tr>
 				<tr>

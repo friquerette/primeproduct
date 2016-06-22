@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 
 import com.friquerette.primems.controller.web.webmodel.ProductWeb;
 import com.friquerette.primems.core.entity.Product;
+import com.friquerette.primems.core.service.CategoryService;
 import com.friquerette.primems.core.service.ProductService;
 
 /**
@@ -17,10 +18,10 @@ import com.friquerette.primems.core.service.ProductService;
 public class ProductConverter implements WebModelConverter<Product, ProductWeb> {
 
 	@Autowired(required = true)
-	private ProductService productService;
+	private CategoryService categoryService;
 
 	@Autowired(required = true)
-	private CategoryConverter categoryConverter;
+	private ProductService productService;
 
 	public Product fromWeb(ProductWeb web) {
 		Product product = null;
@@ -34,8 +35,8 @@ public class ProductConverter implements WebModelConverter<Product, ProductWeb> 
 			product.setTitle(web.getTitle());
 			product.setDescription(web.getDescription());
 			product.setPrice(web.getPrice());
-			if (web.getCategory() != null) {
-				product.setCategory(categoryConverter.fromWeb(web.getCategory()));
+			if (web.getCategoryId() != null && web.getCategoryLabel() != null) {
+				product.setCategory(categoryService.findById(web.getCategoryId()));
 			}
 		}
 
@@ -51,7 +52,13 @@ public class ProductConverter implements WebModelConverter<Product, ProductWeb> 
 		web.setTitle(product.getTitle());
 		web.setPrice(product.getPrice());
 		web.setDescription(product.getDescription());
-		web.setCategory(categoryConverter.toWeb(product.getCategory()));
+		/**
+		 * TODO later : See how to map select box with an object...
+		 */
+		if (product.getCategory() != null) {
+			web.setCategoryId(product.getCategory().getId());
+			web.setCategoryLabel(product.getCategory().getLabel());
+		}
 		return web;
 	}
 }

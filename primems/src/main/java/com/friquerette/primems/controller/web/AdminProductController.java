@@ -3,8 +3,11 @@ package com.friquerette.primems.controller.web;
 import static com.friquerette.primems.controller.web.AbstractWebController.ADMIN_PRODUCTS;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,6 +30,8 @@ import com.friquerette.primems.core.service.ProductService;
 @Controller
 @RequestMapping(ADMIN_PRODUCTS)
 public class AdminProductController extends AbstractWebController {
+
+	private static final Logger logger = LoggerFactory.getLogger(AdminProductController.class);
 
 	@Autowired(required = true)
 	private ProductService productService;
@@ -60,6 +65,7 @@ public class AdminProductController extends AbstractWebController {
 		Product product = productService.findById(id);
 		model.addObject("product", productConverter.toWeb(product));
 		model.addObject("genderList", GenderEnum.values());
+		model.addObject("categoriesList", getCategoriesList());
 		return model;
 	}
 
@@ -75,7 +81,7 @@ public class AdminProductController extends AbstractWebController {
 		ModelAndView model = new ModelAndView("admin/product");
 		model.addObject("product", productConverter.toWeb(null));
 		model.addObject("categoriesMap", getCategoryWebForSelect());
-		model.addObject("categoriesList", this.categoryService.getAllActiveCategoryForSelect());
+		model.addObject("categoriesList", getCategoriesList());
 		return model;
 	}
 
@@ -90,6 +96,22 @@ public class AdminProductController extends AbstractWebController {
 		for (Category category : this.categoryService.getAllActiveCategoryForSelect()) {
 			CategoryWeb web = categoryConverter.toWeb(category);
 			categoriesMap.put(web, category.getLabel());
+		}
+		return categoriesMap;
+	}
+
+	/**
+	 * See later to generate a "service" to handle all the Select List
+	 * 
+	 * @return
+	 */
+	private Map<Long, String> getCategoriesList() {
+		Map<Long, String> categoriesMap = null;
+		try {
+			List<Category> category = categoryService.getAllActiveCategoryForSelect();
+			categoriesMap = entityToSelect(category);
+		} catch (Exception e) {
+			logger.error("Failed to load the categories for list select", e);
 		}
 		return categoriesMap;
 	}

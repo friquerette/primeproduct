@@ -12,7 +12,8 @@ public class ProductWeb extends AbstractWebModel {
 
 	private CustomerWeb owner;
 
-	private CategoryWeb category;
+	private Long categoryId = 0l;
+	private String categoryLabel;
 
 	public Long getId() {
 		return id;
@@ -54,12 +55,20 @@ public class ProductWeb extends AbstractWebModel {
 		this.owner = owner;
 	}
 
-	public CategoryWeb getCategory() {
-		return category;
+	public Long getCategoryId() {
+		return categoryId;
 	}
 
-	public void setCategory(CategoryWeb category) {
-		this.category = category;
+	public void setCategoryId(Long categoryId) {
+		this.categoryId = categoryId;
+	}
+
+	public String getCategoryLabel() {
+		return categoryLabel;
+	}
+
+	public void setCategoryLabel(String categoryLabel) {
+		this.categoryLabel = categoryLabel;
 	}
 
 }

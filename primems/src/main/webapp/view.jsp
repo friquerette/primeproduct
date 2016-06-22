@@ -24,7 +24,7 @@
 			</tr>
 			<tr>
 				<td>Category:</td>
-				<td>${product.category.name}</td>
+				<td>${product.categoryLabel}</td>
 			</tr>
 			<tr>
 				<td>Description:</td>

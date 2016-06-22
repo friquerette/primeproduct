@@ -2,6 +2,7 @@ package com.friquerette.primems.controller.web;
 
 import static com.friquerette.primems.controller.web.AbstractWebController.ACCOUNT_HOME;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +16,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.friquerette.primems.controller.web.converterweb.ProductConverter;
 import com.friquerette.primems.controller.web.webmodel.ProductWeb;
+import com.friquerette.primems.core.entity.Category;
 import com.friquerette.primems.core.entity.GenderEnum;
 import com.friquerette.primems.core.entity.Product;
+import com.friquerette.primems.core.service.CategoryService;
 import com.friquerette.primems.core.service.ProductService;
 
 /**
@@ -30,6 +33,9 @@ import com.friquerette.primems.core.service.ProductService;
 public class ProductController extends AbstractWebController {
 	@Autowired(required = true)
 	private ProductService productService;
+
+	@Autowired(required = true)
+	private CategoryService categoryService;
 
 	@Autowired(required = true)
 	private ProductConverter productConverter;
@@ -53,7 +59,7 @@ public class ProductController extends AbstractWebController {
 	@RequestMapping(value = PATH_EDIT_ID, method = RequestMethod.POST)
 	public String update(@ModelAttribute("product") ProductWeb web, Map<String, Object> map) {
 		productService.update(productConverter.fromWeb(web));
-		return "redirect:.." + PATH_ALL;
+		return "redirect:../products";
 	}
 
 	// -- CREATE
@@ -61,12 +67,14 @@ public class ProductController extends AbstractWebController {
 	public ModelAndView newForm() {
 		ModelAndView model = new ModelAndView("admin/product");
 		model.addObject("product", productConverter.toWeb(null));
+		List<Category> category = categoryService.getAllActiveCategoryForSelect();
+		model.addObject("categoriesList", entityToSelect(category));
 		return model;
 	}
 
 	@RequestMapping(value = PATH_NEW, method = RequestMethod.POST)
 	public String create(@ModelAttribute("product") ProductWeb web, Map<String, Object> map) {
 		productService.create(productConverter.fromWeb(web));
-		return "redirect:.." + PATH_ALL;
+		return "redirect:../products";
 	}
 }

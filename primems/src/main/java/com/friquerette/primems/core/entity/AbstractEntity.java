@@ -84,5 +84,11 @@ public abstract class AbstractEntity implements Serializable {
 
 	public abstract Long getId();
 
+	public abstract void setId(Long id);
+
 	public abstract String getLabel();
+
+	public void setLabel(String label) {
+		// do nothing
+	}
 }

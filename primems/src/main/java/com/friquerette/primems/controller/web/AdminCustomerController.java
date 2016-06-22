@@ -7,16 +7,12 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.friquerette.primems.controller.web.converterenum.GenderEnumConverter;
-import com.friquerette.primems.controller.web.converterenum.RoleEnumConverter;
 import com.friquerette.primems.controller.web.converterweb.CustomerConverter;
 import com.friquerette.primems.controller.web.webmodel.CustomerWeb;
 import com.friquerette.primems.core.entity.Customer;
@@ -86,9 +82,4 @@ public class AdminCustomerController extends AbstractWebController {
 		return "redirect:.." + PATH_ALL;
 	}
 
-	@InitBinder
-	public void initBinder(WebDataBinder dataBinder) {
-		dataBinder.registerCustomEditor(GenderEnum.class, new GenderEnumConverter());
-		dataBinder.registerCustomEditor(RoleEnum.class, new RoleEnumConverter());
-	}
 }
