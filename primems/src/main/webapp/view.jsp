@@ -5,17 +5,18 @@
     "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 <head>
-	<jsp:include page="include/header.jsp">
-		<jsp:param name="title" value="Home" />
-	</jsp:include>
+<jsp:include page="include/header.jsp">
+	<jsp:param name="title" value="Home" />
+</jsp:include>
 </head>
 <body>
 	<div align="center" class="container-fluid">
 		<jsp:include page="include/links.jsp" />
-		
+
 		<table class="table">
 			<tr>
-				<td><a href="../" class="glyphicon glyphicon-arrow-left"> Back</a></td>
+				<td><a href="../" class="glyphicon glyphicon-arrow-left">
+						Back</a></td>
 				<td></td>
 			</tr>
 			<tr>
@@ -33,6 +34,10 @@
 			<tr>
 				<td>Price:</td>
 				<td>${product.price}</td>
+			</tr>
+			<tr>
+				<td>Currency:</td>
+				<td>${product.currency}</td>
 			</tr>
 		</table>
 	</div>

@@ -41,7 +41,7 @@
 							<td>${pro.id}</td>
 							<td>${pro.category.label}</td>
 							<td>${pro.title}</td>
-							<td>${pro.price}</td>
+							<td>${pro.price} ${pro.currency}</td>
 							<td><a href="<c:url value='./edit/${pro.id}' />" class="glyphicon glyphicon-edit"></a></td>
 							<td><a href="<c:url value='./delete/${pro.id}' />" class="glyphicon glyphicon-trash"></a></td>
 						</tr>
