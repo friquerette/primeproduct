@@ -47,11 +47,15 @@ public class CategoryRestController {
 		return new ResponseEntity<Category>(category, HttpStatus.OK);
 	}
 
-	public CategoryService getCategoryService() {
-		return categoryService;
-	}
-
-	public void setCategoryService(CategoryService categoryService) {
-		this.categoryService = categoryService;
+	@RequestMapping(value = RestConstant.NEW, method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Category> create(Category category) {
+		try {
+			Long id = categoryService.create(category);
+			category = categoryService.findById(id);
+		} catch (Exception e) {
+			logger.error("Failed to create the category", e);
+			new ResponseEntity<Category>(category, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		return new ResponseEntity<Category>(category, HttpStatus.OK);
 	}
 }

@@ -1,0 +1,11 @@
+// POST http://localhost:8080/primems/rest/category/new
+// Authorization : Basic YWRtaW46YWRtaW4=
+// Content-Type : application/json
+{
+	"name":"Computers & Office",
+	"description":"31",
+	"label":"Computers & Office",
+    "parent": {
+            "id": 2
+        },
+}

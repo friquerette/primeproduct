@@ -34,7 +34,7 @@
 				</tr>
 				<tr>
 					<td>Parent:</td>
-					<td>ok google
+					<td>
 				        <c:choose>
 				            <c:when test="${not empty category.id}">
 				                ${category.parentLabel}

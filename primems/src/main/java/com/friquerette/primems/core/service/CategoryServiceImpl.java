@@ -102,6 +102,10 @@ public class CategoryServiceImpl implements CategoryService {
 	@Transactional
 	public Long create(Category category) {
 		try {
+			category.setEnabled(true);
+			Customer currentCustomer = customerService.getCurrentCustomerFromContext();
+			category.setCreatedBy(currentCustomer);
+			category.setLastModifiedBy(currentCustomer);
 			return dao.create(category);
 		} catch (Exception e) {
 			String message = "Failed to create the category";
@@ -118,10 +122,6 @@ public class CategoryServiceImpl implements CategoryService {
 	@Override
 	public Category getInstance() {
 		Category category = new Category();
-		category.setEnabled(true);
-		Customer currentCustomer = customerService.getCurrentCustomerFromContext();
-		category.setCreatedBy(currentCustomer);
-		category.setLastModifiedBy(currentCustomer);
 		return category;
 	}
 
