@@ -104,3 +104,5 @@ VALUES (5, now(), now(), 1, 1, 1, 1, 'CD of Coldplay', 'CD of HYMN FOR THE WEEKE
 INSERT INTO product (category_id, create_date, update_date, created_by, last_modified_by, owner, enabled, title, description, currency, price)
 VALUES (6, now(), now(), 2, 2, 2, 1, 'Dining room table and hutch', 'solid oak. American Drew brand. Hutch is lighted , table comes with 20 inch leaf and table protector.', 'EUR', 1400);
 SELECT * FROM customer;
+SELECT * FROM category;
+SELECT * FROM customer;

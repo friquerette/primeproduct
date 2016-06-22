@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -47,11 +48,15 @@ public class CategoryRestController {
 		return new ResponseEntity<Category>(category, HttpStatus.OK);
 	}
 
-	public CategoryService getCategoryService() {
-		return categoryService;
-	}
-
-	public void setCategoryService(CategoryService categoryService) {
-		this.categoryService = categoryService;
+	@RequestMapping(value = RestConstant.NEW, method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Category> create(@RequestBody Category category) {
+		try {
+			Long id = categoryService.create(category);
+			category = categoryService.findById(id);
+		} catch (Exception e) {
+			logger.error("Failed to create the category", e);
+			new ResponseEntity<Category>(category, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		return new ResponseEntity<Category>(category, HttpStatus.OK);
 	}
 }

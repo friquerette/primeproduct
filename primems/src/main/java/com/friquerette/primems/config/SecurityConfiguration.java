@@ -56,7 +56,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.antMatchers("/rest/product/private/**").access("hasRole('USER') or hasRole('ADMIN')")//
 				.antMatchers("/rest/category/**").access("hasRole('USER') or hasRole('ADMIN')")//
 				.antMatchers("/rest/customer/**").access("hasRole('ADMIN') ")//
-				.and().httpBasic();
+				.and().httpBasic().and().csrf().disable();
 
 	}
 }
