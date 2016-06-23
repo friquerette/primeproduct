@@ -1,18 +1,18 @@
-	Web service Rest CRUD
-	category on category & product
-	currency on create product
-	spring security web service rest
+ok	Web service Rest CRUD
+ok	category on category & product
+ok	currency on create (and update for Rest) product
+ok	spring security web service rest
 	
-	fin IHM admin
-	fin IHM customer
+ok	fin IHM admin
+ok	fin IHM customer
 	bug hibernate hql
 
 Layer Service :
-		edit product admin
-		delete product admin
-		edit product user
-		list product user
-		edit customer user
+	ok	edit product admin
+	ok	delete product admin
+	ok	edit product user
+	ok	list product user
+	ok	edit customer user
 	ok	edit customer admin
 	ok 	public can see all the product
 	ok	be able to edit his own product
@@ -22,14 +22,11 @@ Layer Service :
 	ok	list of category
 		Add a parent category to a category
 	
-	creation de produit
+ok	creation de produit
 ok	update de produit
 ok	liste de produit public
 	recherche de produit public
-	liste de produit perso
-	
-	update de user as sys admin
-	update du profil perso
+ok	liste de produit perso
 	
 ok	Currency : add a Enum for the currency's list
 	Currency : add a service to get the lastest currency information
