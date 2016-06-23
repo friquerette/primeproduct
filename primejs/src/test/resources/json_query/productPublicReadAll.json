@@ -1,0 +1,151 @@
+http://localhost:8080/primejs/rest/product/public
+// Answer :
+[
+    {
+        "createDate": "2016-06-22",
+        "updateDate": "2016-06-22",
+        "enabled": true,
+        "id": 1,
+        "title": "MacBook Pro 2015",
+        "description": "Sell a macbook pro of 2 years",
+        "price": 750,
+        "category": {
+            "createDate": "2016-06-22",
+            "updateDate": "2016-06-22",
+            "enabled": true,
+            "id": 1,
+            "name": "Computers & Office",
+            "description": null,
+            "parent": null,
+            "label": "Computers & Office"
+        },
+        "currency": "EUR",
+        "label": "MacBook Pro 2015"
+    },
+    {
+        "createDate": "2016-06-22",
+        "updateDate": "2016-06-22",
+        "enabled": true,
+        "id": 2,
+        "title": "MacBook Pro 2013",
+        "description": "Sell a macbook pro of 4 years",
+        "price": 500,
+        "category": {
+            "createDate": "2016-06-22",
+            "updateDate": "2016-06-22",
+            "enabled": true,
+            "id": 1,
+            "name": "Computers & Office",
+            "description": null,
+            "parent": null,
+            "label": "Computers & Office"
+        },
+        "currency": "EUR",
+        "label": "MacBook Pro 2013"
+    },
+    {
+        "createDate": "2016-06-22",
+        "updateDate": "2016-06-22",
+        "enabled": true,
+        "id": 3,
+        "title": "CD of Coldplay",
+        "description": "CD of HYMN FOR THE WEEKEND",
+        "price": 5,
+        "category": {
+            "createDate": "2016-06-22",
+            "updateDate": "2016-06-22",
+            "enabled": true,
+            "id": 5,
+            "name": "Books, Movies, Music",
+            "description": null,
+            "parent": null,
+            "label": "Books, Movies, Music"
+        },
+        "currency": "EUR",
+        "label": "CD of Coldplay"
+    },
+    {
+        "createDate": "2016-06-22",
+        "updateDate": "2016-06-22",
+        "enabled": true,
+        "id": 4,
+        "title": "Dining room table and hutch",
+        "description": "solid oak. American Drew brand. Hutch is lighted , table comes with 20 inch leaf and table protector.",
+        "price": 1400,
+        "category": {
+            "createDate": "2016-06-22",
+            "updateDate": "2016-06-22",
+            "enabled": true,
+            "id": 6,
+            "name": "Home & Household",
+            "description": null,
+            "parent": null,
+            "label": "Home & Household"
+        },
+        "currency": "EUR",
+        "label": "Dining room table and hutch"
+    },
+    {
+        "createDate": "2016-06-22",
+        "updateDate": "2016-06-22",
+        "enabled": true,
+        "id": 5,
+        "title": "BKBK",
+        "description": "BGBUI",
+        "price": 22839,
+        "category": {
+            "createDate": "2016-06-22",
+            "updateDate": "2016-06-22",
+            "enabled": true,
+            "id": 1,
+            "name": "Computers & Office",
+            "description": null,
+            "parent": null,
+            "label": "Computers & Office"
+        },
+        "currency": "EUR",
+        "label": "BKBK"
+    },
+    {
+        "createDate": "2016-06-22",
+        "updateDate": "2016-06-22",
+        "enabled": true,
+        "id": 6,
+        "title": "AA",
+        "description": "SSA",
+        "price": 22.84,
+        "category": {
+            "createDate": "2016-06-22",
+            "updateDate": "2016-06-22",
+            "enabled": true,
+            "id": 1,
+            "name": "Computers & Office",
+            "description": null,
+            "parent": null,
+            "label": "Computers & Office"
+        },
+        "currency": "EUR",
+        "label": "AA"
+    },
+    {
+        "createDate": "2016-06-22",
+        "updateDate": "2016-06-22",
+        "enabled": true,
+        "id": 7,
+        "title": "MMM",
+        "description": "grrrrr",
+        "price": 228.39,
+        "category": {
+            "createDate": "2016-06-22",
+            "updateDate": "2016-06-22",
+            "enabled": true,
+            "id": 1,
+            "name": "Computers & Office",
+            "description": null,
+            "parent": null,
+            "label": "Computers & Office"
+        },
+        "currency": "EUR",
+        "label": "MMM"
+    }
+]

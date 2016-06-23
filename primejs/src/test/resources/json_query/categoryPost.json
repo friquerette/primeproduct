@@ -1,0 +1,28 @@
+// CREATION
+// POST http://localhost:8080/primejs/rest/category/new
+// Authorization : Basic YWRtaW46YWRtaW4=
+// Content-Type : application/json
+{
+	"name":"Test",
+	"description":"A description",
+	"label":"Computers & Office"
+}
+// With category
+{
+        "createDate": "2016-06-22",
+        "updateDate": "2016-06-22",
+        "enabled": true,
+        "name": "TOTOTO",
+        "description": "TOTOTOTOTOTO",
+        "parent": {
+            "createDate": "2016-06-22",
+            "updateDate": "2016-06-22",
+            "enabled": true,
+            "id": 2,
+            "name": "Electronics",
+            "description": null,
+            "parent": null,
+            "label": "Electronics"
+        },
+        "label": "Test"
+    }

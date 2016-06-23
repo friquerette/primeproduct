@@ -1,0 +1,36 @@
+// UPDATE With PLN, the category can't be changed
+// POST http://localhost:8080/primejs/rest/product
+// Authorization : Basic YWRtaW46YWRtaW4=
+// Content-Type : application/json
+{
+    "id": 8,
+	"title": "A big Table V2",
+	"description": "A very elegant table from 1960",
+	"price": 750,
+	"category": {
+	    "id": 1
+	},
+	"currency": "PLN"
+}
+// Answer with Euro
+{
+    "createDate": "2016-06-22",
+    "updateDate": "2016-06-22",
+    "enabled": false,
+    "id": 8,
+    "title": "A big Table",
+    "description": "A very elegant table fro 1960",
+    "price": 664.72,
+    "category": {
+        "createDate": "2016-06-22",
+        "updateDate": "2016-06-22",
+        "enabled": true,
+        "id": 1,
+        "name": "Computers & Office",
+        "description": null,
+        "parent": null,
+        "label": "Computers & Office"
+    },
+    "currency": "EUR",
+    "label": "A big Table"
+}

@@ -1,0 +1,151 @@
+package com.friquerette.primejs.core.service;
+
+import java.util.List;
+
+import org.hibernate.Hibernate;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.friquerette.primejs.core.dao.CategoryDao;
+import com.friquerette.primejs.core.entity.Category;
+import com.friquerette.primejs.core.entity.Customer;
+
+@Service("categoryService")
+public class CategoryServiceImpl implements CategoryService {
+
+	private static final Logger logger = LoggerFactory.getLogger(CategoryServiceImpl.class);
+
+	@Autowired
+	private CategoryDao dao;
+	@Autowired
+	private CustomerService customerService;
+
+	@Override
+	@Transactional
+	public List<Category> findAll() {
+		try {
+			return dao.findAll();
+		} catch (Exception e) {
+			String message = "Failed to read all the category";
+			logger.error(message, e);
+			throw new PrimejsServiceException(message, e);
+		}
+	}
+
+	@Override
+	@Transactional
+	public List<Category> getAllActiveCategoryForSelect() {
+		try {
+			return dao.findAllActive();
+		} catch (Exception e) {
+			String message = "Failed to read all the category";
+			logger.error(message, e);
+			throw new PrimejsServiceException(message, e);
+		}
+	}
+
+	@Override
+	@Transactional
+	public void deleteById(Long id) {
+		try {
+			Category category = findById(id);
+			if (category == null) {
+				logger.error("Category not found for id " + id);
+			} else if (category.getParent() == null) {
+				logger.error("Your're not allow to delete a top parent category " + id);
+				throw new PrimejsServiceException("Your're not allow to delete a top parent category ");
+			} else {
+				dao.delete(category);
+			}
+		} catch (Exception e) {
+			String message = "Failed to update the category";
+			logger.error(message, e);
+			throw new PrimejsServiceException(message, e);
+		}
+
+	}
+
+	@Override
+	@Transactional
+	public Category findById(Long id) {
+		try {
+			Category category = dao.findById(id);
+			Hibernate.initialize(category);
+			return category;
+		} catch (Exception e) {
+			String message = "Failed to read the category " + id;
+			logger.error(message, e);
+			throw new PrimejsServiceException(message, e);
+
+		}
+	}
+
+	@Override
+	@Transactional
+	public void update(Category category) {
+		try {
+			dao.update(category);
+		} catch (Exception e) {
+			String message = "Failed to update the category";
+			logger.error(message, e);
+			throw new PrimejsServiceException(message, e);
+		}
+	}
+
+	/**
+	 * Received a "carbon copy". Update the category from this. Maybe
+	 * transformer this method by a converter like for the APP Web. For this add
+	 * a layer converter between Service and Controller Rest
+	 */
+	@Override
+	@Transactional
+	public void updateFromCopy(Category cc) {
+		try {
+			if (cc != null) {
+				Category category = dao.findById(cc.getId());
+				category.setDescription(cc.getDescription());
+				category.setName(cc.getName());
+				if (cc.getParent() != null && cc.getParent().getId() != null) {
+					Category newParent = dao.findById(cc.getParent().getId());
+					category.setParent(newParent);
+				}
+				update(category);
+			}
+		} catch (Exception e) {
+			String message = "Failed to update the category";
+			logger.error(message, e);
+			throw new PrimejsServiceException(message, e);
+		}
+	}
+
+	@Override
+	@Transactional
+	public Long create(Category category) {
+		try {
+			category.setEnabled(true);
+			Customer currentCustomer = customerService.getCurrentCustomerFromContext();
+			category.setCreatedBy(currentCustomer);
+			category.setLastModifiedBy(currentCustomer);
+			return dao.create(category);
+		} catch (Exception e) {
+			String message = "Failed to create the category";
+			logger.error(message, e);
+			throw new PrimejsServiceException(message, e);
+		}
+	}
+
+	/**
+	 * Design pattern Factory
+	 * 
+	 * @return
+	 */
+	@Override
+	public Category getInstance() {
+		Category category = new Category();
+		return category;
+	}
+
+}

@@ -1,0 +1,23 @@
+// UPDATE
+// PUT http://localhost:8080/primejs/rest/category
+// Authorization : Basic YWRtaW46YWRtaW4=
+// Content-Type : application/json
+{
+        "createDate": "2016-06-22",
+        "updateDate": "2016-06-22",
+        "enabled": true,
+        "id": 12,
+        "name": "TATA",
+        "description": "TOTOTOTOTOTO",
+        "parent": {
+            "createDate": "2016-06-22",
+            "updateDate": "2016-06-22",
+            "enabled": true,
+            "id": 4,
+            "name": "Electronics",
+            "description": null,
+            "parent": null,
+            "label": "Electronics"
+        },
+        "label": "Test"
+    }
