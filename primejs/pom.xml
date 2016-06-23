@@ -91,7 +91,7 @@
 			<artifactId>logback-classic</artifactId>
 			<version>${logback.version}</version>
 		</dependency>
-		
+
 		<!-- Apache Common -->
 		<dependency>
 			<groupId>org.apache.commons</groupId>
@@ -136,7 +136,7 @@
 			<scope>test</scope>
 		</dependency>
 
-		<!-- bootstrap -->
+		<!-- Bootstrap -->
 		<dependency>
 			<groupId>org.webjars</groupId>
 			<artifactId>jquery</artifactId>
@@ -153,6 +153,15 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+		
+		<!-- AngularJS --> 
+		<!-- https://mvnrepository.com/artifact/org.webjars/angularjs -->
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>angularjs</artifactId>
+			<version>1.5.7</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
