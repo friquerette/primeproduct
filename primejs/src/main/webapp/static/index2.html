@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en" ng-app="myApp">
+<head>
+<meta charset="UTF-8">
+<title>Angular Registration</title>
+<meta name="viewport" content="width=device-width, user-scalable=no">
+<link
+	href='https://fonts.googleapis.com/css?family=Lato:400,100,700,900'
+	rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="css/style.css">
+
+<script src="/primejs/webjars/angularjs/1.5.7/angular.min.js"></script>
+<script src="/primejs/webjars/angularjs/1.5.7/angular-route.min.js"></script>
+<script src="/primejs/webjars/angularjs/1.5.7/angular-animate.min.js"></script>
+
+<script src="js/app2.js"></script>
+
+</head>
+<body>
+	<div class="page">
+		<main class="cf" data-ng-controller="CurrencyController"> Current ID
+		{{ dataId.id }} <br />
+		Current ID {{ message }}<br />
+		Current ID {{ selectedCar }}<br />
+		<select ng-model="selectedCar">
+			<option ng-repeat="(key, data) in currencies" value="{{key}}">{{data}}</option>
+		</select>
+		<select ng-options="key for (key, data) in currencies">
+		</select>
+		</main>
+	</div>
+</body>
+</html>

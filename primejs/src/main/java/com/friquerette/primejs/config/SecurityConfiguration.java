@@ -52,6 +52,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		 * The category and the customer are
 		 */
 		http.authorizeRequests()//
+				.antMatchers("/rest/currency/public/**").permitAll()//
 				.antMatchers("/rest/product/public/**").permitAll()//
 				.antMatchers("/rest/product/private/**").access("hasRole('USER') or hasRole('ADMIN')")//
 				.antMatchers("/rest/category/**").access("hasRole('USER') or hasRole('ADMIN')")//

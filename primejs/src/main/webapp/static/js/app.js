@@ -1,20 +1,17 @@
-var myApp = angular.module('myApp', ['ngRoute']);
 
-myApp.config(['$routeProvider', function($routeProvider) {
-  $routeProvider.
-    when('/login', {
-      templateUrl: 'views/login.html',
-      controller: 'RegistrationController'
-    }).
-    when('/register', {
-      templateUrl: 'views/register.html',
-      controller: 'RegistrationController'
-    }).
-    when('/success', {
-      templateUrl: 'views/success.html',
-      controller: 'SuccessController'
-    }).
-    otherwise({
-      redirectTo: '/login'
+var app = angular.module("myApp", ["ngRoute"]);
+app.config(function($routeProvider) {
+    $routeProvider
+    .when("/", {
+        templateUrl : "/primejs/static/views/login.html"
+    })
+    .when("/red", {
+        templateUrl : "/primejs/static/views/nav.html"
+    })
+    .when("/green", {
+        templateUrl : "/primejs/static/views/register.html"
+    })
+    .when("/blue", {
+        templateUrl : "/primejs/static/views/success.html"
     });
-}]);
+});

@@ -1,8 +1,8 @@
 package com.friquerette.primejs.controller.rest;
 
 import static com.friquerette.primejs.controller.rest.RestConstant.PRODUCT;
-import static com.friquerette.primejs.controller.rest.RestConstant.PRODUCT_PRIVATE;
-import static com.friquerette.primejs.controller.rest.RestConstant.PRODUCT_PUBLIC;
+import static com.friquerette.primejs.controller.rest.RestConstant.PRIVATE;
+import static com.friquerette.primejs.controller.rest.RestConstant.PUBLIC;
 import static com.friquerette.primejs.controller.rest.RestConstant.ROOT_WS;
 
 import java.util.List;
@@ -41,7 +41,7 @@ public class ProductRestController {
 	 * 
 	 * @return
 	 */
-	@RequestMapping(value = PRODUCT_PUBLIC, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = PUBLIC, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<Product>> getPublicProduct() {
 		try {
 			List<Product> products = productService.findAll();
@@ -57,7 +57,7 @@ public class ProductRestController {
 	 * 
 	 * @return
 	 */
-	@RequestMapping(value = PRODUCT_PRIVATE, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = PRIVATE, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<Product>> getPrivateProductAll() {
 		try {
 			List<Product> products = productService.findForCurrentUser();
