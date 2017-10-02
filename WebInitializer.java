@@ -6,7 +6,7 @@ import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatche
  * Create a ServletInitializer class, Servlet 3.0+ container will pick up this
  * class and run it automatically. This is the replacement class for web.xml
  * 
- * 02 oct 2017
+ * 02 october 2017
  *
  * @author Rick
  *
